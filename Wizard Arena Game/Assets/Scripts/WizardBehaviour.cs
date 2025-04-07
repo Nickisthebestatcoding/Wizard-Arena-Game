@@ -9,10 +9,10 @@ public class WizardScript : MonoBehaviour
     float speed = 3.0f;
 
     // world boundaries
-    float WORLD_MIN_X = -50.0f;
-    float WORLD_MIN_Y = -50.0f;
-    float WORLD_MAX_X = 50.0f;
-    float WORLD_MAX_Y = 50.0f;
+    float WORLD_MIN_X = -100.0f;
+    float WORLD_MIN_Y = -100.0f;
+    float WORLD_MAX_X = 100.0f;
+    float WORLD_MAX_Y = 100.0f;
 
     // utility objects to limit the positions
     PositionClamp spriteClamp;
