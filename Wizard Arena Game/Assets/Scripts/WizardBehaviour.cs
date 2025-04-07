@@ -17,6 +17,7 @@ public class WizardScript : MonoBehaviour
     // utility objects to limit the positions
     PositionClamp spriteClamp;
     PositionClamp cameraClamp;
+    public Teleporter porter;
     // Start is called before the first frame update
     void Start()
     {
