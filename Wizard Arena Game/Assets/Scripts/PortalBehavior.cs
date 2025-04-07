@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,9 +17,14 @@ public class Teleporter
         
     }
 
+    internal void Teleport(GameObject gameObject, GameObject targetObject)
+    {
+        throw new NotImplementedException();
+    }
+
     // Update is called once per frame
-    
-    
-        
-    
+
+
+
+
 }

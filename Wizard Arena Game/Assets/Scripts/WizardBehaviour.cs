@@ -46,4 +46,13 @@ public class WizardScript : MonoBehaviour
         // to match new sprite position
         cameraClamp.limitMovement(transform.position, Camera.main.transform);
     }
+    void OnTriggerEnter2D(Collider2D otherObject)
+    {
+        if (otherObject.gameObject.name.Equals("PortalSource1"))
+        {
+            GameObject targetObject = GameObject.Find("PortalTarget1");
+            porter.Teleport(gameObject, targetObject);
+        }
+
+    }
 }
