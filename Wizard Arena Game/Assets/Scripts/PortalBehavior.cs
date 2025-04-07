@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortalBehavior : MonoBehaviour
+public class Teleporter
 {
-    // Start is called before the first frame update
-    void Start()
+    private Camera mainCamera;
+
+    private float xMin;
+    private float yMin;
+    private float xMax;
+    private float yMax;
+
+    public Teleporter(Camera cam)// Start is called before the first frame update
     {
         
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    
+    
         
-    }
+    
 }
