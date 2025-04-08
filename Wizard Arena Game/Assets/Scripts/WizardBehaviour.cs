@@ -29,6 +29,7 @@ public class WizardScript : MonoBehaviour
         Camera c = GetComponent<Camera>();
         cameraClamp = new PositionClamp(WORLD_MIN_X, WORLD_MIN_Y, WORLD_MAX_X, WORLD_MAX_Y, Camera.main);
         myTimer = new Timer(timeText);
+        
         // set up PositionClamp to limit camera position within world boundaries
     }
 
@@ -39,6 +40,7 @@ public class WizardScript : MonoBehaviour
         { // move the wizard in the current direciton at the current speed
             transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime * speed,
                                 Input.GetAxis("Vertical") * Time.deltaTime * speed, 0);
+            myTimer.Update();
             
         }
         // Now that the position has been updated, limit
