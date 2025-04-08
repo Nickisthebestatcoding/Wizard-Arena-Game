@@ -19,6 +19,7 @@ public class WizardScript : MonoBehaviour
     PositionClamp cameraClamp;
     public Teleporter porter;
     public Timer myTimer;
+    private bool gameOver;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,10 +35,12 @@ public class WizardScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // move the wizard in the current direciton at the current speed
-        transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime * speed,
-                            Input.GetAxis("Vertical") * Time.deltaTime * speed, 0);
-        myTimer.Update();
+        if (!gameOver)
+        { // move the wizard in the current direciton at the current speed
+            transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime * speed,
+                                Input.GetAxis("Vertical") * Time.deltaTime * speed, 0);
+            
+        }
         // Now that the position has been updated, limit
         // the X and Y coordinates and make sure they
         // do not go beyond certain boundaries
