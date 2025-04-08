@@ -6,7 +6,7 @@ using TMPro;
 public class WizardScript : MonoBehaviour
 {
     // speed of wizard
-    private float speed = 3.0f;
+    float speed = 3.0f;
 
     // world boundaries
     float WORLD_MIN_X = -100.0f;
