@@ -40,7 +40,7 @@ public class WizardScript : MonoBehaviour
         { // move the wizard in the current direciton at the current speed
             transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime * speed,
                                 Input.GetAxis("Vertical") * Time.deltaTime * speed, 0);
-            myTimer.Update();
+            
             
         }
         // Now that the position has been updated, limit
