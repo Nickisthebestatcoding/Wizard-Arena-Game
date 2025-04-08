@@ -6,7 +6,7 @@ using TMPro;
 public class WizardScript : MonoBehaviour
 {
     // speed of wizard
-    float speed = 3.0f;
+    private float speed = 3.0f;
 
     // world boundaries
     float WORLD_MIN_X = -100.0f;
@@ -48,7 +48,7 @@ public class WizardScript : MonoBehaviour
             transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime * speed,
                                 Input.GetAxis("Vertical") * Time.deltaTime * speed, 0);
 
-            myTimer.Update();
+            
             
         }
         // Now that the position has been updated, limit
