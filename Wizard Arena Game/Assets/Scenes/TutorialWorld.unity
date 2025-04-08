@@ -477,7 +477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 30.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &252903210
@@ -1930,6 +1930,7 @@ PolygonCollider2D:
       - {x: 0.11, y: -0.37}
       - {x: 0.16, y: -0.35}
       - {x: 0.29999998, y: -0.22999999}
+      - {x: 0.36767015, y: -0.17843331}
       - {x: 0.42, y: -0.14}
   m_UseDelaunayMesh: 0
 --- !u!50 &1544978994
@@ -1997,9 +1998,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingLayerID: -1097263309
+  m_SortingLayer: 4
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 24e7681ec73374bc8b8a71124f3cd0b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2762,6 +2763,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8202883395775310622, guid: 2d2c302b2f47d47f1936a56d5bb25adb, type: 3}
+      propertyPath: m_Size.x
+      value: 5.4000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202883395775310622, guid: 2d2c302b2f47d47f1936a56d5bb25adb, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: f8bdab9e5bd8c450fa41a49f94f7158a, type: 2}
+    - target: {fileID: 8202883395775310622, guid: 2d2c302b2f47d47f1936a56d5bb25adb, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.00000059604645
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202883395775310622, guid: 2d2c302b2f47d47f1936a56d5bb25adb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8268035015488571929, guid: 2d2c302b2f47d47f1936a56d5bb25adb, type: 3}
       propertyPath: m_Name
       value: rocky border
@@ -2816,7 +2833,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1544978996}
-  - {fileID: 1384855190}
   - {fileID: 24171959}
   - {fileID: 585879001}
   - {fileID: 1750512112}
@@ -2840,3 +2856,4 @@ SceneRoots:
   - {fileID: 1488855593}
   - {fileID: 1902689993}
   - {fileID: 1104499055940086007}
+  - {fileID: 1384855190}
