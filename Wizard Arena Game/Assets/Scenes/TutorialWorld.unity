@@ -2477,6 +2477,7 @@ GameObject:
   - component: {fileID: 1544978994}
   - component: {fileID: 1544978993}
   - component: {fileID: 1544978992}
+  - component: {fileID: 1544978997}
   - component: {fileID: 1544978991}
   m_Layer: 0
   m_Name: Wizard (Main)
@@ -2712,6 +2713,20 @@ Transform:
   - {fileID: 1072002233}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+--- !u!114 &1544978997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544978990}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5f976a9060949eaa9bb6853f28ef3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+=======
 --- !u!1001 &1668509682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2769,6 +2784,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d2c302b2f47d47f1936a56d5bb25adb, type: 3}
+>>>>>>> 9f7808ee2fed818ea97456504729f28de48d9e45
 --- !u!1 &1673756462
 GameObject:
   m_ObjectHideFlags: 0
