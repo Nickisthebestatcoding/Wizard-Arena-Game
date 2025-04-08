@@ -13,11 +13,12 @@ public class WizardScript : MonoBehaviour
     float WORLD_MIN_Y = -100.0f;
     float WORLD_MAX_X = 100.0f;
     float WORLD_MAX_Y = 100.0f;
-
+    public TextMeshProUGUI timeText;
     // utility objects to limit the positions
     PositionClamp spriteClamp;
     PositionClamp cameraClamp;
     public Teleporter porter;
+    public Timer myTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class WizardScript : MonoBehaviour
 
         Camera c = GetComponent<Camera>();
         cameraClamp = new PositionClamp(WORLD_MIN_X, WORLD_MIN_Y, WORLD_MAX_X, WORLD_MAX_Y, Camera.main);
-
+        myTimer = new Timer(timeText);
         // set up PositionClamp to limit camera position within world boundaries
     }
 
@@ -36,7 +37,7 @@ public class WizardScript : MonoBehaviour
         // move the wizard in the current direciton at the current speed
         transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime * speed,
                             Input.GetAxis("Vertical") * Time.deltaTime * speed, 0);
-
+        myTimer.Update();
         // Now that the position has been updated, limit
         // the X and Y coordinates and make sure they
         // do not go beyond certain boundaries
