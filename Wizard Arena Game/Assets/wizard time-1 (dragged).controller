@@ -88,14 +88,8 @@ AnimatorController:
   m_Name: wizard time-1 (dragged)
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Trigger
+  - m_Name: State
     m_Type: 3
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: iswalking
-    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -122,11 +116,8 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: state
+    m_ConditionEvent: State
     m_EventTreshold: 1
-  - m_ConditionMode: 1
-    m_ConditionEvent: iswalking
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8197984367570116380}
   m_Solo: 0
@@ -149,11 +140,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: state
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: iswalking
+  - m_ConditionMode: 6
+    m_ConditionEvent: State
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3435059951620725827}
