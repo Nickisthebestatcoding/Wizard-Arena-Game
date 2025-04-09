@@ -18,7 +18,13 @@ public class Teleporter
     {
         mainCamera = cam;
 
-        
+        float worldHeight = mainCamera.orthographicSize * 3.0F;
+        float worldWidth = worldHeight * mainCamera.aspect;
+
+        xMin = -worldWidth / 3.0F;
+        yMin = -worldHeight / 3.0F;
+        xMax = worldWidth / 3.0F;
+        yMax = worldHeight / 3.0F;
     }
 
     internal void Teleport(GameObject gameObject, GameObject targetObject)
