@@ -2742,6 +2742,7 @@ GameObject:
   - component: {fileID: 1544978993}
   - component: {fileID: 1544978992}
   - component: {fileID: 1544978997}
+  - component: {fileID: 1544978998}
   m_Layer: 0
   m_Name: Wizard (Main)
   m_TagString: Untagged
@@ -2939,6 +2940,27 @@ MonoBehaviour:
   rotationSpeed: 10
   minAngle: -90
   maxAngle: 90
+--- !u!95 &1544978998
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544978990}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5150dacb0efe245cb9443c05df7b63e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1668509682
 PrefabInstance:
   m_ObjectHideFlags: 0
