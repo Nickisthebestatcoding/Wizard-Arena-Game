@@ -5,6 +5,7 @@ using UnityEngine;
 public class WizardAnim : MonoBehaviour
 {
     Animator myAnim;
+    SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +17,12 @@ public class WizardAnim : MonoBehaviour
     {
        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S)|| Input.GetKey(KeyCode.D))
         {
-            myAnim.SetInteger("state", 1);
+            myAnim.SetBool("iswalking", true);
         }
-        else
+       else
         {
-            myAnim.SetInteger("state", 0);
+            myAnim.SetBool("iswalking" , false);
         }
+        
     }
 }
