@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4560006380582282144}
   - component: {fileID: 4971319278362523176}
   m_Layer: 0
-  m_Name: fire ball bitch-1 (dragged)
+  m_Name: fireball
   m_TagString: Wizard attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
