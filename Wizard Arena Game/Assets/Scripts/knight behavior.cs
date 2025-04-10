@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class knightbehavior : MonoBehaviour
 {
-    public float moveSpeed = 2.5f;
+    public float moveSpeed = 2.1f;
     private Transform wizardTransform;   // Wizard position reference
 
 
@@ -46,7 +46,7 @@ public class knightbehavior : MonoBehaviour
         // Rotate to face the wizard
         if (direction.sqrMagnitude > 0.01f)
         {
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 270;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }
 
