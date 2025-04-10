@@ -47,11 +47,11 @@ TagManager:
   - name: border
     uniqueID: 295878763
     locked: 0
-  - name: objects
-    uniqueID: 1382212809
-    locked: 0
   - name: enemies
     uniqueID: 271981637
+    locked: 0
+  - name: objects
+    uniqueID: 1382212809
     locked: 0
   - name: text
     uniqueID: 3197703987

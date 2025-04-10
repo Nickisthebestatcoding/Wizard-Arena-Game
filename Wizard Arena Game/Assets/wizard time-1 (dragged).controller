@@ -140,6 +140,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: isWalking
+    m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: State
     m_EventTreshold: 0
