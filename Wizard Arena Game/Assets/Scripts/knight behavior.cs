@@ -8,12 +8,12 @@ public class knightbehavior : MonoBehaviour
     public float stoppingDistance = 1.0f;
     public float rotationSpeed = 5.0f;
 
-    private Transform Wizard;
+    private Transform wizard;
     // Start is called before the first frame update
     void Start()
     {
         // Find the wizard in the scene by its tag
-        Wizard = GameObject.FindGameObjectWithTag("Wizard").transform;
+        wizard = GameObject.FindGameObjectWithTag("Wizard").transform;
 
     }
 
@@ -21,10 +21,10 @@ public class knightbehavior : MonoBehaviour
     void Update()
     {
 
-        if (Wizard != null)
+        if (wizard != null)
         {
             // Calculate the direction towards the wizard
-            Vector3 direction = Wizard.position - transform.position;
+            Vector3 direction = wizard.position - transform.position;
 
             // Check if the knight is far enough from the wizard to continue chasing
             if (direction.magnitude > stoppingDistance)
