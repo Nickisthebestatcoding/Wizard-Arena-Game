@@ -25,7 +25,7 @@ public class WizardScript : MonoBehaviour
         }
     }
     public Teleporter porter;
-    public Timer myTimer;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +35,7 @@ public class WizardScript : MonoBehaviour
 
         Camera c = GetComponent<Camera>();
         cameraClamp = new PositionClamp(WORLD_MIN_X, WORLD_MIN_Y, WORLD_MAX_X, WORLD_MAX_Y, Camera.main);
-        myTimer = new Timer(timeText);
+       
 
         // set up PositionClamp to limit camera position within world boundaries
     }
