@@ -26,7 +26,16 @@ public class WizardAnim : MonoBehaviour
             Debug.Log("Not");
         }
 
-        
+        if (Input.GetKey(KeyCode.S))
+        {
+            myAnim.SetInteger("State", 1);
+            Debug.Log("Walking");
+        }
+        else
+        {
+            myAnim.SetInteger("State", 0);
+            Debug.Log("Not");
+        }
 
     }
 }
