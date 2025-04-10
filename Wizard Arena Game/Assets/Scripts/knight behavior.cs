@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class knightbehavior : MonoBehaviour
 {
-    public float moveSpeed = 3.0f;
-    public float stoppingDistance = 1.0f;
-    public float rotationSpeed = 5.0f;
+    public float moveSpeed = 2.5f;
+    private Transform wizardTransform;   // Wizard position reference
 
-    private Transform wizard;
+
+
+    
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        // Find the wizard in the scene by its tag
-        wizard = GameObject.FindGameObjectWithTag("Wizard").transform;
+        GameObject wizard = GameObject.FindGameObjectWithTag("Wizard");
+
+        if (wizard != null)
+        {
+            wizardTransform = wizard.transform;
+        }
+        else
+        {
+            Debug.LogError("Wizard not found in scene. Make sure it's tagged as 'Wizard'.");
+        }
 
     }
 
@@ -21,21 +30,18 @@ public class knightbehavior : MonoBehaviour
     void Update()
     {
 
-        if (wizard != null)
+
+        if (wizardTransform == null) return;
+
+        // Move toward wizard
+        Vector3 direction = wizardTransform.position - transform.position;
+        direction.z = 0f; // ensure only X and Y movement
+
+        // Normalize direction and move
+        if (direction.magnitude > 0.1f)
         {
-            // Calculate the direction towards the wizard
-            Vector3 direction = wizard.position - transform.position;
-
-            // Check if the knight is far enough from the wizard to continue chasing
-            if (direction.magnitude > stoppingDistance)
-            {
-                // Rotate smoothly to face the wizard
-                Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
-                transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-
-                // Move the knight towards the wizard
-                transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-            }
+            Vector3 movement = direction.normalized * moveSpeed * Time.deltaTime;
+            transform.position += movement;
         }
 
 
