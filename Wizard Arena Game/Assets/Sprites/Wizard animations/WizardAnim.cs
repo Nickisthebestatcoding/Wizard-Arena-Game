@@ -17,12 +17,12 @@ public class WizardAnim : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            myAnim.SetInteger("State", 2);
+            myAnim.SetInteger("State", 1);
             
         }
        else 
         {
-            myAnim.SetInteger("State" , 1);
+            myAnim.SetInteger("State" , 0);
             
         }
 
