@@ -736,11 +736,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2948403867557443084, guid: 2d2c302b2f47d47f1936a56d5bb25adb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.35
+      value: 9.48
       objectReference: {fileID: 0}
     - target: {fileID: 2948403867557443084, guid: 2d2c302b2f47d47f1936a56d5bb25adb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.65
+      value: 12.71
       objectReference: {fileID: 0}
     - target: {fileID: 2948403867557443084, guid: 2d2c302b2f47d47f1936a56d5bb25adb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2556,7 +2556,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1340738294
