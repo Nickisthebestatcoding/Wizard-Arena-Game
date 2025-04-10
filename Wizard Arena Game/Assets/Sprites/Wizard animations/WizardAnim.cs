@@ -17,7 +17,7 @@ public class WizardAnim : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            myAnim.SetBool("isWalking", true);
+            myAnim.SetInteger("State", 1);
             Debug.Log("Walking");
         }
        else 
@@ -26,16 +26,7 @@ public class WizardAnim : MonoBehaviour
             Debug.Log("Not");
         }
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            myAnim.SetInteger("State", 1);
-            Debug.Log("Walking");
-        }
-        else
-        {
-            myAnim.SetInteger("State", 0);
-            Debug.Log("Not");
-        }
+        
 
     }
 }
