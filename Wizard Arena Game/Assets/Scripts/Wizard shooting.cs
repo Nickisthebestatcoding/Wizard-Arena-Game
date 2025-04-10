@@ -46,7 +46,7 @@ public class Wizardshooting : MonoBehaviour
 
 
         // Optionally, you can rotate the fireball to face the direction it's moving
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         fireball.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
     }
