@@ -19,11 +19,18 @@ public class ChangeLevel : MonoBehaviour
     {
         
     }
-    public void ChangeLevel()
+    public void Changelevel()
     {
         string oldscene = levelNames[currentLevel];
 
         currentLevel++;
         if (currentLevel >= levelNames.Length)
+        {
+            currentLevel = 0;
+        }
+
+        SceneManager.LoadScene("Level1", LoadSceneMode.Additive);
+
+        SceneManager.UnloadSceneAsync("TutorialWorld");
     }
 }
