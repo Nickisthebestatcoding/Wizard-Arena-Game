@@ -59,6 +59,7 @@ public class WizardScript : MonoBehaviour
         // update new camera position (X and Y changes only)
         // to match new sprite position
         cameraClamp.limitMovement(transform.position, Camera.main.transform);
+
     }
     void OnTriggerEnter2D(Collider2D otherObject)
     {

@@ -20,10 +20,10 @@ public class WizardAnim : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
 
         // Check if player is moving
-        bool isMoving = horizontal != 0 || vertical != 0;
+        bool isWalking = horizontal != 0 || vertical != 0;
 
         // Set the "isWalking" parameter in the Animator
-        animator.SetBool("isWalking", isMoving);
+        animator.SetBool("isWalking", isWalking);
     }
 
 
