@@ -11,7 +11,7 @@ public class ChangeLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.LoadScene("")
+        SceneManager.LoadScene("TutorialWorld", LoadSceneMode.Additive);
     }
 
     // Update is called once per frame
