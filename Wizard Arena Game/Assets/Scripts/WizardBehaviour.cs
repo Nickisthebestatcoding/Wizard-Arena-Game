@@ -29,7 +29,7 @@ public class WizardScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        porter = new Teleporter(Camera.main);
         Renderer r = GetComponent<Renderer>();
         spriteClamp = new PositionClamp(WORLD_MIN_X, WORLD_MIN_Y, WORLD_MAX_X, WORLD_MAX_Y, r);// set up PositionClamp to limit sprite position within world boundaries
 
