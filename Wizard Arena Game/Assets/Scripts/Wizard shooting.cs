@@ -8,6 +8,9 @@ public class Wizardshooting : MonoBehaviour
     public float fireballSpeed = 10f;  // Speed of the fireball
     public Transform fireballSpawnPoint;  // Point where the fireball will spawn (e.g., in front of the wizard)
     // Start is called before the first frame update
+    public float fireCooldown = 1f;
+
+    private float lastFireTime = -Mathf.Infinity;
     void Start()
     {
         
@@ -20,6 +23,7 @@ public class Wizardshooting : MonoBehaviour
         if (this.CompareTag("Wizard") && Input.GetMouseButtonDown(0)) // 0 is left-click
         {
             ShootFireball();
+            lastFireTime = Time.time;
         }
     }
 
