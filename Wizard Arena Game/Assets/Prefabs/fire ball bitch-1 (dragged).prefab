@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4971319278362523176}
   - component: {fileID: 2505779729812970223}
   - component: {fileID: 6202673440715281703}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fire ball bitch-1 (dragged)
   m_TagString: Wizard attack
   m_Icon: {fileID: 0}
@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  pushForce: 5
 --- !u!50 &6202673440715281703
 Rigidbody2D:
   serializedVersion: 4
