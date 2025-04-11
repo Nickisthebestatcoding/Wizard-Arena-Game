@@ -5,6 +5,7 @@ using UnityEngine;
 public class Firball : MonoBehaviour
 {
     public float damage = 1f;
+    public float
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +21,11 @@ public class Firball : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        Health targetHealth = collision.gameObject.GetComponent<Health>();
-        if (targetHealth != null)
+        Health health = collision.gameObject.GetComponent<Health>();
+        if (health != null)
         {
-            targetHealth.TakeDamage(damage);
+            health.TakeDamage(damage);
         }
-
 
 
         // Implement behavior when fireball hits something (e.g., damage, destroy)
