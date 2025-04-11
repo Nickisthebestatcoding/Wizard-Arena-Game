@@ -4,29 +4,28 @@ using UnityEngine;
 
 public class WizardAnim : MonoBehaviour
 {
-    Animator myAnim;
+    Animator animator;
     
     // Start is called before the first frame update
     void Start()
     {
-        myAnim = GetComponent<Animator>();  
+         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            myAnim.SetInteger("State", 1);
-            
-        }
-       else 
-        {
-            myAnim.SetInteger("State" , 0);
-            
-        }
+        // Get input from WASD keys
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
 
-        
+        // Check if player is moving
+        bool isMoving = horizontal != 0 || vertical != 0;
 
+        // Set the "isWalking" parameter in the Animator
+        animator.SetBool("isWalking", isMoving);
     }
+
+
 }
+
