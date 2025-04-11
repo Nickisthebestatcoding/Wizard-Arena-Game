@@ -19,4 +19,5 @@ public class ChangeLevel : MonoBehaviour
     {
         
     }
+    public void Increase
 }
