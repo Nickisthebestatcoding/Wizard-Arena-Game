@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ChangeLevel : MonoBehaviour
 {
-    string[] levelNames = {"TutorialWorld", "Level1" };
+    string[] levelNames = {"TutorialWorld", "Level1"};
     int currentLevel = 0;
     // Start is called before the first frame update
     void Start()
@@ -21,8 +21,9 @@ public class ChangeLevel : MonoBehaviour
     }
     public void ChangeLevel()
     {
-        string oldscene = levelNames[currentLevelLevel];
+        string oldscene = levelNames[currentLevel];
 
-        cure
+        currentLevel++;
+        if (currentLevel >= levelNames.Length)
     }
 }
