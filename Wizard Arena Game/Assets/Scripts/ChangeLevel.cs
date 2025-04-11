@@ -19,5 +19,10 @@ public class ChangeLevel : MonoBehaviour
     {
         
     }
-    public void Increase
+    public void ChangeLevel()
+    {
+        string oldscene = levelNames[currentLevelLevel];
+
+        cure
+    }
 }
