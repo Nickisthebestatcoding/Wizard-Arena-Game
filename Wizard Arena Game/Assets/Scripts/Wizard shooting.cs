@@ -20,7 +20,7 @@ public class Wizardshooting : MonoBehaviour
     private void Update()
     {
         // If the wizard is tagged "Wizard" and the player clicks the mouse button (left-click)
-        if (this.CompareTag("Wizard") && Input.GetMouseButtonDown(0)) // 0 is left-click
+        if (this.CompareTag("Wizard") && Input.GetMouseButtonDown(0) && Time.time >= lastFireTime + fireCooldown) // 0 is left-click
         {
             ShootFireball();
             lastFireTime = Time.time;

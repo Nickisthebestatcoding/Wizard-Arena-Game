@@ -8587,6 +8587,7 @@ MonoBehaviour:
   fireballPrefab: {fileID: 8247750139965071724, guid: 0c5509bddb5f348f29bd399e16421738, type: 3}
   fireballSpeed: 10
   fireballSpawnPoint: {fileID: 129781560}
+  fireCooldown: 0.5
 --- !u!1001 &1546961751
 PrefabInstance:
   m_ObjectHideFlags: 0
