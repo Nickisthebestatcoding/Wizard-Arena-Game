@@ -5,6 +5,7 @@ using UnityEngine;
 public class Firball : MonoBehaviour
 {
     public float damage = 1f;
+    public float pushForce = 5f;
     
     // Start is called before the first frame update
     void Start()
@@ -20,10 +21,21 @@ public class Firball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Ignore objects with the "Wizard" tag
-        if (collision.gameObject.CompareTag("Wizard"))
+        GameObject target = collision.gameObject;
+
+        if (target.CompareTag("Wizard"))
         {
-            return; // Skip processing for wizard-tagged objects
+            // Push the wizard but do not damage
+            Rigidbody2D rb = target.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                Vector2 pushDirection = (target.transform.position - transform.position).normalized;
+                rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+            }
+
+            // Destroy the fireball after pushing
+            Destroy(gameObject);
+            return;
         }
 
         Health health = collision.gameObject.GetComponent<Health>();
