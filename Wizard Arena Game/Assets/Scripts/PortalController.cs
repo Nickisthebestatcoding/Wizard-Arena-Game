@@ -13,11 +13,18 @@ public class PortalController : MonoBehaviour
     void Start()
     {
         SpriteRenderer r = GetComponent<SpriteRenderer>();
+        portalRadius = r.bounds.size.x / 3;
+
+        scored = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (scored == true)
+            
+        {
+            
+        }
     }
 }
