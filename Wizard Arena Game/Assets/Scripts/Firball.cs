@@ -20,6 +20,11 @@ public class Firball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // Ignore objects with the "Wizard" tag
+        if (collision.gameObject.CompareTag("Wizard"))
+        {
+            return; // Skip processing for wizard-tagged objects
+        }
 
         Health health = collision.gameObject.GetComponent<Health>();
         if (health != null)
