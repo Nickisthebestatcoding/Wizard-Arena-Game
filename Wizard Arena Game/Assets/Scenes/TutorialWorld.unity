@@ -9942,6 +9942,7 @@ GameObject:
   - component: {fileID: 1825604293}
   - component: {fileID: 1825604295}
   - component: {fileID: 1825604296}
+  - component: {fileID: 1825604297}
   m_Layer: 0
   m_Name: knight-2
   m_TagString: enemy
@@ -10143,6 +10144,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
   chaseRange: 15
+--- !u!114 &1825604297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825604292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
 --- !u!1001 &1828289233
 PrefabInstance:
   m_ObjectHideFlags: 0
