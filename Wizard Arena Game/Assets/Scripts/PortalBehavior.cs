@@ -27,13 +27,15 @@ public class Teleporter
         yMax = worldHeight / 3.0F;
     }
 
-    internal void Teleport(GameObject gameObject, GameObject targetObject)
-    {
-        throw new NotImplementedException();
-    }
 
     // Update is called once per frame
-
+    public void Teleport(GameObject source, GameObject destination)
+    {
+        if ((source != null) && (destination != null))
+        {
+            source.transform.position = destination.transform.position;
+        }
+    }
 
 
 
