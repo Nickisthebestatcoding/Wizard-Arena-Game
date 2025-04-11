@@ -25,15 +25,13 @@ public class Firball : MonoBehaviour
 
         if (target.CompareTag("Wizard"))
         {
-            // Push the wizard but do not damage
-            Rigidbody2D rb = target.GetComponent<Rigidbody2D>();
-            if (rb != null)
+            WizardMovement wizard = target.GetComponent<WizardMovement>();
+            if (wizard != null)
             {
                 Vector2 pushDirection = (target.transform.position - transform.position).normalized;
-                rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+                wizard.ApplyPush(pushDirection * pushForce, 0.5f); // Push for 0.5 seconds
             }
 
-            // Destroy the fireball after pushing
             Destroy(gameObject);
             return;
         }
