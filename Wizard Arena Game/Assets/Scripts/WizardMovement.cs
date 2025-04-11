@@ -6,7 +6,7 @@ public class WizardMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private bool isBeingPushed = false;
-    private float pushStopTime = 0.5f; // How long the push effect lasts
+    
     private float pushTimer = 0f;
     // Start is called before the first frame update
     void Start()
