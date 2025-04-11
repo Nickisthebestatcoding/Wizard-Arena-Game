@@ -9,21 +9,20 @@ public class WizardAnim : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Get input from WASD keys
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        bool isMoving = Input.GetKey(KeyCode.W) ||
+                       Input.GetKey(KeyCode.A) ||
+                       Input.GetKey(KeyCode.S) ||
+                       Input.GetKey(KeyCode.D);
 
-        // Check if player is moving
-        bool isWalking = horizontal != 0 || vertical != 0;
 
-        // Set the "isWalking" parameter in the Animator
-        animator.SetBool("isWalking", isWalking);
+        // Update Animator parameter
+        animator.SetBool("isWalking", isMoving);
     }
 
 
