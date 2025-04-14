@@ -13,6 +13,9 @@ public class knightbehavior : MonoBehaviour
     private Transform wizardTransform;
     private Animator animator;
     private float lastAttackTime;
+    public float knockbackForce = 5f; // Set in Inspector
+    public LayerMask wizardLayer; // Set this to the Wizard layer in Inspector
+    public float knockbackRadius = 1.5f;
 
 
 
@@ -81,10 +84,44 @@ public class knightbehavior : MonoBehaviour
         float distance = Vector3.Distance(transform.position, wizardTransform.position);
         if (distance <= attackRange)
         {
+            // Deal damage
             Health wizardHealth = wizardTransform.GetComponent<Health>();
             if (wizardHealth != null)
             {
                 wizardHealth.TakeDamage(damage);
+            }
+
+            // Apply knockback if possible
+            WizardMovement wizardMovement = wizardTransform.GetComponent<WizardMovement>();
+            if (wizardMovement != null)
+            {
+                Vector2 knockbackDirection = (wizardTransform.position - transform.position).normalized;
+                wizardMovement.ApplyPush(knockbackDirection * knockbackForce, 0.3f); // 0.3s duration, tweak as needed
+            }
+        }
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, knockbackRadius, wizardLayer);
+
+        foreach (var hit in hits)
+        {
+            Health wizardHealth = hit.GetComponent<Health>();
+            WizardMovement wizardMovement = hit.GetComponent<WizardMovement>();
+
+            if (wizardHealth != null)
+            {
+                wizardHealth.TakeDamage(damage);
+            }
+
+            if (wizardMovement != null)
+            {
+                Vector2 knockbackDir = (hit.transform.position - transform.position).normalized;
+
+                // Fallback in case they're overlapping perfectly (zero vector)
+                if (knockbackDir == Vector2.zero)
+                {
+                    knockbackDir = Vector2.up; // arbitrary direction
+                }
+
+                wizardMovement.ApplyPush(knockbackDir * knockbackForce, 0.3f);
             }
         }
     }

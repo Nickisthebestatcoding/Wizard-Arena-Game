@@ -6625,11 +6625,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 183243dea51cb498da836ad0b057ad99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 4.3
   chaseRange: 14
   attackRange: 2.5
   attackCooldown: 1.5
   damage: 1
+  knockbackForce: 5
+  wizardLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  knockbackRadius: 1.5
 --- !u!114 &1195139344
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,7 +19,9 @@ public class WizardMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (isBeingPushed) return; // stop movement input
+
+        // your normal movement input here
     }
 
     public void ApplyPush(Vector2 force, float duration)
