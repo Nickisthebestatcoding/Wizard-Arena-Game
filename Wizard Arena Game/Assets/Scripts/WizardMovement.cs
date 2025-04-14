@@ -5,8 +5,10 @@ using UnityEngine;
 public class WizardMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private bool isBeingPushed = false;
     
+    private bool isBeingPushed = false;
+
+
     private float pushTimer = 0f;
     // Start is called before the first frame update
     void Start()
@@ -17,21 +19,27 @@ public class WizardMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isBeingPushed)
-        {
-            pushTimer -= Time.deltaTime;
-            if (pushTimer <= 0f)
-            {
-                isBeingPushed = false;
-                rb.velocity = Vector2.zero; // Stop sliding
-            }
-        }
+       
     }
 
     public void ApplyPush(Vector2 force, float duration)
     {
+        if (isBeingPushed) return;
+
+        StartCoroutine(PushCoroutine(force, duration));
+    }
+
+
+    private IEnumerator PushCoroutine(Vector2 force, float duration)
+    {
         isBeingPushed = true;
-        pushTimer = duration;
-        rb.AddForce(force, ForceMode2D.Impulse);
+        rb.velocity = force;
+
+        yield return new WaitForSeconds(duration);
+
+        rb.velocity = Vector2.zero;
+        isBeingPushed = false;
     }
 }
+
+
