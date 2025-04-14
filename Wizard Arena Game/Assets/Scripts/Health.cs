@@ -6,7 +6,7 @@ public class Health : MonoBehaviour
 {
     public float maxHealth = 10f;
     private float currentHealth;
-    public HealthBarUI healthBarUI;
+    public WizardHealthBar healthBarUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +28,11 @@ public class Health : MonoBehaviour
         Debug.Log(gameObject.name + " took " + amount + " damage. Remaining health: " + currentHealth);
 
         if (healthBarUI != null)
+        {
             healthBarUI.UpdateHealthBar(currentHealth / maxHealth);
+            Debug.Log("Updating health bar with: " + (currentHealth / maxHealth));
+        }
+            
 
 
         if (currentHealth <= 0)
