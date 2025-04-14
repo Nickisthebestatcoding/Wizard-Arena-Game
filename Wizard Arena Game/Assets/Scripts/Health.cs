@@ -30,7 +30,7 @@ public class Health : MonoBehaviour
         if (healthBarUI != null)
         {
             healthBarUI.UpdateHealthBar(currentHealth / maxHealth);
-            Debug.Log("Updating health bar with: " + (currentHealth / maxHealth));
+
         }
             
 
