@@ -48,6 +48,9 @@ TagManager:
   - name: ground
     uniqueID: 284384611
     locked: 0
+  - name: coin
+    uniqueID: 2702051963
+    locked: 0
   - name: border
     uniqueID: 295878763
     locked: 0
@@ -59,7 +62,4 @@ TagManager:
     locked: 0
   - name: text
     uniqueID: 3197703987
-    locked: 0
-  - name: coin
-    uniqueID: 2702051963
     locked: 0
