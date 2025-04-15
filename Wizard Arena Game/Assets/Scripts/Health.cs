@@ -61,4 +61,4 @@ public class Health : MonoBehaviour
         Debug.Log("Health reset to max.");
     }
 }
-}
+

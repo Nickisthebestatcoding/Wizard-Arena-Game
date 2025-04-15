@@ -9,8 +9,9 @@ public class knightbehavior : MonoBehaviour
     private Transform wizardTransform;   // Wizard position reference
     public Component Health;
 
+    private Vector3 startPos;
+    private Quaternion startRot;
 
-    
     // Start is called before the first frame update
     private void Start()
     {
@@ -24,6 +25,8 @@ public class knightbehavior : MonoBehaviour
         {
             Debug.LogError("Wizard not found in scene. Make sure it's tagged as 'Wizard'.");
         }
+        startPos = transform.position;
+        startRot = transform.rotation;
 
     }
 
@@ -54,5 +57,10 @@ public class knightbehavior : MonoBehaviour
             Vector3 movement = direction.normalized * moveSpeed * Time.deltaTime;
             transform.position += movement;
         }
+    }
+    public void ResetEnemy()
+    {
+
+
     }
 }
