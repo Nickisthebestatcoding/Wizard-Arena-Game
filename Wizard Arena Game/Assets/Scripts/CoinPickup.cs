@@ -4,6 +4,7 @@ public class CoinPickup : MonoBehaviour
 {
     // Reference to the GameManager or any object that handles the coin count
     public GameManager gameManager;
+    
 
     // When the character collides with a coin, pick it up
     private void OnTriggerEnter2D(Collider2D other)
