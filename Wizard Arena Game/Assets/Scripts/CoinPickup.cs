@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinPickup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Reference to the GameManager or any object that handles the coin count
+    public GameManager gameManager;
 
-    // Update is called once per frame
-    void Update()
+    // When the character collides with a coin, pick it up
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        // Check if the player collided with the coin
+        if (other.CompareTag("Wizard"))
+        {
+            // Increase the coin count in the GameManager
+            gameManager.AddCoin();
+
+            // Destroy the coin after it's picked up
+            Destroy(gameObject);
+        }
     }
 }
