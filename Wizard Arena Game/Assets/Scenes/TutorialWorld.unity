@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 29158641}
   - component: {fileID: 29158640}
   - component: {fileID: 29158642}
+  - component: {fileID: 29158643}
   m_Layer: 0
   m_Name: coin (9)
   m_TagString: Untagged
@@ -368,6 +369,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.96
+--- !u!114 &29158643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29158639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &29501149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1612,6 +1625,7 @@ GameObject:
   - component: {fileID: 237480241}
   - component: {fileID: 237480240}
   - component: {fileID: 237480242}
+  - component: {fileID: 237480243}
   m_Layer: 0
   m_Name: coin (8)
   m_TagString: Untagged
@@ -1721,6 +1735,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.96
+--- !u!114 &237480243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237480239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &239221561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1912,7 +1938,7 @@ GameObject:
   - component: {fileID: 252903211}
   - component: {fileID: 252903210}
   m_Layer: 5
-  m_Name: CoinCount(TMP)
+  m_Name: coinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2533,6 +2559,7 @@ GameObject:
   - component: {fileID: 330287813}
   - component: {fileID: 330287812}
   - component: {fileID: 330287814}
+  - component: {fileID: 330287815}
   m_Layer: 0
   m_Name: coin (12)
   m_TagString: Untagged
@@ -2642,6 +2669,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.96
+--- !u!114 &330287815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330287811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &361238264
 GameObject:
   m_ObjectHideFlags: 0
@@ -2821,6 +2860,7 @@ GameObject:
   - component: {fileID: 369442294}
   - component: {fileID: 369442293}
   - component: {fileID: 369442295}
+  - component: {fileID: 369442296}
   m_Layer: 0
   m_Name: coin (6)
   m_TagString: Untagged
@@ -2930,6 +2970,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.96
+--- !u!114 &369442296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369442292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &369819097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2998,6 +3050,7 @@ GameObject:
   - component: {fileID: 371950693}
   - component: {fileID: 371950692}
   - component: {fileID: 371950694}
+  - component: {fileID: 371950695}
   m_Layer: 0
   m_Name: coin (1)
   m_TagString: Untagged
@@ -3107,6 +3160,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.96
+--- !u!114 &371950695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371950691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &380056028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3484,6 +3549,7 @@ GameObject:
   - component: {fileID: 456669591}
   - component: {fileID: 456669590}
   - component: {fileID: 456669592}
+  - component: {fileID: 456669593}
   m_Layer: 0
   m_Name: coin (7)
   m_TagString: Untagged
@@ -3593,6 +3659,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.96
+--- !u!114 &456669593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456669589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &461006089
 GameObject:
   m_ObjectHideFlags: 0
@@ -5700,6 +5778,7 @@ GameObject:
   - component: {fileID: 971903276}
   - component: {fileID: 971903275}
   - component: {fileID: 971903277}
+  - component: {fileID: 971903278}
   m_Layer: 0
   m_Name: coin (4)
   m_TagString: Untagged
@@ -5809,6 +5888,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.96
+--- !u!114 &971903278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971903274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &983099839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6549,6 +6640,7 @@ GameObject:
   - component: {fileID: 1109424201}
   - component: {fileID: 1109424200}
   - component: {fileID: 1109424202}
+  - component: {fileID: 1109424203}
   m_Layer: 0
   m_Name: coin (11)
   m_TagString: Untagged
@@ -6658,6 +6750,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.96
+--- !u!114 &1109424203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109424199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1117550589
 GameObject:
   m_ObjectHideFlags: 0
@@ -7696,6 +7800,7 @@ GameObject:
   - component: {fileID: 1262405264}
   - component: {fileID: 1262405263}
   - component: {fileID: 1262405265}
+  - component: {fileID: 1262405266}
   m_Layer: 0
   m_Name: coin (10)
   m_TagString: Untagged
@@ -7805,6 +7910,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.96
+--- !u!114 &1262405266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262405262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1279895229
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8999,6 +9116,7 @@ GameObject:
   - component: {fileID: 1544886276}
   - component: {fileID: 1544886275}
   - component: {fileID: 1544886277}
+  - component: {fileID: 1544886278}
   m_Layer: 0
   m_Name: coin (2)
   m_TagString: Untagged
@@ -9108,6 +9226,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.96
+--- !u!114 &1544886278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544886274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1544978990
 GameObject:
   m_ObjectHideFlags: 0
@@ -9891,6 +10021,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1644959319
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1644959321}
+  - component: {fileID: 1644959320}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1644959320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644959319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b065740baf25d41cbb2d1e53a64974fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1644959321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644959319}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 46.483208, y: -4.768696, z: -10.618881}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1668509682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10024,6 +10198,7 @@ GameObject:
   - component: {fileID: 1673552661}
   - component: {fileID: 1673552660}
   - component: {fileID: 1673552662}
+  - component: {fileID: 1673552663}
   m_Layer: 0
   m_Name: coin (3)
   m_TagString: Untagged
@@ -10133,6 +10308,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.96
+--- !u!114 &1673552663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673552659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1673756462
 GameObject:
   m_ObjectHideFlags: 0
@@ -11453,6 +11640,7 @@ GameObject:
   - component: {fileID: 1908190680}
   - component: {fileID: 1908190679}
   - component: {fileID: 1908190681}
+  - component: {fileID: 1908190682}
   m_Layer: 0
   m_Name: coin
   m_TagString: Untagged
@@ -11562,6 +11750,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.96
+--- !u!114 &1908190682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908190678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1917459170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12959,7 +13159,7 @@ Transform:
   m_GameObject: {fileID: 2115457653}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.27987, y: -1.5562191, z: 0}
+  m_LocalPosition: {x: 34.5, y: -26.7, z: 0}
   m_LocalScale: {x: 1.5, y: 1.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13652,3 +13852,4 @@ SceneRoots:
   - {fileID: 1109424201}
   - {fileID: 330287813}
   - {fileID: 909207336}
+  - {fileID: 1644959321}
