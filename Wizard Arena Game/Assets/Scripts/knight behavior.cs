@@ -16,7 +16,9 @@ public class knightbehavior : MonoBehaviour
     public float knockbackForce = 5f; // Set in Inspector
     public LayerMask wizardLayer; // Set this to the Wizard layer in Inspector
     public float knockbackRadius = 1.5f;
-
+    private Health health;
+    private Vector3 startPos; // ?? Start position
+    private Quaternion startRot; // ?? Start rotation
 
 
     // Start is called before the first frame update
@@ -125,4 +127,5 @@ public class knightbehavior : MonoBehaviour
             }
         }
     }
+
 }
