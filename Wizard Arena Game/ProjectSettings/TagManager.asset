@@ -60,3 +60,6 @@ TagManager:
   - name: text
     uniqueID: 3197703987
     locked: 0
+  - name: coin
+    uniqueID: 2702051963
+    locked: 0
