@@ -45,8 +45,12 @@ public class Health : MonoBehaviour
     {
         Debug.Log(gameObject.name + " died!");
 
-        // Instead of destroying, reset the level
-        LevelManager.Instance.ResetLevel();
+        if (CompareTag("Wizard")) // ✅ Only reset if Wizard died
+        {
+            FindObjectOfType<LevelManager>().ResetLevel();
+        }
+
+        Destroy(gameObject);
     }
 
     public void ResetHealth()
