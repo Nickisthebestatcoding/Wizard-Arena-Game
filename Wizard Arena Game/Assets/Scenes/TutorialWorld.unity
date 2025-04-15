@@ -12859,11 +12859,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5290164437284410300, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 88.01
+      value: 81.85
       objectReference: {fileID: 0}
     - target: {fileID: 5290164437284410300, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.38
+      value: -6.5
       objectReference: {fileID: 0}
     - target: {fileID: 5290164437284410300, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12896,6 +12896,22 @@ PrefabInstance:
     - target: {fileID: 5290164437284410300, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412877628414209150, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
+      propertyPath: moveSpeed
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412877628414209150, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
+      propertyPath: chaseRange
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412877628414209150, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
+      propertyPath: attackCooldown
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412877628414209150, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
+      propertyPath: knockbackForce
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
