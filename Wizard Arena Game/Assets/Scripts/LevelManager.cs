@@ -4,20 +4,36 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance;
+    private GameObject wizard;
+    private Vector3 wizardStartPos;
+    private Quaternion wizardStartRot;
+    private Health wizardHealth;
 
-    public Transform playerSpawnPoint;
-    public GameObject player;
-    private Vector3 playerStartPos;
-    private Quaternion playerStartRot;
-    private Health playerHealth;
+    private List<GameObject> enemies = new List<GameObject>();
+    private Dictionary<GameObject, Vector3> enemyStartPos = new Dictionary<GameObject, Vector3>();
+    private Dictionary<GameObject, Quaternion> enemyStartRot = new Dictionary<GameObject, Quaternion>();
 
-    private List<knightbehavior> enemies = new List<knightbehavior >();
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        wizard = GameObject.FindGameObjectWithTag("Wizard");
+        if (wizard != null)
+        {
+            wizardStartPos = wizard.transform.position;
+            wizardStartRot = wizard.transform.rotation;
+            wizardHealth = wizard.GetComponent<Health>();
+        }
+
+        GameObject[] enemyObjs = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemyObjs)
+        {
+            enemies.Add(enemy);
+            enemyStartPos[enemy] = enemy.transform.position;  // Storing position
+            enemyStartRot[enemy] = enemy.transform.rotation;  // Storing rotation
+        }
     }
 
     // Update is called once per frame
@@ -27,40 +43,35 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-
-        if (player != null)
-        {
-            playerStartPos = playerSpawnPoint.position;
-            playerStartRot = playerSpawnPoint.rotation;
-            playerHealth = player.GetComponent<Health>();
-        }
-
-        // Store all enemy references
-        enemies.AddRange(FindObjectsOfType<knightbehavior >()); // Make sure your enemies use a common Enemy script
-    }
+    
     public void ResetLevel()
     {
-        // Reset player
-        player.transform.position = playerStartPos;
-        player.transform.rotation = playerStartRot;
+        Debug.Log("🔁 Resetting Level 🔁");
 
-        if (playerHealth != null)
+        // Wizard Reset
+        if (wizard != null)
         {
-            playerHealth.ResetHealth(); // We’ll add this function next
+            wizard.transform.position = wizardStartPos;
+            wizard.transform.rotation = wizardStartRot;
+            wizard.SetActive(true);
+            if (wizardHealth != null)
+                wizardHealth.ResetHealth();
         }
 
-        // Reset enemies
-        foreach (var enemy in enemies)
+        // Enemies Reset
+        foreach (GameObject enemy in enemies)
         {
-            enemy.ResetEnemy(); // We’ll add this too
-        }
+            if (enemy != null)
+            {
+                enemy.transform.position = enemyStartPos[enemy];  // Resetting position
+                enemy.transform.rotation = enemyStartRot[enemy];  // Resetting rotation
+                enemy.SetActive(true);
 
-        Debug.Log("Level reset. Timer unchanged.");
+                Health hp = enemy.GetComponent<Health>();
+                if (hp != null)
+                    hp.ResetHealth();
+            }
+        }
     }
 }
+

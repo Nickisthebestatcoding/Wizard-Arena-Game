@@ -45,12 +45,17 @@ public class Health : MonoBehaviour
     {
         Debug.Log(gameObject.name + " died!");
 
-        if (CompareTag("Wizard")) // ✅ Only reset if Wizard died
+        if (CompareTag("Wizard"))
         {
+            // Don't destroy — instead disable and call LevelManager
+            gameObject.SetActive(false);
             FindObjectOfType<LevelManager>().ResetLevel();
         }
-
-        Destroy(gameObject);
+        else
+        {
+            // For enemies: just disable (LevelManager will reset them)
+            gameObject.SetActive(false);
+        }
     }
 
     public void ResetHealth()
@@ -59,10 +64,22 @@ public class Health : MonoBehaviour
 
         if (healthBarUI != null)
         {
-            healthBarUI.UpdateHealthBar(1f); // Set the bar back to full
+            healthBarUI.UpdateHealthBar(1f);
         }
 
-        Debug.Log("Health reset to max.");
+        Debug.Log(gameObject.name + " health reset.");
+    }
+
+    IEnumerator DelayedReset()
+    {
+        // Wait one frame so that LevelManager.ResetLevel can do everything
+        yield return null;
+
+        FindObjectOfType<LevelManager>().ResetLevel();
+
+        yield return null;
+
+        gameObject.SetActive(false); // hide wizard only AFTER reset happens
     }
 }
 
