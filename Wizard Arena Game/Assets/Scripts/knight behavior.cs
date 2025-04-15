@@ -36,7 +36,12 @@ public class knightbehavior : MonoBehaviour
         }
 
         animator = GetComponent<Animator>();
+        health = GetComponent<Health>(); // ?? Cache the health
 
+
+        // ?? Record starting position/rotation
+        startPos = transform.position;
+        startRot = transform.rotation;
     }
 
     // Update is called once per frame
@@ -126,6 +131,23 @@ public class knightbehavior : MonoBehaviour
                 wizardMovement.ApplyPush(knockbackDir * knockbackForce, 0.3f);
             }
         }
+    }
+
+    // ?? This is the method your LevelManager will call to reset this knight
+    public void ResetEnemy()
+    {
+        transform.position = startPos;
+        transform.rotation = startRot;
+
+        if (health != null)
+        {
+            health.ResetHealth(); // Make sure Health.cs has this method
+        }
+
+        gameObject.SetActive(true); // Reactivate if disabled
+        animator.SetBool("isAttacking", false); // Reset animation state
+
+        Debug.Log(gameObject.name + " has been reset.");
     }
 
 }
