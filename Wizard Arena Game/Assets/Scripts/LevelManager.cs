@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     private Quaternion playerStartRot;
     private Health playerHealth;
 
-    private List<knightbehavior> enemies = new List<Enemy>();
+    private List<knightbehavior> enemies = new List<knightbehavior >();
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,8 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+
     }
 
     void Awake()
@@ -41,7 +42,7 @@ public class LevelManager : MonoBehaviour
         }
 
         // Store all enemy references
-        enemies.AddRange(FindObjectsOfType<Enemy>()); // Make sure your enemies use a common Enemy script
+        enemies.AddRange(FindObjectsOfType<knightbehavior >()); // Make sure your enemies use a common Enemy script
     }
     public void ResetLevel()
     {

@@ -44,6 +44,21 @@ public class Health : MonoBehaviour
     void Die()
     {
         Debug.Log(gameObject.name + " died!");
-        Destroy(gameObject);  // Or trigger animation/effects before destruction
+
+        // Instead of destroying, reset the level
+        LevelManager.Instance.ResetLevel();
     }
+
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+
+        if (healthBarUI != null)
+        {
+            healthBarUI.UpdateHealthBar(1f); // Set the bar back to full
+        }
+
+        Debug.Log("Health reset to max.");
+    }
+}
 }

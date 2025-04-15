@@ -6,8 +6,8 @@ TagManager:
   tags:
   - Wizard
   - obstacle
-  - enemy
   - Wizard attack
+  - Enemy
   layers:
   - Default
   - TransparentFX
