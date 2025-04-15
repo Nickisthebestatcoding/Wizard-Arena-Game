@@ -12,19 +12,12 @@ public class PortalController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpriteRenderer r = GetComponent<SpriteRenderer>();
-        portalRadius = r.bounds.size.x / 3;
-
-        scored = false;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (scored == true)
-            
-        {
-            
-        }
+        
     }
 }
