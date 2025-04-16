@@ -368,7 +368,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!114 &29158643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1735,7 +1735,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!114 &237480243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2536,7 +2536,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!114 &330287815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2616,7 +2616,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!212 &341533878
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2972,7 +2972,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!114 &369442296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3163,7 +3163,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!114 &371950695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3663,7 +3663,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!114 &456669593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4654,7 +4654,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!212 &620197342
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6104,7 +6104,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!114 &971903278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6967,7 +6967,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!114 &1109424203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8128,7 +8128,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!114 &1262405266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8895,7 +8895,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!212 &1411803411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9235,7 +9235,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!212 &1476721003
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9713,7 +9713,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!114 &1544886278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10811,7 +10811,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!114 &1673552663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12045,7 +12045,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!212 &1881013741
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12374,7 +12374,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!114 &1908190682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13773,7 +13773,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!212 &2100371379
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13907,7 +13907,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!212 &2104304751
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14108,7 +14108,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 0.4
 --- !u!1001 &2119050391
 PrefabInstance:
   m_ObjectHideFlags: 0
