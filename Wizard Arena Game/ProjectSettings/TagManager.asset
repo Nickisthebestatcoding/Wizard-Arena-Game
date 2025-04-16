@@ -54,6 +54,9 @@ TagManager:
   - name: border
     uniqueID: 295878763
     locked: 0
+  - name: portal
+    uniqueID: 3602633579
+    locked: 0
   - name: enemies
     uniqueID: 271981637
     locked: 0
