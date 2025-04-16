@@ -13,7 +13,8 @@ public class WizardScript : MonoBehaviour
     float WORLD_MIN_Y = -120.0f;
     float WORLD_MAX_X = 120.0f;
     float WORLD_MAX_Y = 120.0f;
-    
+
+    public GameObject Wizard;
     public TextMeshProUGUI messageText;
     // utility objects to limit the positions
     PositionClamp spriteClamp;
