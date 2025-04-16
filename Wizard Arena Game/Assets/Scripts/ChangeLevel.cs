@@ -10,6 +10,7 @@ public class ChangeLevel : MonoBehaviour
         if (other.CompareTag("Wizard"))
         {
             SceneManager.LoadScene(Level1);
+            DontDestroyOnLoad(gameObject);
         }
     }
 }
