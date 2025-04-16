@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Health : MonoBehaviour
 {
     public float maxHealth = 10f;
     private float currentHealth;
     public WizardHealthBar healthBarUI;
+    public GameObject GameOverText;
+    public float GameOverDisplayTime = 3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +83,12 @@ public class Health : MonoBehaviour
         yield return null;
 
         gameObject.SetActive(false); // hide wizard only AFTER reset happens
+    }
+   IEnumerator ShowGameOver()
+    {
+            GameOverText.SetActive(true);
+            yield return new WaitForSeconds(GameOverDisplayTime);
+            GameOverText.SetActive(false);
     }
 }
 
