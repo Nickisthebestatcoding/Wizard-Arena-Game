@@ -15,7 +15,6 @@ public class WizardScript : MonoBehaviour
     float WORLD_MAX_Y = 120.0f;
 
     public GameObject Wizard;
-    public TextMeshProUGUI messageText;
     // utility objects to limit the positions
     PositionClamp spriteClamp;
     PositionClamp cameraClamp;
@@ -25,21 +24,22 @@ public class WizardScript : MonoBehaviour
         get { return gameOver;
         }
     }
-  
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
         Renderer r = GetComponent<Renderer>();
         spriteClamp = new PositionClamp(WORLD_MIN_X, WORLD_MIN_Y, WORLD_MAX_X, WORLD_MAX_Y, r);// set up PositionClamp to limit sprite position within world boundaries
 
         Camera c = GetComponent<Camera>();
         cameraClamp = new PositionClamp(WORLD_MIN_X, WORLD_MIN_Y, WORLD_MAX_X, WORLD_MAX_Y, Camera.main);
-       
+
 
         // set up PositionClamp to limit camera position within world boundaries
     }
+
 
     // Update is called once per frame
     void Update()
@@ -49,8 +49,8 @@ public class WizardScript : MonoBehaviour
             transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime * speed,
                                 Input.GetAxis("Vertical") * Time.deltaTime * speed, 0);
 
-            
-            
+
+
         }
         // Now that the position has been updated, limit
         // the X and Y coordinates and make sure they
@@ -62,5 +62,4 @@ public class WizardScript : MonoBehaviour
         cameraClamp.limitMovement(transform.position, Camera.main.transform);
 
     }
-    
 }
