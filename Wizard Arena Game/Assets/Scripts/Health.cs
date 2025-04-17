@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     public float maxHealth = 10f;
     private float currentHealth;
     public WizardHealthBar healthBarUI;
+    public GameManager1 gameOverManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,9 +42,10 @@ public class Health : MonoBehaviour
             
         }
     }
-
+    
     void Die()
     {
+        gameOverManager.ShowGameOver();
         Debug.Log(gameObject.name + " died!");
 
         if (CompareTag("Wizard"))
@@ -58,6 +60,7 @@ public class Health : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
 
     public void ResetHealth()
     {
