@@ -14512,6 +14512,10 @@ PrefabInstance:
       propertyPath: GameOverText
       value: 
       objectReference: {fileID: 1089428628}
+    - target: {fileID: 8260085329572706828, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
+      propertyPath: gameOverManager
+      value: 
+      objectReference: {fileID: 1384855192}
     - target: {fileID: 8412877628414209150, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
       propertyPath: moveSpeed
       value: 4.3
