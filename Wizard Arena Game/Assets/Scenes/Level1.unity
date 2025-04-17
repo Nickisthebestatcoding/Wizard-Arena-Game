@@ -4636,7 +4636,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6157098138622107784, guid: e9ab8d647b7a64811908457f6a480f63, type: 3}
       propertyPath: m_Name
-      value: 'Grave '
+      value: Grave Fence13
       objectReference: {fileID: 0}
     - target: {fileID: 8606179012281196159, guid: e9ab8d647b7a64811908457f6a480f63, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5132,7 +5132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5625562358902604612, guid: c675069c6b1224820a5302964854f051, type: 3}
       propertyPath: m_Name
-      value: New Piskel-7-4 (dragged) (9)
+      value: Grave Fence14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
