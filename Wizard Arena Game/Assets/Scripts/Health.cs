@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameOverText.SetActive(false);
         currentHealth = maxHealth;
         if (healthBarUI != null)
             healthBarUI.UpdateHealthBar(currentHealth / maxHealth);
@@ -21,7 +22,10 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentHealth <= 0)
+        {
+            GameOverText.SetActive(true);
+        }
     }
 
     public void TakeDamage(float amount)
@@ -41,6 +45,7 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            
         }
     }
 
@@ -83,12 +88,6 @@ public class Health : MonoBehaviour
         yield return null;
 
         gameObject.SetActive(false); // hide wizard only AFTER reset happens
-    }
-   IEnumerator ShowGameOver()
-    {
-            GameOverText.SetActive(true);
-            yield return new WaitForSeconds(GameOverDisplayTime);
-            GameOverText.SetActive(false);
     }
 }
 
