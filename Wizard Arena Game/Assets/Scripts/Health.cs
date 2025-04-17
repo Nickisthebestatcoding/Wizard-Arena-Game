@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     private float currentHealth;
     public WizardHealthBar healthBarUI;
     public GameObject GameOverText;
-    public float GameOverDisplayTime = 3f;
+    public float GameOverTextDisplayTime = 3f;
     // Start is called before the first frame update
     void Start()
     {
