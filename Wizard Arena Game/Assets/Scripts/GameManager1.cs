@@ -3,10 +3,11 @@ using UnityEngine.UI;
 
 public class GameManager1 : MonoBehaviour
 {
-    public GameObject GameOverText;
+    public GameObject CompleteTutorial;
 
     public void ShowGameOver()
     {
-        GameOverText.SetActive(true);
+        CompleteTutorial.SetActive(true);
     }
+
 }

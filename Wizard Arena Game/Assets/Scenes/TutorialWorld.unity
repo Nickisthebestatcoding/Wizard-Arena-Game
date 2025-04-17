@@ -6284,6 +6284,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6478680874394603146, guid: da62dd12aaaee4251b36c68dc69cea96, type: 3}
+      propertyPath: m_SortingLayer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478680874394603146, guid: da62dd12aaaee4251b36c68dc69cea96, type: 3}
+      propertyPath: m_SortingOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478680874394603146, guid: da62dd12aaaee4251b36c68dc69cea96, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1097263309
+      objectReference: {fileID: 0}
+    - target: {fileID: 7834016807473454020, guid: da62dd12aaaee4251b36c68dc69cea96, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: f8bdab9e5bd8c450fa41a49f94f7158a, type: 2}
+    - target: {fileID: 7834016807473454020, guid: da62dd12aaaee4251b36c68dc69cea96, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6775,7 +6795,7 @@ GameObject:
   - component: {fileID: 1089428631}
   - component: {fileID: 1089428630}
   m_Layer: 5
-  m_Name: GameOverText
+  m_Name: CompleteTutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6820,7 +6840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Over
+  m_text: Nice
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6847,8 +6867,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8924,7 +8944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72d5a43010f1484ca4f83a39a6cfac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameOverText: {fileID: 1089428628}
+  CompleteTutorial: {fileID: 1089428628}
 --- !u!1001 &1400153151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10085,7 +10105,7 @@ Transform:
   m_GameObject: {fileID: 1544978990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.9, y: -0.98, z: 0}
+  m_LocalPosition: {x: -0.8, y: -1, z: 0}
   m_LocalScale: {x: 2.3706, y: 2.4419, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14456,6 +14476,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1557738667279219585, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4188522655309973621, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
       propertyPath: m_Name
       value: knight-6-1 (dragged)
@@ -14463,6 +14487,10 @@ PrefabInstance:
     - target: {fileID: 4188522655309973621, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285752296587990027, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5290164437284410300, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
       propertyPath: m_LocalPosition.x
