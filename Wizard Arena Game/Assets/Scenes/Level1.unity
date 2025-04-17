@@ -3281,7 +3281,7 @@ Transform:
   m_GameObject: {fileID: 1524199499}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 15.31, y: -1.08, z: 0}
+  m_LocalPosition: {x: 15.31, y: -4.4, z: 0}
   m_LocalScale: {x: 1.272, y: 1.1876, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4636,7 +4636,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6157098138622107784, guid: e9ab8d647b7a64811908457f6a480f63, type: 3}
       propertyPath: m_Name
-      value: New Piskel-7-4 (dragged) (8)
+      value: 'Grave '
       objectReference: {fileID: 0}
     - target: {fileID: 8606179012281196159, guid: e9ab8d647b7a64811908457f6a480f63, type: 3}
       propertyPath: m_LocalPosition.x
