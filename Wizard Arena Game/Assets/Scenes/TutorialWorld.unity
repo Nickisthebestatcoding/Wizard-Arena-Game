@@ -9933,6 +9933,7 @@ GameObject:
   - component: {fileID: 1544979004}
   - component: {fileID: 1544979005}
   - component: {fileID: 1544979006}
+  - component: {fileID: 1544979007}
   m_Layer: 6
   m_Name: Wizard (Main)
   m_TagString: Wizard
@@ -10351,6 +10352,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7536b55184049e7bd5c8ddf7cecf73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!81 &1544979007
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544978990}
+  m_Enabled: 1
 --- !u!1001 &1546961751
 PrefabInstance:
   m_ObjectHideFlags: 0
