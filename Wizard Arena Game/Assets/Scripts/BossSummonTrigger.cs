@@ -11,12 +11,12 @@ public class BossSummonTrigger : MonoBehaviour
     public GameObject necromancer;
 
     public GameObject[] borders;  // Reference to the border objects (assign in Inspector)
+    private Health bossHealth;  // Reference to the boss's health script
+    private bool hasSpawned = false;
 
     public float summonDelay = 2f;
     public float screenShakeDuration = 0.5f;
     public float screenShakeIntensity = 0.2f;
-
-    private bool hasSpawned = false;
 
     private void Start()
     {
@@ -83,9 +83,11 @@ public class BossSummonTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(summonDelay);
 
+        // Spawn the boss
         if (skeletonBossPrefab != null && spawnPoint != null)
         {
-            Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
+            GameObject boss = Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
+            bossHealth = boss.GetComponent<Health>(); // Get the health script of the boss
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -136,5 +138,14 @@ public class BossSummonTrigger : MonoBehaviour
 
         sr.color = endColor;
         obj.SetActive(false);
+    }
+
+    // Update method to check if the boss is dead and hide borders
+    private void Update()
+    {
+        if (bossHealth != null && bossHealth.CurrentHealth <= 0)
+        {
+            SetBordersActive(false); // Hide borders if the boss is dead
+        }
     }
 }
