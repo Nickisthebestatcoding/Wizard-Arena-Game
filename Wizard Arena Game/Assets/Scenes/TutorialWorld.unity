@@ -6795,7 +6795,7 @@ GameObject:
   - component: {fileID: 1089428631}
   - component: {fileID: 1089428630}
   m_Layer: 5
-  m_Name: CompleteTutorial
+  m_Name: CompletedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8934,7 +8934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72d5a43010f1484ca4f83a39a6cfac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CompleteTutorial: {fileID: 1089428628}
+  CompleteText: {fileID: 0}
 --- !u!114 &1384855193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10109,7 +10109,7 @@ Transform:
   m_GameObject: {fileID: 1544978990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.8, y: -1, z: 0}
+  m_LocalPosition: {x: -1, y: -1, z: 0}
   m_LocalScale: {x: 2.3706, y: 2.4419, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
