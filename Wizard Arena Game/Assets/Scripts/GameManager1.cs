@@ -3,11 +3,11 @@ using UnityEngine.UI;
 
 public class GameManager1 : MonoBehaviour
 {
-    public GameObject CompleteTutorial;
+    public GameObject CompleteText;
 
     public void ShowGameOver()
     {
-        CompleteTutorial.SetActive(true);
+        CompleteText.SetActive(true);
     }
 
 }
