@@ -45,19 +45,40 @@ public class Health : MonoBehaviour
     
     void Die()
     {
-        gameOverManager.ShowGameOver();
         Debug.Log(gameObject.name + " died!");
+
+        Animator animator = GetComponent<Animator>();
 
         if (CompareTag("Wizard"))
         {
-            // Don't destroy — instead disable and call LevelManager
+            gameOverManager.ShowGameOver();
             gameObject.SetActive(false);
             FindObjectOfType<LevelManager>().ResetLevel();
         }
+        else if (CompareTag("Boss"))
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger("Die");
+                StartCoroutine(DisableAfterDelay(2f)); // Wait 2 seconds for animation to finish
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+        }
         else
         {
-            // For enemies: just disable (LevelManager will reset them)
-            gameObject.SetActive(false);
+            // Regular enemies
+            if (animator != null)
+            {
+                animator.SetTrigger("Die");
+                StartCoroutine(DisableAfterDelay(1.5f));
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 
@@ -84,6 +105,11 @@ public class Health : MonoBehaviour
         yield return null;
 
         gameObject.SetActive(false); // hide wizard only AFTER reset happens
+    }
+    IEnumerator DisableAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        gameObject.SetActive(false);
     }
 }
 
