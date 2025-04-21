@@ -9,54 +9,45 @@ public class Health : MonoBehaviour
     private float currentHealth;
     public WizardHealthBar healthBarUI;
     public GameManager1 gameOverManager;
-    public GameObject[] borders;  // Reference to the border objects (assign in Inspector)
-    private Animator animator;
-
-    // Property to access currentHealth
-    public float CurrentHealth
-    {
-        get { return currentHealth; }
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
-        animator = GetComponent<Animator>();
-
-        // Ensure health bar updates on start
         if (healthBarUI != null)
-        {
             healthBarUI.UpdateHealthBar(currentHealth / maxHealth);
-        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
     }
 
     public void TakeDamage(float amount)
     {
+
         currentHealth -= amount;
         Debug.Log(gameObject.name + " took " + amount + " damage. Remaining health: " + currentHealth);
 
-        // Update health bar UI
         if (healthBarUI != null)
         {
             healthBarUI.UpdateHealthBar(currentHealth / maxHealth);
+
         }
+            
+
 
         if (currentHealth <= 0)
         {
             Die();
+            
         }
     }
-
+    
     void Die()
     {
         Debug.Log(gameObject.name + " died!");
 
-        // Deactivate borders when boss dies
-        if (CompareTag("Boss"))
-        {
-            SetBordersActive(false); // Hide borders
-        }
+        Animator animator = GetComponent<Animator>();
 
         if (CompareTag("Wizard"))
         {
@@ -78,39 +69,47 @@ public class Health : MonoBehaviour
         }
         else
         {
-            HandleDeath();
-        }
-    }
-
-    // Reusable method to handle death for regular enemies
-    void HandleDeath()
-    {
-        if (animator != null)
-        {
-            animator.SetTrigger("Die");
-            StartCoroutine(DisableAfterDelay(1.5f)); // Wait for animation to finish
-        }
-        else
-        {
-            gameObject.SetActive(false); // Directly disable the game object if no animator
-        }
-    }
-
-    // Set borders active or inactive
-    private void SetBordersActive(bool isActive)
-    {
-        foreach (GameObject border in borders)
-        {
-            if (border != null)
+            // Regular enemies
+            if (animator != null)
             {
-                border.SetActive(isActive); // Activate or deactivate each border
+                animator.SetTrigger("Die");
+                StartCoroutine(DisableAfterDelay(1.5f));
+            }
+            else
+            {
+                gameObject.SetActive(false);
             }
         }
     }
 
+
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+
+        if (healthBarUI != null)
+        {
+            healthBarUI.UpdateHealthBar(1f);
+        }
+
+        Debug.Log(gameObject.name + " health reset.");
+    }
+
+    IEnumerator DelayedReset()
+    {
+        // Wait one frame so that LevelManager.ResetLevel can do everything
+        yield return null;
+
+        FindObjectOfType<LevelManager>().ResetLevel();
+
+        yield return null;
+
+        gameObject.SetActive(false); // hide wizard only AFTER reset happens
+    }
     IEnumerator DisableAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         gameObject.SetActive(false);
     }
 }
+

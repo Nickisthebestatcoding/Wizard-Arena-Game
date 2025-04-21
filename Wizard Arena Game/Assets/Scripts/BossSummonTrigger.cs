@@ -143,7 +143,7 @@ public class BossSummonTrigger : MonoBehaviour
     // Update method to check if the boss is dead and hide borders
     private void Update()
     {
-        if (bossHealth != null && bossHealth.CurrentHealth <= 0)
+        if (bossHealth != null && bossHealth.currentHealth <= 0)
         {
             SetBordersActive(false); // Hide borders if the boss is dead
         }
