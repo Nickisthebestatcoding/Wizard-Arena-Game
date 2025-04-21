@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Health : MonoBehaviour
 {
     public float maxHealth = 10f;
     private float currentHealth;
     public WizardHealthBar healthBarUI;
+    public GameManager1 gameOverManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,6 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void TakeDamage(float amount)
@@ -38,11 +39,13 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            
         }
     }
-
+    
     void Die()
     {
+        gameOverManager.ShowGameOver();
         Debug.Log(gameObject.name + " died!");
 
         if (CompareTag("Wizard"))
@@ -57,6 +60,7 @@ public class Health : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
 
     public void ResetHealth()
     {
