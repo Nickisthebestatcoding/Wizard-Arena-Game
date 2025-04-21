@@ -1,15 +1,28 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ChangeLevel : MonoBehaviour
+public class SceneTransition : MonoBehaviour
 {
-    public string Level1;
-
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnEnable()
     {
-        if (other.CompareTag("Wizard"))
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Wait for the scene to load, then teleport player
+        GameObject spawnPoint = GameObject.Find("PlayerSpawnPoint");
+        GameObject wizard = GameObject.FindWithTag("Wizard");
+
+        if (spawnPoint != null && wizard != null)
         {
-            SceneManager.LoadScene(Level1);
+            // Teleport the player to the spawn point position
+            wizard.transform.position = spawnPoint.transform.position;
         }
     }
 }
