@@ -5872,6 +5872,7 @@ GameObject:
   - component: {fileID: 1104301996}
   - component: {fileID: 1104301995}
   - component: {fileID: 1104301998}
+  - component: {fileID: 1104301999}
   m_Layer: 0
   m_Name: New Piskel (4)-1 (dragged)
   m_TagString: Untagged
@@ -5990,7 +5991,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.12495232, y: -9.80665}
@@ -6006,6 +6007,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.509762, y: 2.996624}
   m_EdgeRadius: 0
+--- !u!114 &1104301999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104301994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  healthBarUI: {fileID: 0}
+  gameOverManager: {fileID: 0}
 --- !u!1001 &1142866871
 PrefabInstance:
   m_ObjectHideFlags: 0
