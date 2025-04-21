@@ -10,6 +10,8 @@ public class BossSummonTrigger : MonoBehaviour
     public GameObject summoningCircle;
     public GameObject necromancer;
 
+    public GameObject[] borders;  // Reference to the border objects (assign in Inspector)
+
     public float summonDelay = 2f;
     public float screenShakeDuration = 0.5f;
     public float screenShakeIntensity = 0.2f;
@@ -27,6 +29,9 @@ public class BossSummonTrigger : MonoBehaviour
         {
             necromancer.SetActive(false);
         }
+
+        // Hide the borders initially (in case they are not already set to inactive in the Inspector)
+        SetBordersActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -36,7 +41,20 @@ public class BossSummonTrigger : MonoBehaviour
         if (other.CompareTag("Wizard"))
         {
             hasSpawned = true;
+            SetBordersActive(true); // Show borders when the player touches the GameObject
             StartCoroutine(SummoningSequence());
+        }
+    }
+
+    // Set borders active or inactive
+    private void SetBordersActive(bool isActive)
+    {
+        foreach (GameObject border in borders)
+        {
+            if (border != null)
+            {
+                border.SetActive(isActive); // Activate or deactivate each border
+            }
         }
     }
 
@@ -65,8 +83,6 @@ public class BossSummonTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(summonDelay);
 
-       
-
         if (skeletonBossPrefab != null && spawnPoint != null)
         {
             Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
@@ -82,6 +98,7 @@ public class BossSummonTrigger : MonoBehaviour
         if (summoningCircle != null)
             summoningCircle.SetActive(false);
     }
+
     IEnumerator FadeIn(GameObject obj, float duration)
     {
         SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
@@ -100,6 +117,7 @@ public class BossSummonTrigger : MonoBehaviour
 
         sr.color = endColor;
     }
+
     IEnumerator FadeOut(GameObject obj, float duration)
     {
         SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
