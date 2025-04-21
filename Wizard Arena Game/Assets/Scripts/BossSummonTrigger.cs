@@ -16,6 +16,19 @@ public class BossSummonTrigger : MonoBehaviour
 
     private bool hasSpawned = false;
 
+    private void Start()
+    {
+        if (summoningCircle != null)
+        {
+            summoningCircle.SetActive(false); // So we manually enable with fade later
+        }
+
+        if (necromancer != null)
+        {
+            necromancer.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (hasSpawned) return;
@@ -30,11 +43,21 @@ public class BossSummonTrigger : MonoBehaviour
     IEnumerator SummoningSequence()
     {
         if (summoningCircle != null)
+        {
             summoningCircle.SetActive(true);
+            StartCoroutine(FadeIn(summoningCircle, 1f));
+        }
 
         if (necromancer != null)
         {
             necromancer.SetActive(true);
+            StartCoroutine(FadeIn(necromancer, 1f));
+        }
+
+        yield return new WaitForSeconds(1.5f); // wait for fade-in to finish
+
+        if (necromancer != null)
+        {
             Animator anim = necromancer.GetComponent<Animator>();
             if (anim != null)
                 anim.SetTrigger("Summon");
@@ -42,18 +65,58 @@ public class BossSummonTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(summonDelay);
 
-        if (necromancer != null)
-            necromancer.SetActive(false);
-
+       
 
         if (skeletonBossPrefab != null && spawnPoint != null)
         {
             Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+
+        if (necromancer != null)
+            StartCoroutine(FadeOut(necromancer, 1f));
+
+        yield return new WaitForSeconds(0.5f);
 
         if (summoningCircle != null)
             summoningCircle.SetActive(false);
+    }
+    IEnumerator FadeIn(GameObject obj, float duration)
+    {
+        SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+        if (sr == null) yield break;
+
+        Color startColor = sr.color;
+        Color endColor = new Color(startColor.r, startColor.g, startColor.b, 1f);
+        float t = 0;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            sr.color = Color.Lerp(new Color(startColor.r, startColor.g, startColor.b, 0f), endColor, t / duration);
+            yield return null;
+        }
+
+        sr.color = endColor;
+    }
+    IEnumerator FadeOut(GameObject obj, float duration)
+    {
+        SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+        if (sr == null) yield break;
+
+        Color startColor = sr.color;
+        Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
+        float t = 0;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            sr.color = Color.Lerp(startColor, endColor, t / duration);
+            yield return null;
+        }
+
+        sr.color = endColor;
+        obj.SetActive(false);
     }
 }
