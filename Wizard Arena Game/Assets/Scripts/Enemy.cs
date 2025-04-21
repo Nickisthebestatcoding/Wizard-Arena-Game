@@ -15,14 +15,10 @@ public class Enemy : MonoBehaviour
 
     private void ShowCompletedText()
     {
-        throw new NotImplementedException();
-    }
-
-    private void ShowDefeatedText()
-    {
         if (completedText != null)
         {
             completedText.SetActive(true);
         }
     }
 }
+    
