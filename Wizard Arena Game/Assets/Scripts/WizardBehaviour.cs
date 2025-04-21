@@ -24,12 +24,12 @@ public class WizardScript : MonoBehaviour
         get { return gameOver;
         }
     }
-  
+    public Teleporter porter;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        porter = new Teleporter(Camera.main);
         Renderer r = GetComponent<Renderer>();
         spriteClamp = new PositionClamp(WORLD_MIN_X, WORLD_MIN_Y, WORLD_MAX_X, WORLD_MAX_Y, r);// set up PositionClamp to limit sprite position within world boundaries
 
@@ -60,6 +60,16 @@ public class WizardScript : MonoBehaviour
         // to match new sprite position
         cameraClamp.limitMovement(transform.position, Camera.main.transform);
 
+
+
     }
-    
+    void OnTriggerEnter2D(Collider2D otherObject)
+    {
+        if (otherObject.gameObject.name.Equals("PortalSource1"))
+        {
+            GameObject targetObject = GameObject.Find("PortalTarget1");
+            porter.Teleport(gameObject, targetObject);
+        }
+
+    }
 }
