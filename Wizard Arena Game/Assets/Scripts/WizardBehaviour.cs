@@ -14,7 +14,7 @@ public class WizardScript : MonoBehaviour
     float WORLD_MAX_X = 120.0f;
     float WORLD_MAX_Y = 120.0f;
     
-    public TextMeshProUGUI messageText;
+    public TextMeshProUGUI CompletedText;
     // utility objects to limit the positions
     PositionClamp spriteClamp;
     PositionClamp cameraClamp;
