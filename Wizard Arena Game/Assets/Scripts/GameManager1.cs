@@ -36,4 +36,8 @@ public class GameManager1 : MonoBehaviour
         Enemy.OnEnemyDefeated -= HandleEnemyDefeated;
     }
 
+    internal void ShowGameOver()
+    {
+        throw new NotImplementedException();
+    }
 }

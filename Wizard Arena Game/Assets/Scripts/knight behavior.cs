@@ -149,5 +149,4 @@ public class knightbehavior : MonoBehaviour
 
         Debug.Log(gameObject.name + " has been reset.");
     }
-
 }
