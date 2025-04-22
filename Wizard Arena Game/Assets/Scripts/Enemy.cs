@@ -8,6 +8,10 @@ public class Enemy : MonoBehaviour
     
     public GameObject CompletedText;  // Assign the UI text in the Inspector
 
+    private void Start()
+    {
+        CompletedText.SetActive(false);
+    }
     public void Defeat()
     {
         // Your enemy defeat logic here (e.g., play animation, destroy, etc.)
