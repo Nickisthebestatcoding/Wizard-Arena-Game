@@ -1,18 +1,12 @@
 using UnityEngine;
 using TMPro;
 using System;
-public class GamePrefab
-{
-    internal void SetActive(bool v)
-    {
-        throw new NotImplementedException();
-    }
-}
+
 
 public class Enemy : MonoBehaviour
 {
     
-    public GamePrefab completedText;  // Assign the UI text in the Inspector
+    public GameObject CompletedText;  // Assign the UI text in the Inspector
 
     public void Defeat()
     {
@@ -23,9 +17,9 @@ public class Enemy : MonoBehaviour
 
     private void ShowCompletedText()
     {
-        if (completedText != null)
+        if (CompletedText != null)
         {
-            completedText.SetActive(true);
+            CompletedText.SetActive(true);
         }
     }
 }
