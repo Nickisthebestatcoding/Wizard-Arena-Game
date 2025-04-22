@@ -1,10 +1,18 @@
 using UnityEngine;
 using TMPro;
 using System;
+public class GamePrefab
+{
+    internal void SetActive(bool v)
+    {
+        throw new NotImplementedException();
+    }
+}
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject completedText;  // Assign the UI text in the Inspector
+    
+    public GamePrefab completedText;  // Assign the UI text in the Inspector
 
     public void Defeat()
     {
