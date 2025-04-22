@@ -5,26 +5,25 @@ using System;
 
 public class Enemy : MonoBehaviour
 {
-    
-    public GameObject CompletedText;  // Assign the UI text in the Inspector
+    public int health = 10;
+    public static event System.Action OnEnemyDefeated;
+    public delegate void EnemyDefeatedHandler();
 
-    private void Start()
+    public void TakeDamage(int damage)
     {
-        CompletedText.SetActive(false);
-    }
-    public void Defeat()
-    {
-        // Your enemy defeat logic here (e.g., play animation, destroy, etc.)
-        ShowCompletedText();
-        Destroy(gameObject); // or deactivate, etc.
-    }
-
-    private void ShowCompletedText()
-    {
-        if (CompletedText != null)
+        health -= damage;
+        if (health <= 0)
         {
-            CompletedText.SetActive(true);
+            Die();
         }
     }
+
+    void Die()
+    {
+        // Trigger the event
+        OnEnemyDefeated?.Invoke();
+        Destroy(gameObject);
+    }
+
 }
     

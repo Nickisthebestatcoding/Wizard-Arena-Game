@@ -8039,6 +8039,7 @@ GameObject:
   - component: {fileID: 1245693431}
   - component: {fileID: 1245693433}
   - component: {fileID: 1245693432}
+  - component: {fileID: 1245693434}
   m_Layer: 5
   m_Name: CompletedText
   m_TagString: Untagged
@@ -8053,13 +8054,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245693430}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.006440821, w: 0.99997926}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1384855190}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.738}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1, y: 1}
@@ -8164,6 +8165,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245693430}
   m_CullTransparentMesh: 1
+--- !u!114 &1245693434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245693430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72d5a43010f1484ca4f83a39a6cfac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CompletedText: {fileID: 1245693430}
+  displayTime: 3
+  gameOver: {fileID: 0}
 --- !u!1 &1262405262
 GameObject:
   m_ObjectHideFlags: 0
@@ -8935,6 +8951,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CompletedText: {fileID: 1245693430}
+  displayTime: 3
+  gameOver: {fileID: 0}
 --- !u!114 &1384855193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10290,7 +10308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   healthBarUI: {fileID: 1544979004}
-  gameOverManager: {fileID: 1384855192}
+  gameOverManager: {fileID: 1245693434}
 --- !u!114 &1544979003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14609,7 +14627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7c9f9afec2b4b15bf09a12bdef4a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CompletedText: {fileID: 1245693430}
+  health: 10
 --- !u!1001 &5017377508429867086
 PrefabInstance:
   m_ObjectHideFlags: 0
