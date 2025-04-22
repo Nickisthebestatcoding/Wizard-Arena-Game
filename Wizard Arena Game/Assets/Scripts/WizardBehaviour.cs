@@ -60,7 +60,7 @@ public class WizardScript : MonoBehaviour
         // to match new sprite position
         cameraClamp.limitMovement(transform.position, Camera.main.transform);
 
-
+        
 
     }
 }
