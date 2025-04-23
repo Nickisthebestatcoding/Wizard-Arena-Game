@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8051626097633645046}
   - component: {fileID: 5886541657126552814}
   - component: {fileID: 7769044800880408056}
-  - component: {fileID: 5477408174438692987}
   - component: {fileID: 3547270945780801027}
   m_Layer: 0
   m_Name: New Piskel (4)-1 (dragged)
@@ -102,21 +101,6 @@ MonoBehaviour:
   damage: 2
   attackRange: 3
   attackCooldown: 2
---- !u!114 &5477408174438692987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8474703418161867227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 30
-  healthBarUI: {fileID: 0}
-  gameOverManager: {fileID: 0}
 --- !u!60 &3547270945780801027
 PolygonCollider2D:
   m_ObjectHideFlags: 0
