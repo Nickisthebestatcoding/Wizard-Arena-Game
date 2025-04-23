@@ -8,8 +8,7 @@ public class Health : MonoBehaviour
     public float maxHealth = 10f;
     private float currentHealth;
     public WizardHealthBar healthBarUI;
-    public GameManager1 gameOverManager;
-    // Start is called before the first frame update
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -17,32 +16,22 @@ public class Health : MonoBehaviour
             healthBarUI.UpdateHealthBar(currentHealth / maxHealth);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void TakeDamage(float amount)
     {
-
         currentHealth -= amount;
         Debug.Log(gameObject.name + " took " + amount + " damage. Remaining health: " + currentHealth);
 
         if (healthBarUI != null)
         {
             healthBarUI.UpdateHealthBar(currentHealth / maxHealth);
-
         }
-            
-
 
         if (currentHealth <= 0)
         {
             Die();
-            
         }
     }
-    
+
     void Die()
     {
         Debug.Log(gameObject.name + " died!");
@@ -51,7 +40,6 @@ public class Health : MonoBehaviour
 
         if (CompareTag("Wizard"))
         {
-            gameOverManager.ShowGameOver();
             gameObject.SetActive(false);
             FindObjectOfType<LevelManager>().ResetLevel();
         }
@@ -60,7 +48,7 @@ public class Health : MonoBehaviour
             if (animator != null)
             {
                 animator.SetTrigger("Die");
-                StartCoroutine(DisableAfterDelay(2f)); // Wait 2 seconds for animation to finish
+                StartCoroutine(DisableAfterDelay(2f));
             }
             else
             {
@@ -69,7 +57,6 @@ public class Health : MonoBehaviour
         }
         else
         {
-            // Regular enemies
             if (animator != null)
             {
                 animator.SetTrigger("Die");
@@ -81,7 +68,6 @@ public class Health : MonoBehaviour
             }
         }
     }
-
 
     public void ResetHealth()
     {
@@ -97,20 +83,15 @@ public class Health : MonoBehaviour
 
     IEnumerator DelayedReset()
     {
-        // Wait one frame so that LevelManager.ResetLevel can do everything
         yield return null;
-
         FindObjectOfType<LevelManager>().ResetLevel();
-
         yield return null;
-
-        gameObject.SetActive(false); // hide wizard only AFTER reset happens
+        gameObject.SetActive(false);
     }
+
     IEnumerator DisableAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         gameObject.SetActive(false);
     }
-
 }
-
