@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2541565781957286737}
   m_Layer: 0
   m_Name: New Piskel (4)-1 (dragged)
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
