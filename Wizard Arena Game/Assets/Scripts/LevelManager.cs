@@ -73,5 +73,13 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+    public void ShowGameOver()
+    {
+        Debug.Log("💀 Game Over! 💀");
+
+        // Optional: Trigger a UI Game Over screen here
+        // For now, you can just pause the game or log
+        // Time.timeScale = 0f;
+    }
 }
 
