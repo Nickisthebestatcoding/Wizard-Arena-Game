@@ -1413,11 +1413,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 163937351365061911, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.73
+      value: 40.58
       objectReference: {fileID: 0}
     - target: {fileID: 163937351365061911, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.44
+      value: -7.26
       objectReference: {fileID: 0}
     - target: {fileID: 163937351365061911, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2006,16 +2006,20 @@ PrefabInstance:
       value: New Piskel-4.png (22)
       objectReference: {fileID: 0}
     - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0584
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2173
+      value: 0.86671764
       objectReference: {fileID: 0}
     - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 52.96
+      value: 53.2592
       objectReference: {fileID: 0}
     - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.64
+      value: 10.4353
       objectReference: {fileID: 0}
     - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5200,8 +5204,8 @@ Transform:
   m_GameObject: {fileID: 575660348}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.98, y: -1.71, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 36.7348, y: -1.3728, z: 0}
+  m_LocalScale: {x: 0.9520274, y: 0.97010994, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -10019,6 +10023,71 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6890869, y: 9.552873}
   m_EdgeRadius: 0
+--- !u!1001 &1349273655
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1246825338478235612, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_Name
+      value: New Piskel-4.png (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 40.072914
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.6488347
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624513983281298997, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083745571597151210, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083745571597151210, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f16c9f65ac3d4eddbf42fc7f060e2c4, type: 3}
 --- !u!1001 &1354724490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15362,6 +15431,71 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8902111, y: 9.648862}
   m_EdgeRadius: 0
+--- !u!1001 &1937383789
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 163937351365061911, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 163937351365061911, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 163937351365061911, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 163937351365061911, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 163937351365061911, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 163937351365061911, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 163937351365061911, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 163937351365061911, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 163937351365061911, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 163937351365061911, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414498677616686676, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
+      propertyPath: m_Name
+      value: New Piskel (2)-1 (dragged) (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041362649779081258, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041362649779081258, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 54166c8943a8444d6babee5de02dcfe9, type: 3}
 --- !u!1001 &1939066977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17786,3 +17920,5 @@ SceneRoots:
   - {fileID: 1733813843}
   - {fileID: 728396435}
   - {fileID: 155069095}
+  - {fileID: 1937383789}
+  - {fileID: 1349273655}
