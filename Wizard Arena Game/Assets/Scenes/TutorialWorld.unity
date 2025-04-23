@@ -10351,6 +10351,7 @@ GameObject:
   - component: {fileID: 1544979005}
   - component: {fileID: 1544979006}
   - component: {fileID: 1544979007}
+  - component: {fileID: 1544979008}
   m_Layer: 6
   m_Name: Wizard (Main)
   m_TagString: Wizard
@@ -10776,6 +10777,22 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544978990}
   m_Enabled: 1
+--- !u!114 &1544979008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544978990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238ac26d9699a4fe9aea5bcbcb80759b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCooldown: 1
+  dashKey: 101
 --- !u!1001 &1546961751
 PrefabInstance:
   m_ObjectHideFlags: 0
