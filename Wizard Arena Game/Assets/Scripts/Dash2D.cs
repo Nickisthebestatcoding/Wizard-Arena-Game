@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashForward : MonoBehaviour
+public class Dash2D : MonoBehaviour
 {
     public float dashSpeed = 20f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
-    public KeyCode dashKey = KeyCode. E;
+    public KeyCode dashKey = KeyCode.E;
 
-    private Rigidbody rb;
+    private Rigidbody2D rb;
     private bool isDashing = false;
     private bool canDash = true;
 
-    void Start()
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(dashKey) && canDash && !isDashing)
         {
@@ -31,14 +31,12 @@ public class DashForward : MonoBehaviour
         isDashing = true;
         canDash = false;
 
-        // Save current velocity and override with dash
-        Vector3 dashDirection = transform.forward.normalized;
+        Vector2 dashDirection = transform.right.normalized;
         rb.velocity = dashDirection * dashSpeed;
 
         yield return new WaitForSeconds(dashDuration);
 
-        // Stop dash
-        rb.velocity = Vector3.zero;
+        rb.velocity = Vector2.zero;
         isDashing = false;
 
         yield return new WaitForSeconds(dashCooldown);
