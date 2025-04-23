@@ -11362,7 +11362,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544978990}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &1544979008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11375,13 +11375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 238ac26d9699a4fe9aea5bcbcb80759b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 20
-  dashDuration: 0.2
-  dashCooldown: 1
-  dashKey: 101
-  rb: {fileID: 0}
-  isDashing: 0
-  canDash: 1
 --- !u!114 &1544979009
 MonoBehaviour:
   m_ObjectHideFlags: 0
