@@ -7,7 +7,7 @@ public class Dash2D : MonoBehaviour
     public float dashSpeed = 20f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
-    public KeyCode dashKey = KeyCode.E;
+    public KeyCode dashKey = KeyCode.LeftShift;
 
     private Rigidbody2D rb;
     private bool isDashing = false;
@@ -31,7 +31,8 @@ public class Dash2D : MonoBehaviour
         isDashing = true;
         canDash = false;
 
-        Vector2 dashDirection = transform.right.normalized;
+        // Dash upward instead of right
+        Vector2 dashDirection = transform.up.normalized;
         rb.velocity = dashDirection * dashSpeed;
 
         yield return new WaitForSeconds(dashDuration);
