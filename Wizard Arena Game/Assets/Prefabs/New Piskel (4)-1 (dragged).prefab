@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5886541657126552814}
   - component: {fileID: 7769044800880408056}
   - component: {fileID: 3547270945780801027}
+  - component: {fileID: -2541565781957286737}
+  - component: {fileID: -5389474534828619163}
   m_Layer: 0
   m_Name: New Piskel (4)-1 (dragged)
   m_TagString: Untagged
@@ -596,3 +598,31 @@ PolygonCollider2D:
       - {x: 0.58, y: -5.38}
       - {x: 0.06, y: -5.38}
   m_UseDelaunayMesh: 0
+--- !u!114 &-2541565781957286737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8474703418161867227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  healthBarUI: {fileID: 0}
+--- !u!114 &-5389474534828619163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8474703418161867227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  healthBarUI: {fileID: 0}
