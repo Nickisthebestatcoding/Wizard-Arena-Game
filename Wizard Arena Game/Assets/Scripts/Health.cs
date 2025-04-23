@@ -36,36 +36,33 @@ public class Health : MonoBehaviour
     {
         Debug.Log(gameObject.name + " died!");
 
-        Animator animator = GetComponent<Animator>();
-
         if (CompareTag("Wizard"))
         {
+            FindObjectOfType<LevelManager>().ShowGameOver();
+
+            // Open borders on player death
+            BossSummonTrigger summonTrigger = FindObjectOfType<BossSummonTrigger>();
+            if (summonTrigger != null)
+            {
+                summonTrigger.OpenBorders();
+            }
+
             gameObject.SetActive(false);
             FindObjectOfType<LevelManager>().ResetLevel();
         }
-        else if (CompareTag("Boss"))
-        {
-            if (animator != null)
-            {
-                animator.SetTrigger("Die");
-                StartCoroutine(DisableAfterDelay(2f));
-            }
-            else
-            {
-                gameObject.SetActive(false);
-            }
-        }
         else
         {
-            if (animator != null)
+            // Open borders if the boss dies
+            if (CompareTag("Boss")) // Make sure boss has this tag
             {
-                animator.SetTrigger("Die");
-                StartCoroutine(DisableAfterDelay(1.5f));
+                BossSummonTrigger summonTrigger = FindObjectOfType<BossSummonTrigger>();
+                if (summonTrigger != null)
+                {
+                    summonTrigger.OpenBorders();
+                }
             }
-            else
-            {
-                gameObject.SetActive(false);
-            }
+
+            gameObject.SetActive(false);
         }
     }
 
