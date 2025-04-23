@@ -10,8 +10,9 @@ public class BossSummonTrigger : MonoBehaviour
     public GameObject summoningCircle;
     public GameObject necromancer;
 
-    public GameObject[] borders;  // Reference to the border objects (assign in Inspector)
-    private Health bossHealth;  // Reference to the boss's health script
+    public GameObject[] borders;  // Assign your border GameObjects in Inspector
+    private Health bossHealth;
+
     private bool hasSpawned = false;
 
     public float summonDelay = 2f;
@@ -21,16 +22,11 @@ public class BossSummonTrigger : MonoBehaviour
     private void Start()
     {
         if (summoningCircle != null)
-        {
-            summoningCircle.SetActive(false); // So we manually enable with fade later
-        }
+            summoningCircle.SetActive(false);
 
         if (necromancer != null)
-        {
             necromancer.SetActive(false);
-        }
 
-        // Hide the borders initially (in case they are not already set to inactive in the Inspector)
         SetBordersActive(false);
     }
 
@@ -41,21 +37,24 @@ public class BossSummonTrigger : MonoBehaviour
         if (other.CompareTag("Wizard"))
         {
             hasSpawned = true;
-            SetBordersActive(true); // Show borders when the player touches the GameObject
+            SetBordersActive(true);
             StartCoroutine(SummoningSequence());
         }
     }
 
-    // Set borders active or inactive
     private void SetBordersActive(bool isActive)
     {
         foreach (GameObject border in borders)
         {
             if (border != null)
-            {
-                border.SetActive(isActive); // Activate or deactivate each border
-            }
+                border.SetActive(isActive);
         }
+    }
+
+    public void OpenBorders()
+    {
+        Debug.Log("Opening borders.");
+        SetBordersActive(false);
     }
 
     IEnumerator SummoningSequence()
@@ -72,7 +71,7 @@ public class BossSummonTrigger : MonoBehaviour
             StartCoroutine(FadeIn(necromancer, 1f));
         }
 
-        yield return new WaitForSeconds(1.5f); // wait for fade-in to finish
+        yield return new WaitForSeconds(1.5f);
 
         if (necromancer != null)
         {
@@ -83,11 +82,10 @@ public class BossSummonTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(summonDelay);
 
-        // Spawn the boss
         if (skeletonBossPrefab != null && spawnPoint != null)
         {
             GameObject boss = Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
-            bossHealth = boss.GetComponent<Health>(); // Get the health script of the boss
+            bossHealth = boss.GetComponent<Health>();
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -138,9 +136,5 @@ public class BossSummonTrigger : MonoBehaviour
 
         sr.color = endColor;
         obj.SetActive(false);
-    }
-    public void OnBossDeath()
-    {
-        SetBordersActive(false);
     }
 }
