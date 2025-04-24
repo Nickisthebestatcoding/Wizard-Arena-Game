@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
 public class BossSummonTrigger : MonoBehaviour
 {
     public GameObject skeletonBossPrefab;
@@ -22,6 +21,8 @@ public class BossSummonTrigger : MonoBehaviour
     public float summonDelay = 2f;
     public float screenShakeDuration = 0.5f;
     public float screenShakeIntensity = 0.2f;
+
+    private GameObject boss; // Declare the boss object here
 
     private void Start()
     {
@@ -66,6 +67,7 @@ public class BossSummonTrigger : MonoBehaviour
 
     IEnumerator SummoningSequence()
     {
+        // Activate and fade in summoning circle and necromancer
         if (summoningCircle != null)
         {
             summoningCircle.SetActive(true);
@@ -89,24 +91,32 @@ public class BossSummonTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(summonDelay);
 
+        // Spawn the boss
         if (skeletonBossPrefab != null && spawnPoint != null)
         {
-            GameObject boss = Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
+            boss = Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
             bossHealth = boss.GetComponent<Health>();
 
+            // Show the boss health bar
             if (bossHealthBarObject != null)
-                bossHealthBarObject.SetActive(true); // Show the boss bar
-
-            BossHealthBar bar = bossHealthBarObject.GetComponent<BossHealthBar>();
-            if (bar != null)
             {
-                bossHealth.bossHealthBarUI = bar;
-                bar.UpdateHealthBar(1f);
+                bossHealthBarObject.SetActive(true); // Show the boss bar
+                bossHealthBarObject.transform.SetParent(boss.transform);
+                bossHealthBarObject.transform.localPosition = new Vector3(0f, -1f, 0f); // Position it below the boss
+
+                // Set the health bar UI to match the boss's health
+                WorldspaceHealthBar wsBar = bossHealthBarObject.GetComponent<WorldspaceHealthBar>();
+                if (wsBar != null)
+                {
+                    bossHealth.worldspaceHealthBarUI = wsBar;
+                    wsBar.UpdateHealthBar(1f);
+                }
             }
         }
 
         yield return new WaitForSeconds(0.5f);
 
+        // Fade out necromancer and summoning circle
         if (necromancer != null)
             StartCoroutine(FadeOut(necromancer, 1f));
 
