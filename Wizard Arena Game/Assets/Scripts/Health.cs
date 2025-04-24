@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
 
     public WizardHealthBar healthBarUI;     // For Wizard
     public BossHealthBar bossHealthBarUI;   // For Boss
+    public WorldspaceHealthBar worldspaceHealthBarUI;
 
     void Start()
     {
@@ -23,6 +24,8 @@ public class Health : MonoBehaviour
         Debug.Log(gameObject.name + " took " + amount + " damage. Remaining health: " + currentHealth);
 
         UpdateHealthUI();
+        if (worldspaceHealthBarUI != null)
+            worldspaceHealthBarUI.UpdateHealthBar(currentHealth / maxHealth);
 
         if (currentHealth <= 0)
         {
@@ -82,6 +85,8 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
         UpdateHealthUI();
         Debug.Log(gameObject.name + " health reset.");
+        if (worldspaceHealthBarUI != null)
+            worldspaceHealthBarUI.UpdateHealthBar(currentHealth / maxHealth);
     }
 
     IEnumerator DelayedReset()
