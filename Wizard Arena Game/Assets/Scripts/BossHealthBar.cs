@@ -6,31 +6,19 @@ using UnityEngine.UI;
 public class BossHealthBar : MonoBehaviour
 {
     public Image healthBarImage;
-    public Sprite[] healthSprites; // From full to empty
+    public Sprite[] healthSprites;
 
     private int totalSteps;
 
-    private void Awake()
-    {
-        // Hide on start
-        gameObject.SetActive(false);
-    }
-
-    private void Start()
+    void Start()
     {
         totalSteps = healthSprites.Length;
-        UpdateHealthBar(1f);
+        UpdateHealthBar(1f); // Default to full
     }
 
     public void UpdateHealthBar(float healthPercent)
     {
         int spriteIndex = Mathf.Clamp(Mathf.FloorToInt((1f - healthPercent) * (totalSteps - 1)), 0, totalSteps - 1);
         healthBarImage.sprite = healthSprites[spriteIndex];
-    }
-
-    public void Show()
-    {
-        Debug.Log("Boss health bar now showing!");
-        gameObject.SetActive(true);
     }
 }

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class BossSummonTrigger : MonoBehaviour
 {
     public GameObject skeletonBossPrefab;
@@ -12,6 +14,8 @@ public class BossSummonTrigger : MonoBehaviour
 
     public GameObject[] borders;  // Assign your border GameObjects in Inspector
     private Health bossHealth;
+
+    public GameObject bossHealthBarObject; // Drag the boss health bar GameObject here
 
     private bool hasSpawned = false;
 
@@ -28,6 +32,9 @@ public class BossSummonTrigger : MonoBehaviour
             necromancer.SetActive(false);
 
         SetBordersActive(false);
+
+        if (bossHealthBarObject != null)
+            bossHealthBarObject.SetActive(false); // Hide boss bar at start
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -84,20 +91,17 @@ public class BossSummonTrigger : MonoBehaviour
 
         if (skeletonBossPrefab != null && spawnPoint != null)
         {
-            // Spawn the boss
             GameObject boss = Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
             bossHealth = boss.GetComponent<Health>();
 
-            // Find the boss health bar in the scene
-            BossHealthBar bar = FindObjectOfType<BossHealthBar>();
+            if (bossHealthBarObject != null)
+                bossHealthBarObject.SetActive(true); // Show the boss bar
+
+            BossHealthBar bar = bossHealthBarObject.GetComponent<BossHealthBar>();
             if (bar != null)
             {
-                // Attach the health bar to the boss' health system
                 bossHealth.bossHealthBarUI = bar;
                 bar.UpdateHealthBar(1f);
-
-                // Ensure the health bar becomes visible after the boss spawns
-                bar.gameObject.SetActive(true);  // THIS LINE makes sure it appears
             }
         }
 
@@ -150,6 +154,4 @@ public class BossSummonTrigger : MonoBehaviour
         sr.color = endColor;
         obj.SetActive(false);
     }
-
-
 }
