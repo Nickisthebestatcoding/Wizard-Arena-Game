@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class BossSummonTrigger : MonoBehaviour
 {
@@ -14,15 +14,11 @@ public class BossSummonTrigger : MonoBehaviour
     public GameObject[] borders;  // Assign your border GameObjects in Inspector
     private Health bossHealth;
 
-    public GameObject bossHealthBarObject; // Drag the boss health bar GameObject here
+    public Sprite[] bossHealthSprites;  // Add the health bar sprites for the boss here
 
     private bool hasSpawned = false;
 
     public float summonDelay = 2f;
-    public float screenShakeDuration = 0.5f;
-    public float screenShakeIntensity = 0.2f;
-
-    private GameObject boss; // Declare the boss object here
 
     private void Start()
     {
@@ -33,9 +29,6 @@ public class BossSummonTrigger : MonoBehaviour
             necromancer.SetActive(false);
 
         SetBordersActive(false);
-
-        if (bossHealthBarObject != null)
-            bossHealthBarObject.SetActive(false); // Hide boss bar at start
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -67,7 +60,6 @@ public class BossSummonTrigger : MonoBehaviour
 
     IEnumerator SummoningSequence()
     {
-        // Activate and fade in summoning circle and necromancer
         if (summoningCircle != null)
         {
             summoningCircle.SetActive(true);
@@ -91,32 +83,17 @@ public class BossSummonTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(summonDelay);
 
-        // Spawn the boss
         if (skeletonBossPrefab != null && spawnPoint != null)
         {
-            boss = Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
+            GameObject boss = Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
             bossHealth = boss.GetComponent<Health>();
 
-            // Show the boss health bar
-            if (bossHealthBarObject != null)
-            {
-                bossHealthBarObject.SetActive(true); // Show the boss bar
-                bossHealthBarObject.transform.SetParent(boss.transform);
-                bossHealthBarObject.transform.localPosition = new Vector3(0f, -1f, 0f); // Position it below the boss
-
-                // Set the health bar UI to match the boss's health
-                WorldspaceHealthBar wsBar = bossHealthBarObject.GetComponent<WorldspaceHealthBar>();
-                if (wsBar != null)
-                {
-                    bossHealth.worldspaceHealthBarUI = wsBar;
-                    wsBar.UpdateHealthBar(1f);
-                }
-            }
+            // Create the health bar UI dynamically
+            CreateBossHealthBar(boss);
         }
 
         yield return new WaitForSeconds(0.5f);
 
-        // Fade out necromancer and summoning circle
         if (necromancer != null)
             StartCoroutine(FadeOut(necromancer, 1f));
 
@@ -124,6 +101,29 @@ public class BossSummonTrigger : MonoBehaviour
 
         if (summoningCircle != null)
             summoningCircle.SetActive(false);
+    }
+
+    // Create the health bar dynamically for the boss
+    void CreateBossHealthBar(GameObject boss)
+    {
+        GameObject healthBarObject = new GameObject("BossHealthBar");
+        healthBarObject.transform.SetParent(boss.transform);  // Attach it to the boss
+        healthBarObject.transform.localPosition = new Vector3(0f, -1f, 0f);  // Position it below the boss
+
+        // Create an Image component for the health bar
+        Image healthBarImage = healthBarObject.AddComponent<Image>();
+        healthBarImage.rectTransform.sizeDelta = new Vector2(200f, 20f);  // Adjust size as needed
+        healthBarImage.color = Color.red;  // Set a default color for the health bar (optional)
+
+        // Create a BossHealthBar component to manage the health bar's updates
+        BossHealthBar bossHealthBar = healthBarObject.AddComponent<BossHealthBar>();
+        bossHealthBar.SetHealthBarImage(healthBarImage);  // Set the health bar image
+
+        // Set the sprites for the health bar
+        bossHealthBar.healthSprites = bossHealthSprites;
+
+        // Update the health bar at full health initially
+        bossHealthBar.UpdateHealthBar(1f);
     }
 
     IEnumerator FadeIn(GameObject obj, float duration)
