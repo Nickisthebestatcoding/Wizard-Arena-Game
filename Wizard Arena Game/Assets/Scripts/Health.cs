@@ -8,12 +8,16 @@ public class Health : MonoBehaviour
     public float maxHealth = 10f;
     private float currentHealth;
     public WizardHealthBar healthBarUI;
+    public BossHealthBar bossHealthBarUI;
 
     void Start()
     {
         currentHealth = maxHealth;
-        if (healthBarUI != null)
-            healthBarUI.UpdateHealthBar(currentHealth / maxHealth);
+
+        if (CompareTag("Boss") && bossHealthBarUI != null)
+        {
+            bossHealthBarUI.UpdateHealthBar(currentHealth / maxHealth);
+        }
     }
 
     public void TakeDamage(float amount)
@@ -21,9 +25,9 @@ public class Health : MonoBehaviour
         currentHealth -= amount;
         Debug.Log(gameObject.name + " took " + amount + " damage. Remaining health: " + currentHealth);
 
-        if (healthBarUI != null)
+        if (CompareTag("Boss") && bossHealthBarUI != null)
         {
-            healthBarUI.UpdateHealthBar(currentHealth / maxHealth);
+            bossHealthBarUI.UpdateHealthBar(currentHealth / maxHealth);
         }
 
         if (currentHealth <= 0)
@@ -76,6 +80,10 @@ public class Health : MonoBehaviour
         }
 
         Debug.Log(gameObject.name + " health reset.");
+        if (CompareTag("Boss") && bossHealthBarUI != null)
+        {
+            bossHealthBarUI.UpdateHealthBar(1f);
+        }
     }
 
     IEnumerator DelayedReset()
