@@ -95,12 +95,10 @@ public class BossSummonTrigger : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         if (necromancer != null)
-            StartCoroutine(FadeOut(necromancer, 1f));
-
-        yield return new WaitForSeconds(0.5f);
+            yield return StartCoroutine(FadeOut(necromancer, 1f));
 
         if (summoningCircle != null)
-            summoningCircle.SetActive(false);
+            yield return StartCoroutine(FadeOut(summoningCircle, 1f));
     }
 
     // Create the health bar dynamically for the boss
