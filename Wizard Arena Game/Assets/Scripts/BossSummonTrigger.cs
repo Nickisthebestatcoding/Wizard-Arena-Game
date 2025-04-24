@@ -86,11 +86,13 @@ public class BossSummonTrigger : MonoBehaviour
         {
             GameObject boss = Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
             bossHealth = boss.GetComponent<Health>();
+
             BossHealthBar bar = FindObjectOfType<BossHealthBar>();
             if (bar != null)
             {
                 bossHealth.bossHealthBarUI = bar;
                 bar.UpdateHealthBar(1f);
+                bar.Show(); // Show the health bar only now!
             }
         }
 
