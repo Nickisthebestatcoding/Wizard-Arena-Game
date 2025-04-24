@@ -269,7 +269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1423542145}
   m_Layer: 0
-  m_Name: PlayerSpawnPoint1
+  m_Name: PlayerSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
