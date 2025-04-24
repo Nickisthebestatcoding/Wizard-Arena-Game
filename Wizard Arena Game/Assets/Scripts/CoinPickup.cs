@@ -1,21 +1,26 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CoinPickup : MonoBehaviour
 {
     // Reference to the GameManager or any object that handles the coin count
-    public GameManager gameManager;
+    public int coinText;
     
 
     // When the character collides with a coin, pick it up
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the player collided with the coin
         if (other.CompareTag("Wizard"))
         {
-            // Increase the coin count in the GameManager
-            gameManager.AddCoin();
+             // Increment the player's coin count
+            int coinText = PlayerPrefs.GetInt("Coins: ", 0);
+            coinText ++;
 
-            // Destroy the coin after it's picked up
+            // Save the new coin count
+            PlayerPrefs.SetInt("Coins: ", coinText);
+
+            // Destroy the coin
             Destroy(gameObject);
         }
     }

@@ -3,23 +3,12 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 
+
 {
     public static GameManager Instance;
-    public Text coinText; // Reference to the UI text to show coin count
-    private int coinCount = 0;
-    
-    // Call this method to increase the coin count
-    public void AddCoin()
-    {
-        coinCount++; // Increment the coin count
-        UpdatecoinText(); // Update the UI text
-    }
 
-    // Update the coin count display in the UI
-    private void UpdatecoinText()
-    {
-        coinText.text = "Coins: " + coinCount; // Update the UI text
-    }
+    public int coinText = 0;
+
     void Awake()
     {
         // Ensure only one GameManager exists
@@ -34,13 +23,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddCoins(int amount)
+    public void AddCoin()
     {
-        coinCount += amount;
-    }
-
-    public int GetCoinCount()
-    {
-        return coinCount;
+        coinText++;
+        Debug.Log("Total Coins: " + coinText);
     }
 }
