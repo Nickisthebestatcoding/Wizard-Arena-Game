@@ -5,15 +5,19 @@ using UnityEngine.UI;
 
 public class BossHealthBar : MonoBehaviour
 {
-    public Image[] healthSegments;
+    public Image healthBarImage;         // The Image component to update
+    public Sprite[] healthSprites;       // Array from full to empty (10 total)
+    private int totalSteps;
 
-    // Call this to update the health bar display
+    void Start()
+    {
+        totalSteps = healthSprites.Length;
+        UpdateHealthBar(1f); // Start full
+    }
+
     public void UpdateHealthBar(float healthPercent)
     {
-        int activeSegments = Mathf.CeilToInt(healthPercent * healthSegments.Length);
-        for (int i = 0; i < healthSegments.Length; i++)
-        {
-            healthSegments[i].enabled = i < activeSegments;
-        }
+        int spriteIndex = Mathf.Clamp(Mathf.FloorToInt((1f - healthPercent) * (totalSteps - 1)), 0, totalSteps - 1);
+        healthBarImage.sprite = healthSprites[spriteIndex];
     }
 }
