@@ -84,15 +84,20 @@ public class BossSummonTrigger : MonoBehaviour
 
         if (skeletonBossPrefab != null && spawnPoint != null)
         {
+            // Spawn the boss
             GameObject boss = Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
             bossHealth = boss.GetComponent<Health>();
 
+            // Find the boss health bar in the scene
             BossHealthBar bar = FindObjectOfType<BossHealthBar>();
             if (bar != null)
             {
+                // Attach the health bar to the boss' health system
                 bossHealth.bossHealthBarUI = bar;
                 bar.UpdateHealthBar(1f);
-                bar.Show(); // Show the health bar only now!
+
+                // Ensure the health bar becomes visible after the boss spawns
+                bar.gameObject.SetActive(true);  // THIS LINE makes sure it appears
             }
         }
 

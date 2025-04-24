@@ -30,6 +30,7 @@ public class BossHealthBar : MonoBehaviour
 
     public void Show()
     {
+        Debug.Log("Boss health bar now showing!");
         gameObject.SetActive(true);
     }
 }
