@@ -7,17 +7,14 @@ public class Health : MonoBehaviour
 {
     public float maxHealth = 10f;
     private float currentHealth;
-    public WizardHealthBar healthBarUI;
-    public BossHealthBar bossHealthBarUI;
+
+    public WizardHealthBar healthBarUI;     // For Wizard
+    public BossHealthBar bossHealthBarUI;   // For Boss
 
     void Start()
     {
         currentHealth = maxHealth;
-
-        if (CompareTag("Boss") && bossHealthBarUI != null)
-        {
-            bossHealthBarUI.UpdateHealthBar(currentHealth / maxHealth);
-        }
+        UpdateHealthUI();
     }
 
     public void TakeDamage(float amount)
@@ -25,14 +22,26 @@ public class Health : MonoBehaviour
         currentHealth -= amount;
         Debug.Log(gameObject.name + " took " + amount + " damage. Remaining health: " + currentHealth);
 
-        if (CompareTag("Boss") && bossHealthBarUI != null)
-        {
-            bossHealthBarUI.UpdateHealthBar(currentHealth / maxHealth);
-        }
+        UpdateHealthUI();
 
         if (currentHealth <= 0)
         {
             Die();
+        }
+    }
+
+    void UpdateHealthUI()
+    {
+        float percent = currentHealth / maxHealth;
+
+        if (healthBarUI != null)
+        {
+            healthBarUI.UpdateHealthBar(percent); // Wizard health bar
+        }
+
+        if (bossHealthBarUI != null)
+        {
+            bossHealthBarUI.UpdateHealthBar(percent); // Boss health bar
         }
     }
 
@@ -44,7 +53,6 @@ public class Health : MonoBehaviour
         {
             FindObjectOfType<LevelManager>().ShowGameOver();
 
-            // Open borders on player death
             BossSummonTrigger summonTrigger = FindObjectOfType<BossSummonTrigger>();
             if (summonTrigger != null)
             {
@@ -56,8 +64,7 @@ public class Health : MonoBehaviour
         }
         else
         {
-            // Open borders if the boss dies
-            if (CompareTag("Boss")) // Make sure boss has this tag
+            if (CompareTag("Boss"))
             {
                 BossSummonTrigger summonTrigger = FindObjectOfType<BossSummonTrigger>();
                 if (summonTrigger != null)
@@ -73,17 +80,8 @@ public class Health : MonoBehaviour
     public void ResetHealth()
     {
         currentHealth = maxHealth;
-
-        if (healthBarUI != null)
-        {
-            healthBarUI.UpdateHealthBar(1f);
-        }
-
+        UpdateHealthUI();
         Debug.Log(gameObject.name + " health reset.");
-        if (CompareTag("Boss") && bossHealthBarUI != null)
-        {
-            bossHealthBarUI.UpdateHealthBar(1f);
-        }
     }
 
     IEnumerator DelayedReset()
