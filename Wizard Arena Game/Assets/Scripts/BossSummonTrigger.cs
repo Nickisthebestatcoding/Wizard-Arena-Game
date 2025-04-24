@@ -86,6 +86,12 @@ public class BossSummonTrigger : MonoBehaviour
         {
             GameObject boss = Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
             bossHealth = boss.GetComponent<Health>();
+            BossHealthBar bar = FindObjectOfType<BossHealthBar>();
+            if (bar != null)
+            {
+                bossHealth.bossHealthBarUI = bar;
+                bar.UpdateHealthBar(1f);
+            }
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -137,5 +143,6 @@ public class BossSummonTrigger : MonoBehaviour
         sr.color = endColor;
         obj.SetActive(false);
     }
+
 
 }
