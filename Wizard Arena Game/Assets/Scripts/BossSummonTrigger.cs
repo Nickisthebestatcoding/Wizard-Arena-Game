@@ -137,4 +137,5 @@ public class BossSummonTrigger : MonoBehaviour
         sr.color = endColor;
         obj.SetActive(false);
     }
+
 }
