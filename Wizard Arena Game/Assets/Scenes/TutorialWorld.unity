@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!1001 &29501149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1893,7 +1893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!1001 &239221561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2843,7 +2843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!1 &341533875
 GameObject:
   m_ObjectHideFlags: 0
@@ -2875,7 +2875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!58 &341533877
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3279,7 +3279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!1001 &369819097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3470,7 +3470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!1 &380056028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4115,7 +4115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!1 &461006089
 GameObject:
   m_ObjectHideFlags: 0
@@ -5310,7 +5310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!58 &620197341
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6808,7 +6808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!1001 &983099839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7756,7 +7756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!1 &1117550589
 GameObject:
   m_ObjectHideFlags: 0
@@ -9068,7 +9068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!1 &1269391318
 GameObject:
   m_ObjectHideFlags: 0
@@ -9982,7 +9982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!58 &1411803410
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10382,7 +10382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!58 &1476721002
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11073,7 +11073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!1 &1544978990
 GameObject:
   m_ObjectHideFlags: 0
@@ -11940,7 +11940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b065740baf25d41cbb2d1e53a64974fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinText: {fileID: 953077898}
+  coinText: 0
 --- !u!4 &1644959321
 Transform:
   m_ObjectHideFlags: 0
@@ -12211,7 +12211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!1 &1673756462
 GameObject:
   m_ObjectHideFlags: 0
@@ -13397,7 +13397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!58 &1881013740
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -13774,7 +13774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!1001 &1917459170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15156,7 +15156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!58 &2100371378
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -15290,7 +15290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!58 &2104304750
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -15491,7 +15491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc3196440a04e11b634c58defa9692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1644959320}
+  coinText: 0
 --- !u!58 &2115457657
 CircleCollider2D:
   m_ObjectHideFlags: 0
