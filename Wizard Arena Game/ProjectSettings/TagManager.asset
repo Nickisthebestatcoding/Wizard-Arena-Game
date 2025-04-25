@@ -13,12 +13,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - objects
   - Water
   - UI
   - Wizard
   - FireBall
-  - 
+  - ' Boss'
   - 
   - 
   - 
@@ -57,6 +57,9 @@ TagManager:
     locked: 0
   - name: portal
     uniqueID: 3602633579
+    locked: 0
+  - name: Wizard
+    uniqueID: 2550366941
     locked: 0
   - name: enemies
     uniqueID: 271981637

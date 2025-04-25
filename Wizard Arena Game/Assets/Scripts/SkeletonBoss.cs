@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,13 +21,6 @@ public class SkeletonBoss : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Wizard")?.transform;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-
-        // Set the collider to trigger so it can pass through other objects
-        Collider2D collider = GetComponent<Collider2D>();
-        if (collider != null)
-        {
-            collider.isTrigger = true;
-        }
     }
 
     void Update()
@@ -71,14 +65,13 @@ public class SkeletonBoss : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Only apply knockback when the boss collides with the player
-        if (collision.CompareTag("Wizard"))
+        if (collision.collider.CompareTag("Wizard"))
         {
             ApplyKnockback();
 
-            Health wizardHealth = collision.GetComponent<Health>();
+            Health wizardHealth = collision.collider.GetComponent<Health>();
             if (wizardHealth != null)
             {
                 wizardHealth.TakeDamage(damage);
