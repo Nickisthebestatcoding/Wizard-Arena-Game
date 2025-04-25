@@ -49,6 +49,10 @@ public class Health : MonoBehaviour
 
             gameObject.SetActive(false);
         }
+        else if (CompareTag("Enemy")) // Basic enemy
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void ResetHealth()

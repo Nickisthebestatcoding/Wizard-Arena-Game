@@ -9119,19 +9119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 906e73b5b7a974fc59d69c9d4f4d0770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarImage: {fileID: 1269391321}
-  healthSprites:
-  - {fileID: 21300000, guid: 5c26b6abc02914b6381c7187446b8cd6, type: 3}
-  - {fileID: 21300000, guid: 7e4d062a08a374332a6b73f75beb000c, type: 3}
-  - {fileID: 21300000, guid: 56b1e4ea7b63b489e93e0c9eac376775, type: 3}
-  - {fileID: 21300000, guid: bae0d302351634bf2a025c5af6521c6b, type: 3}
-  - {fileID: 21300000, guid: 7ead5486efc1941b19b91df7a9fb3eec, type: 3}
-  - {fileID: 21300000, guid: 1a7b1821fa3f1452bb36943378faa7e1, type: 3}
-  - {fileID: 21300000, guid: 9cbd9105e2cb84fa6bc5726dbe6159a1, type: 3}
-  - {fileID: 21300000, guid: 4c7427c4dcf594b598f421832ce7333f, type: 3}
-  - {fileID: 21300000, guid: 593191a6edea04a20a5507096e29f6af, type: 3}
-  - {fileID: 21300000, guid: 14abd8eb155b64a9184150cadc0d70a9, type: 3}
-  - {fileID: 21300000, guid: d083bf9ceb3104f4aaaea18a2fdf05a6, type: 3}
 --- !u!114 &1269391321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9876,6 +9863,10 @@ PrefabInstance:
     - target: {fileID: 5290164437284410300, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260085329572706828, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
+      propertyPath: maxHealth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8260085329572706828, guid: 7fe5dca5dbb2d4563b995dc5eb6fe6f4, type: 3}
       propertyPath: gameOverManager
@@ -11455,8 +11446,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   healthBarUI: {fileID: 1544979004}
-  bossHealthBarUI: {fileID: 0}
-  worldspaceHealthBarUI: {fileID: 0}
 --- !u!114 &1544979003
 MonoBehaviour:
   m_ObjectHideFlags: 0
