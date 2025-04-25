@@ -3,17 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SkeletonBoss : MonoBehaviour
 {
-    public float moveSpeed = 2f;
+    public float moveSpeed = 3f;
     public float damage = 1f;
-    public float attackRange = 2f;
+    public float attackRange = 1.5f;
     public float attackCooldown = 2f;
     public float knockbackForce = 5f;
 
     private float lastAttackTime = 0f;
-    private Transform player;
     private Animator animator;
+    private Transform player;
     private Rigidbody2D rb;
 
     void Start()
@@ -21,47 +22,66 @@ public class SkeletonBoss : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Wizard")?.transform;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+        {
+            rb.freezeRotation = true;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
     void Update()
     {
         if (player == null) return;
 
-        // Move toward player
-        Vector2 direction = (player.position - transform.position).normalized;
-        transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+        float distance = Vector2.Distance(transform.position, player.position);
 
-        // Check if it's time to attack
-        float distance = Vector2.Distance(player.position, transform.position);
-        if (distance <= attackRange && Time.time - lastAttackTime >= attackCooldown)
+        if (distance <= attackRange)
         {
-            Attack();
+            rb.velocity = Vector2.zero;
+
+            if (Time.time - lastAttackTime >= attackCooldown)
+            {
+                Attack();
+                lastAttackTime = Time.time;
+            }
+        }
+        else
+        {
+            Vector2 direction = (player.position - transform.position).normalized;
+            rb.velocity = direction * moveSpeed;
         }
     }
 
     void Attack()
     {
-        if (player == null) return;
-
-        Health wizardHealth = player.GetComponent<Health>();
-        if (wizardHealth != null)
+        // Pick random punch
+        if (Random.value > 0.5f)
         {
-            wizardHealth.TakeDamage(damage);
+            animator.SetTrigger("LeftPunch");
+        }
+        else
+        {
+            animator.SetTrigger("RightPunch");
         }
 
-        animator.SetTrigger("Attack");
-        lastAttackTime = Time.time;
-
-        ApplyKnockback();
-    }
-
-    void ApplyKnockback()
-    {
-        Rigidbody2D wizardRb = player.GetComponent<Rigidbody2D>();
-        if (wizardRb != null)
+        // Damage if player still within range
+        float distance = Vector2.Distance(transform.position, player.position);
+        if (distance <= attackRange)
         {
-            Vector2 knockDirection = (player.position - transform.position).normalized;
-            wizardRb.AddForce(knockDirection * knockbackForce, ForceMode2D.Impulse);
+            Health wizardHealth = player.GetComponent<Health>();
+            if (wizardHealth != null)
+            {
+                wizardHealth.TakeDamage(damage);
+
+                // Apply knockback to player
+                Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+                if (playerRb != null)
+                {
+                    Vector2 knockbackDir = (player.position - transform.position).normalized;
+                    playerRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+                }
+            }
         }
     }
 
@@ -69,7 +89,13 @@ public class SkeletonBoss : MonoBehaviour
     {
         if (collision.collider.CompareTag("Wizard"))
         {
-            ApplyKnockback();
+            // Bounce the player away if they touch the boss outside of an attack
+            Rigidbody2D playerRb = collision.collider.GetComponent<Rigidbody2D>();
+            if (playerRb != null)
+            {
+                Vector2 knockbackDir = (collision.transform.position - transform.position).normalized;
+                playerRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+            }
 
             Health wizardHealth = collision.collider.GetComponent<Health>();
             if (wizardHealth != null)
