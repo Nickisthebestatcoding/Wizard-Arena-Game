@@ -17575,6 +17575,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: New Piskel-7-3 (dragged) (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3205873347028846524, guid: 0df8aa7df4c1e4057a42ad4d5d0db304, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205873347028846524, guid: 0df8aa7df4c1e4057a42ad4d5d0db304, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 295878763
+      objectReference: {fileID: 0}
     - target: {fileID: 9205393764784312077, guid: 0df8aa7df4c1e4057a42ad4d5d0db304, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3953124
