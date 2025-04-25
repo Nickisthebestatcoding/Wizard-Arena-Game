@@ -33,15 +33,19 @@ public class Health : MonoBehaviour
         Debug.Log(gameObject.name + " died!");
 
         BossSummonTrigger summonTrigger = FindObjectOfType<BossSummonTrigger>();
-
         if (CompareTag("Wizard"))
         {
             if (summonTrigger != null)
+            {
                 summonTrigger.OpenBorders();
+                summonTrigger.ResetBossState(); // <- ADD THIS
+            }
 
             gameObject.SetActive(false);
             FindObjectOfType<LevelManager>().ResetLevel();
         }
+
+
         else if (CompareTag("Boss"))
         {
             if (summonTrigger != null)

@@ -138,4 +138,15 @@ public class BossSummonTrigger : MonoBehaviour
         sr.color = endColor;
         obj.SetActive(false);
     }
+    public void ResetBossState()
+    {
+        hasSpawned = false;
+
+        // Destroy the current boss if it exists
+        if (bossHealth != null && bossHealth.gameObject != null)
+        {
+            Destroy(bossHealth.gameObject);
+            bossHealth = null;
+        }
+    }
 }
