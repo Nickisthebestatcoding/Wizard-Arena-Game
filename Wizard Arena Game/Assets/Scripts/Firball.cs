@@ -6,22 +6,10 @@ public class Firball : MonoBehaviour
 {
     public float damage = 1f;
     public float pushForce = 5f;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        GameObject target = collision.gameObject;
+        GameObject target = other.gameObject;
 
         if (target.CompareTag("Wizard"))
         {
@@ -36,14 +24,12 @@ public class Firball : MonoBehaviour
             return;
         }
 
-        Health health = collision.gameObject.GetComponent<Health>();
+        Health health = target.GetComponent<Health>();
         if (health != null)
         {
             health.TakeDamage(damage);
         }
 
-
-        // Implement behavior when fireball hits something (e.g., damage, destroy)
-        Destroy(gameObject);  // Destroy the fireball on collision (simple example)
+        Destroy(gameObject);
     }
 }
