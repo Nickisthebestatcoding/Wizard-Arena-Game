@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 333a1996997394cbb90b2f8cc084c442
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - KnightPain: {fileID: 8300000, guid: e2cad18f02c96450db264a302c6e9904, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
