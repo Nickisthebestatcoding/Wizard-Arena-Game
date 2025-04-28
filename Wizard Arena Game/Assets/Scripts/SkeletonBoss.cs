@@ -3,31 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class SkeletonBoss : MonoBehaviour
 {
     public float moveSpeed = 2f;
     public float damage = 1f;
     public float attackRange = 1.5f;
+    public float knockbackForce = 5f;
+    public float knockbackDuration = 0.2f;
     public float stopDistance = 1.2f;
-    public GameObject attackHitbox; // <-- ADD THIS!
-    public float attackCooldown = 1f; // Added a cooldown variable for easier adjustment
 
     private Transform player;
     private Rigidbody2D rb;
     private Animator animator;
     private bool isAttacking = false;
-    public float knockbackForce = 5f;  // How hard the knockback is
-    public float knockbackDuration = 0.2f; // How long the player is pushed
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Wizard").transform;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
-        if (attackHitbox != null)
-            attackHitbox.SetActive(false); // Make sure it's off at start
     }
 
     void Update()
@@ -44,7 +38,7 @@ public class SkeletonBoss : MonoBehaviour
             }
             else
             {
-                rb.velocity = Vector2.zero; // Stop moving when in attack range
+                rb.velocity = Vector2.zero;
                 StartCoroutine(AttackRoutine());
             }
         }
@@ -61,7 +55,6 @@ public class SkeletonBoss : MonoBehaviour
         isAttacking = true;
         rb.velocity = Vector2.zero; // Stop moving during attack
 
-        // Choose the correct punch animation
         if (animator != null && player != null)
         {
             float xDifference = player.position.x - transform.position.x;
@@ -76,41 +69,26 @@ public class SkeletonBoss : MonoBehaviour
             }
         }
 
-        ActivateHitbox(); // Turn ON punch collider
+        yield return new WaitForSeconds(0.3f); // Wait for punch to hit
 
-        yield return new WaitForSeconds(0.3f); // Hitbox active time
+        // No need to manually deactivate anything - punch just happens invisibly
 
-        DeactivateHitbox(); // Turn OFF punch collider
-
-        yield return new WaitForSeconds(1f); // <-- FULL 1 second wait AFTER attacking
+        yield return new WaitForSeconds(1f); // Wait after punching
 
         isAttacking = false;
     }
 
-    void ActivateHitbox()
-    {
-        if (attackHitbox != null)
-            attackHitbox.SetActive(true);
-    }
-
-    void DeactivateHitbox()
-    {
-        if (attackHitbox != null)
-            attackHitbox.SetActive(false);
-    }
-
-    // Call these methods from animation events
-    void RightPunchHit()
+    // Called by Animation Events
+    public void RightPunchHit()
     {
         TryHitPlayer();
     }
 
-    void LeftPunchHit()
+    public void LeftPunchHit()
     {
         TryHitPlayer();
     }
 
-    // This method handles the damage logic when a punch hits
     void TryHitPlayer()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
@@ -119,7 +97,7 @@ public class SkeletonBoss : MonoBehaviour
             if (hit.CompareTag("Wizard"))
             {
                 Health wizardHealth = hit.GetComponent<Health>();
-                Rigidbody2D playerRb = hit.GetComponent<Rigidbody2D>(); // Get the player's Rigidbody2D
+                Rigidbody2D playerRb = hit.GetComponent<Rigidbody2D>();
 
                 if (wizardHealth != null)
                 {
@@ -134,17 +112,26 @@ public class SkeletonBoss : MonoBehaviour
             }
         }
     }
-    IEnumerator ApplyKnockback(Rigidbody2D playerRb, Vector2 direction)
+
+    IEnumerator ApplyKnockback(Rigidbody2D targetRb, Vector2 direction)
     {
-        float timer = 0f;
-
-        while (timer < knockbackDuration)
+        if (targetRb != null)
         {
-            playerRb.velocity = direction * knockbackForce;
-            timer += Time.deltaTime;
-            yield return null;
+            float timer = 0f;
+            while (timer < knockbackDuration)
+            {
+                targetRb.velocity = direction * knockbackForce;
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            targetRb.velocity = Vector2.zero;
         }
+    }
 
-        playerRb.velocity = Vector2.zero; // Stop player movement after knockback
+    // (Optional) Draw attack range in Scene view
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
