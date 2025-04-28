@@ -17,6 +17,8 @@ public class SkeletonBoss : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private bool isAttacking = false;
+    public float knockbackForce = 5f;  // How hard the knockback is
+    public float knockbackDuration = 0.2f; // How long the player is pushed
 
     void Start()
     {
@@ -34,15 +36,15 @@ public class SkeletonBoss : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        if (distance > stopDistance)
+        if (!isAttacking)
         {
-            isAttacking = false;
-            MoveTowardsPlayer();
-        }
-        else
-        {
-            if (!isAttacking)
+            if (distance > stopDistance)
             {
+                MoveTowardsPlayer();
+            }
+            else
+            {
+                rb.velocity = Vector2.zero; // Stop moving when in attack range
                 StartCoroutine(AttackRoutine());
             }
         }
@@ -57,9 +59,9 @@ public class SkeletonBoss : MonoBehaviour
     IEnumerator AttackRoutine()
     {
         isAttacking = true;
-        rb.velocity = Vector2.zero; // Stop moving to punch
+        rb.velocity = Vector2.zero; // Stop moving during attack
 
-        // Handle attack animation based on player position
+        // Choose the correct punch animation
         if (animator != null && player != null)
         {
             float xDifference = player.position.x - transform.position.x;
@@ -76,20 +78,13 @@ public class SkeletonBoss : MonoBehaviour
 
         ActivateHitbox(); // Turn ON punch collider
 
-        yield return new WaitForSeconds(0.3f); // How long the punch is active
+        yield return new WaitForSeconds(0.3f); // Hitbox active time
 
         DeactivateHitbox(); // Turn OFF punch collider
 
-        // Wait for cooldown before allowing the next attack
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(1f); // <-- FULL 1 second wait AFTER attacking
 
         isAttacking = false;
-
-        // Start a new attack if the player is still in range
-        if (Vector2.Distance(transform.position, player.position) <= stopDistance)
-        {
-            StartCoroutine(AttackRoutine());
-        }
     }
 
     void ActivateHitbox()
@@ -124,11 +119,32 @@ public class SkeletonBoss : MonoBehaviour
             if (hit.CompareTag("Wizard"))
             {
                 Health wizardHealth = hit.GetComponent<Health>();
+                Rigidbody2D playerRb = hit.GetComponent<Rigidbody2D>(); // Get the player's Rigidbody2D
+
                 if (wizardHealth != null)
                 {
                     wizardHealth.TakeDamage(damage);
                 }
+
+                if (playerRb != null)
+                {
+                    Vector2 knockbackDirection = (hit.transform.position - transform.position).normalized;
+                    StartCoroutine(ApplyKnockback(playerRb, knockbackDirection));
+                }
             }
         }
+    }
+    IEnumerator ApplyKnockback(Rigidbody2D playerRb, Vector2 direction)
+    {
+        float timer = 0f;
+
+        while (timer < knockbackDuration)
+        {
+            playerRb.velocity = direction * knockbackForce;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        playerRb.velocity = Vector2.zero; // Stop player movement after knockback
     }
 }
