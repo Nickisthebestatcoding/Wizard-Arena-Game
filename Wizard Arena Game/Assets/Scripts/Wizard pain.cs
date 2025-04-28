@@ -23,6 +23,5 @@ public class Wizardpain : MonoBehaviour
                 audioSource.Play();
             }
         }
-        
     }
 }

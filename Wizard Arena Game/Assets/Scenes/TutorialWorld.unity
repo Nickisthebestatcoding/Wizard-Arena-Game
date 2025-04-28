@@ -4322,11 +4322,9 @@ MonoBehaviour:
   moveSpeed: 3
   damage: 1
   attackRange: 6
-  stopDistance: 6
-  attackHitbox: {fileID: 0}
-  attackCooldown: 1
   knockbackForce: 5
   knockbackDuration: 0.2
+  stopDistance: 6
 --- !u!50 &441180563
 Rigidbody2D:
   serializedVersion: 4
@@ -7996,7 +7994,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1072002233}
   - component: {fileID: 1072002232}
-  - component: {fileID: 1072002231}
+  - component: {fileID: 1072002235}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8004,14 +8002,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1072002231
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072002230}
-  m_Enabled: 1
 --- !u!20 &1072002232
 Camera:
   m_ObjectHideFlags: 0
@@ -8078,6 +8068,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &1072002235
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072002230}
+  m_Enabled: 1
 --- !u!1 &1077827897
 GameObject:
   m_ObjectHideFlags: 0
@@ -11824,6 +11822,7 @@ GameObject:
   - component: {fileID: 1544978997}
   - component: {fileID: 1544978998}
   - component: {fileID: 1544978999}
+  - component: {fileID: 1544979010}
   - component: {fileID: 1544979000}
   - component: {fileID: 1544979001}
   - component: {fileID: 1544979002}
@@ -11833,7 +11832,6 @@ GameObject:
   - component: {fileID: 1544979006}
   - component: {fileID: 1544979007}
   - component: {fileID: 1544979009}
-  - component: {fileID: 1544979010}
   m_Layer: 6
   m_Name: Wizard (Main)
   m_TagString: Wizard
@@ -12082,7 +12080,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 200
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
