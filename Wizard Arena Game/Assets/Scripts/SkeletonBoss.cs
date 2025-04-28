@@ -55,27 +55,39 @@ public class SkeletonBoss : MonoBehaviour
 
     IEnumerator AttackRoutine()
     {
+        Debug.Log("Starting Attack Routine!");
         isAttacking = true;
         rb.velocity = Vector2.zero; // Stop moving to punch
 
-        // Play random left or right punch
-        if (animator != null)
+        if (animator != null && player != null)
         {
-            if (Random.value > 0.5f)
-                animator.SetTrigger("PunchLeft");
+            float xDifference = player.position.x - transform.position.x;
+
+            if (xDifference > 0f)
+            {
+                // Player is on the right
+                animator.SetTrigger("RightPunch");
+            }
             else
-                animator.SetTrigger("PunchRight");
+            {
+                // Player is on the left
+                animator.SetTrigger("LeftPunch");
+            }
         }
 
         ActivateHitbox(); // Turn ON punch collider
 
-        yield return new WaitForSeconds(0.3f); // Attack active time
+        yield return new WaitForSeconds(0.3f); // How long the punch is active (adjust if needed)
 
         DeactivateHitbox(); // Turn OFF punch collider
 
-        yield return new WaitForSeconds(1f); // Cooldown before moving again
+        yield return new WaitForSeconds(1f); // Attack cooldown before moving again
 
         isAttacking = false;
+        if (!isAttacking && Vector2.Distance(transform.position, player.position) <= stopDistance)
+        {
+            StartCoroutine(AttackRoutine());
+        }
     }
 
     void ActivateHitbox()

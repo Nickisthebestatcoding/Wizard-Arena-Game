@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class AttackHitbox : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float damage = 1f;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.CompareTag("Wizard"))
+        {
+            Health wizardHealth = other.GetComponent<Health>();
+            if (wizardHealth != null)
+            {
+                wizardHealth.TakeDamage(damage);
+            }
+        }
     }
 }
