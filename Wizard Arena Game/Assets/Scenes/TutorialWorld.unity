@@ -4325,6 +4325,8 @@ MonoBehaviour:
   stopDistance: 6
   attackHitbox: {fileID: 0}
   attackCooldown: 1
+  knockbackForce: 5
+  knockbackDuration: 0.2
 --- !u!50 &441180563
 Rigidbody2D:
   serializedVersion: 4
@@ -11831,6 +11833,7 @@ GameObject:
   - component: {fileID: 1544979006}
   - component: {fileID: 1544979007}
   - component: {fileID: 1544979009}
+  - component: {fileID: 1544979010}
   m_Layer: 6
   m_Name: Wizard (Main)
   m_TagString: Wizard
@@ -12079,7 +12082,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 200
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -12272,6 +12275,19 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 1
   dashKey: 101
+--- !u!114 &1544979010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544978990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467fc1b51e8fd42daafff0e8e5ca0028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
 --- !u!1001 &1546961751
 PrefabInstance:
   m_ObjectHideFlags: 0
