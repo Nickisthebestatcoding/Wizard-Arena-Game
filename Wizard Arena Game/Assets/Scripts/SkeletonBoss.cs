@@ -6,28 +6,25 @@ using UnityEngine;
 
 public class SkeletonBoss : MonoBehaviour
 {
-    public float moveSpeed = 3f;
+    public float moveSpeed = 2f;
     public float damage = 1f;
     public float attackRange = 1.5f;
-    public float attackCooldown = 2f;
-    public float knockbackForce = 5f;
+    public float stopDistance = 1.2f;
+    public GameObject attackHitbox; // <-- ADD THIS!
 
-    private float lastAttackTime = 0f;
-    private Animator animator;
     private Transform player;
     private Rigidbody2D rb;
+    private Animator animator;
+    private bool isAttacking = false;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Wizard")?.transform;
-        animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Wizard").transform;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
-        if (rb != null)
-        {
-            rb.freezeRotation = true;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        }
+        if (attackHitbox != null)
+            attackHitbox.SetActive(false); // Make sure it's off at start
     }
 
     void Update()
@@ -36,72 +33,60 @@ public class SkeletonBoss : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        if (distance <= attackRange)
+        if (distance > stopDistance)
         {
-            rb.velocity = Vector2.zero;
-
-            if (Time.time - lastAttackTime >= attackCooldown)
-            {
-                Attack();
-                lastAttackTime = Time.time;
-            }
+            isAttacking = false;
+            MoveTowardsPlayer();
         }
         else
         {
-            Vector2 direction = (player.position - transform.position).normalized;
-            rb.velocity = direction * moveSpeed;
-        }
-    }
-
-    void Attack()
-    {
-        // Pick random punch
-        if (Random.value > 0.5f)
-        {
-            animator.SetTrigger("LeftPunch");
-        }
-        else
-        {
-            animator.SetTrigger("RightPunch");
-        }
-
-        // Damage if player still within range
-        float distance = Vector2.Distance(transform.position, player.position);
-        if (distance <= attackRange)
-        {
-            Health wizardHealth = player.GetComponent<Health>();
-            if (wizardHealth != null)
+            if (!isAttacking)
             {
-                wizardHealth.TakeDamage(damage);
-
-                // Apply knockback to player
-                Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
-                if (playerRb != null)
-                {
-                    Vector2 knockbackDir = (player.position - transform.position).normalized;
-                    playerRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
-                }
+                StartCoroutine(AttackRoutine());
             }
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void MoveTowardsPlayer()
     {
-        if (collision.collider.CompareTag("Wizard"))
-        {
-            // Bounce the player away if they touch the boss outside of an attack
-            Rigidbody2D playerRb = collision.collider.GetComponent<Rigidbody2D>();
-            if (playerRb != null)
-            {
-                Vector2 knockbackDir = (collision.transform.position - transform.position).normalized;
-                playerRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
-            }
+        Vector2 direction = (player.position - transform.position).normalized;
+        rb.velocity = direction * moveSpeed;
+    }
 
-            Health wizardHealth = collision.collider.GetComponent<Health>();
-            if (wizardHealth != null)
-            {
-                wizardHealth.TakeDamage(damage);
-            }
+    IEnumerator AttackRoutine()
+    {
+        isAttacking = true;
+        rb.velocity = Vector2.zero; // Stop moving to punch
+
+        // Play random left or right punch
+        if (animator != null)
+        {
+            if (Random.value > 0.5f)
+                animator.SetTrigger("PunchLeft");
+            else
+                animator.SetTrigger("PunchRight");
         }
+
+        ActivateHitbox(); // Turn ON punch collider
+
+        yield return new WaitForSeconds(0.3f); // Attack active time
+
+        DeactivateHitbox(); // Turn OFF punch collider
+
+        yield return new WaitForSeconds(1f); // Cooldown before moving again
+
+        isAttacking = false;
+    }
+
+    void ActivateHitbox()
+    {
+        if (attackHitbox != null)
+            attackHitbox.SetActive(true);
+    }
+
+    void DeactivateHitbox()
+    {
+        if (attackHitbox != null)
+            attackHitbox.SetActive(false);
     }
 }
