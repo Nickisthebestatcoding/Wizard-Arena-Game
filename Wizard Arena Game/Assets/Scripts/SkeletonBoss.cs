@@ -11,6 +11,7 @@ public class SkeletonBoss : MonoBehaviour
     public float attackRange = 1.5f;
     public float stopDistance = 1.2f;
     public GameObject attackHitbox; // <-- ADD THIS!
+    public float attackCooldown = 1f; // Added a cooldown variable for easier adjustment
 
     private Transform player;
     private Rigidbody2D rb;
@@ -55,36 +56,37 @@ public class SkeletonBoss : MonoBehaviour
 
     IEnumerator AttackRoutine()
     {
-        Debug.Log("Starting Attack Routine!");
         isAttacking = true;
         rb.velocity = Vector2.zero; // Stop moving to punch
 
+        // Handle attack animation based on player position
         if (animator != null && player != null)
         {
             float xDifference = player.position.x - transform.position.x;
 
             if (xDifference > 0f)
             {
-                // Player is on the right
                 animator.SetTrigger("RightPunch");
             }
             else
             {
-                // Player is on the left
                 animator.SetTrigger("LeftPunch");
             }
         }
 
         ActivateHitbox(); // Turn ON punch collider
 
-        yield return new WaitForSeconds(0.3f); // How long the punch is active (adjust if needed)
+        yield return new WaitForSeconds(0.3f); // How long the punch is active
 
         DeactivateHitbox(); // Turn OFF punch collider
 
-        yield return new WaitForSeconds(1f); // Attack cooldown before moving again
+        // Wait for cooldown before allowing the next attack
+        yield return new WaitForSeconds(attackCooldown);
 
         isAttacking = false;
-        if (!isAttacking && Vector2.Distance(transform.position, player.position) <= stopDistance)
+
+        // Start a new attack if the player is still in range
+        if (Vector2.Distance(transform.position, player.position) <= stopDistance)
         {
             StartCoroutine(AttackRoutine());
         }
@@ -100,5 +102,33 @@ public class SkeletonBoss : MonoBehaviour
     {
         if (attackHitbox != null)
             attackHitbox.SetActive(false);
+    }
+
+    // Call these methods from animation events
+    void RightPunchHit()
+    {
+        TryHitPlayer();
+    }
+
+    void LeftPunchHit()
+    {
+        TryHitPlayer();
+    }
+
+    // This method handles the damage logic when a punch hits
+    void TryHitPlayer()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.CompareTag("Wizard"))
+            {
+                Health wizardHealth = hit.GetComponent<Health>();
+                if (wizardHealth != null)
+                {
+                    wizardHealth.TakeDamage(damage);
+                }
+            }
+        }
     }
 }
