@@ -9,7 +9,7 @@ TagManager:
   - Wizard attack
   - Enemy
   - Boss
-  - Book
+  - Spike
   layers:
   - Default
   - TransparentFX
