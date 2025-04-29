@@ -5877,8 +5877,8 @@ GameObject:
   - component: {fileID: 520634820}
   - component: {fileID: 520634819}
   m_Layer: 0
-  m_Name: Lightning book
-  m_TagString: Untagged
+  m_Name: Book3
+  m_TagString: Book
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12776,8 +12776,8 @@ GameObject:
   - component: {fileID: 1223258089}
   - component: {fileID: 1223258088}
   m_Layer: 0
-  m_Name: Ice book
-  m_TagString: Untagged
+  m_Name: Book2
+  m_TagString: Book
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13235,7 +13235,7 @@ GameObject:
   - component: {fileID: 1291590766}
   m_Layer: 0
   m_Name: Healing
-  m_TagString: Untagged
+  m_TagString: Book
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15642,8 +15642,8 @@ GameObject:
   - component: {fileID: 1519446251}
   - component: {fileID: 1519446250}
   m_Layer: 0
-  m_Name: Tornado book
-  m_TagString: Untagged
+  m_Name: Book1
+  m_TagString: Book
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24011,8 +24011,8 @@ SceneRoots:
   - {fileID: 822555487}
   - {fileID: 301363901}
   - {fileID: 1291590767}
-  - {fileID: 1223258089}
   - {fileID: 1519446251}
+  - {fileID: 1223258089}
   - {fileID: 520634820}
   - {fileID: 2134580782}
   - {fileID: 619181873499001191}
