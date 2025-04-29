@@ -147,6 +147,7 @@ public class SkeletonBoss : MonoBehaviour
     public void StartSpawningSpikeTrail()
     {
         StartCoroutine(SpawnSpikeTrail());
+        Debug.Log("▶ Spike trail started");
     }
 
     IEnumerator SpawnSpikeTrail()
@@ -164,6 +165,7 @@ public class SkeletonBoss : MonoBehaviour
             yield return new WaitForSeconds(spikeSpawnInterval);
             timer += spikeSpawnInterval;
         }
+        Debug.Log("Spawning spike at: " + player.position);
     }
 
     void OnDrawGizmosSelected()
