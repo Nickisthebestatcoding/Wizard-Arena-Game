@@ -243,6 +243,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rocky border (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 5508208052779659803, guid: 2d2c302b2f47d47f1936a56d5bb25adb, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11544,7 +11548,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -16687,13 +16691,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: attack bone idle-1 (dragged)
       objectReference: {fileID: 0}
+    - target: {fileID: 6531783292527653354, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
+      propertyPath: spikePrefab
+      value: 
+      objectReference: {fileID: 8957332974409799667, guid: 8352abc7c1fd845528d0442f72a95d66, type: 3}
+    - target: {fileID: 6531783292527653354, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
+      propertyPath: spikeAttackCooldown
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8334193773073235692, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.58
+      value: -6.88
       objectReference: {fileID: 0}
     - target: {fileID: 8334193773073235692, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.79
+      value: -8.5
       objectReference: {fileID: 0}
     - target: {fileID: 8334193773073235692, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: m_LocalPosition.z
