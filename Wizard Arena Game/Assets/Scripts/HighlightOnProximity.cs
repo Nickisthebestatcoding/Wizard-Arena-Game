@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HighlightOnProximity : MonoBehaviour
 {
-    public float highlightRadius = 5f;
+    public float highlightRadius = 10f;
     public Color highlightColor = Color.yellow;
 
     private Transform wizard;

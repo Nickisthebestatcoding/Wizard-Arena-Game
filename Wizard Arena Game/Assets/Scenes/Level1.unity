@@ -15728,7 +15728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38613cd54755a4b35bd36285465b105b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightRadius: 5
+  highlightRadius: 10
   highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &1524199499
 GameObject:
