@@ -6,6 +6,7 @@ MonoImporter:
   defaultReferences:
   - healthBarUI: {instanceID: 0}
   - WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
+  - WizardDeath: {fileID: 8300000, guid: 1d9966398240140c4a5944a3633c95cc, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

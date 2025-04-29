@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     private float currentHealth;
     public WizardHealthBar healthBarUI;
     public AudioClip WizardPain;
+    
 
     void Start()
     {
@@ -32,11 +33,14 @@ public class Health : MonoBehaviour
         {
             GetComponent<AudioSource>().PlayOneShot(WizardPain);
         }
+
+        
     }
 
     void Die()
     {
         Debug.Log(gameObject.name + " died!");
+        
 
         BossSummonTrigger summonTrigger = FindObjectOfType<BossSummonTrigger>();
         if (CompareTag("Wizard"))
