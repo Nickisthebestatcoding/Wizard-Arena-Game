@@ -16846,7 +16846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6531783292527653354, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: spikeAttackCooldown
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8334193773073235692, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: m_LocalPosition.x
