@@ -16694,7 +16694,7 @@ PrefabInstance:
     - target: {fileID: 6531783292527653354, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: spikePrefab
       value: 
-      objectReference: {fileID: 8957332974409799667, guid: 8352abc7c1fd845528d0442f72a95d66, type: 3}
+      objectReference: {fileID: 513654365916983987, guid: da62dd12aaaee4251b36c68dc69cea96, type: 3}
     - target: {fileID: 6531783292527653354, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: spikeAttackCooldown
       value: 10
