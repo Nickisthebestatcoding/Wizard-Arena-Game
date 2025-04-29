@@ -15,13 +15,10 @@ public class Wizardpain : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == ("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            if (audioSource != null)
-            {
-                audioSource.clip = WizardPain;
-                audioSource.Play();
-            }
+            audioSource.PlayOneShot(WizardPain);
+
         }
     }
 }
