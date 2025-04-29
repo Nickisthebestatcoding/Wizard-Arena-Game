@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8582195490059617404}
   m_Layer: 0
   m_Name: bone penetration-1 (dragged)
-  m_TagString: Untagged
+  m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
