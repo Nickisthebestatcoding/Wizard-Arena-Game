@@ -23,12 +23,16 @@ public class SkeletonBoss : MonoBehaviour
     public float spikeSpawnInterval = 0.5f; // Adjusted spawn interval for slower spikes
     public float spikeAttackCooldown = 5f;
 
+
+
     private float lastSpikeAttackTime = -999f;
 
     // Public variables to track player position
     [Header("Player Tracking Settings")]
     public Vector3 previousPlayerPosition; // Expose this to see in the Inspector
     public float playerPositionTrackingInterval = 1f; // Track player's position every second (can change in Inspector)
+    public GameObject spikeWarningPrefab; // Assign a red flash or circle in Inspector
+    public float warningDelay = 1f;
 
     void Start()
     {
@@ -123,31 +127,46 @@ public class SkeletonBoss : MonoBehaviour
     // Perform the Spike Attack
     IEnumerator PerformSpikeAttack()
     {
-        float spawnDuration = 2f; // Duration of the attack
+        isAttacking = true;
+        rb.velocity = Vector2.zero;
+
+        if (animator != null)
+            animator.SetTrigger("SpikeAttack");
+
         float timePassed = 0f;
-        float spawnInterval = 0.5f; // Delay between each spike spawn
-        float initialDelay = 0.5f;  // Delay before first spike spawn to make it dodgeable
 
-        // Wait for the initial delay before starting the spike spawn
-        yield return new WaitForSeconds(initialDelay);
+        List<Vector3> trackedPositions = new List<Vector3>();
 
-        while (timePassed < spawnDuration)
+        // Track player positions over time
+        while (timePassed < spikeTrailDuration)
         {
             if (player != null)
             {
-                // Spawn the spike at the position where the wizard was 1 second ago
-                Vector3 spawnPosition = new Vector3(previousPlayerPosition.x, previousPlayerPosition.y - 1f, previousPlayerPosition.z);
-
-                // Instantiate the spike at the calculated position
-                GameObject spike = Instantiate(spikePrefab, spawnPosition, Quaternion.identity);
-                Destroy(spike, spikeLifetime); // Destroy after the lifetime
+                trackedPositions.Add(player.position);
             }
 
-            yield return new WaitForSeconds(spawnInterval); // Delay between spikes
-            timePassed += spawnInterval;
+            yield return new WaitForSeconds(spikeSpawnInterval);
+            timePassed += spikeSpawnInterval;
         }
 
-        yield return new WaitForSeconds(1f); // Post-attack cooldown
+        // Now spawn spikes where the player used to be
+        foreach (Vector3 trackedPos in trackedPositions)
+        {
+            if (spikeWarningPrefab != null)
+            {
+                // Show warning first
+                GameObject warning = Instantiate(spikeWarningPrefab, trackedPos, Quaternion.identity);
+                Destroy(warning, warningDelay); // auto-cleanup
+            }
+
+            // Wait before spike spawns
+            yield return new WaitForSeconds(warningDelay);
+
+            GameObject spike = Instantiate(spikePrefab, trackedPos, Quaternion.identity);
+            Destroy(spike, spikeLifetime);
+        }
+
+        yield return new WaitForSeconds(1f); // Cooldown
         isAttacking = false;
     }
 
