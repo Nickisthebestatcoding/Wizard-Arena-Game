@@ -17,6 +17,15 @@ public class SkeletonBoss : MonoBehaviour
     private Animator animator;
     private bool isAttacking = false;
 
+    [Header("Spike Attack Settings")]
+    public GameObject spikePrefab;
+    public float spikeLifetime = 3f;
+    public float spikeTrailDuration = 2f;
+    public float spikeSpawnInterval = 0.2f;
+    public float spikeAttackCooldown = 5f;
+
+    private float lastSpikeAttackTime = -999f;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Wizard").transform;
@@ -32,14 +41,19 @@ public class SkeletonBoss : MonoBehaviour
 
         if (!isAttacking)
         {
-            if (distance > stopDistance)
-            {
-                MoveTowardsPlayer();
-            }
-            else
+            if (distance <= stopDistance)
             {
                 rb.velocity = Vector2.zero;
                 StartCoroutine(AttackRoutine());
+            }
+            else if (Time.time - lastSpikeAttackTime >= spikeAttackCooldown)
+            {
+                rb.velocity = Vector2.zero;
+                StartCoroutine(SpikeTrailRoutine());
+            }
+            else
+            {
+                MoveTowardsPlayer();
             }
         }
     }
@@ -53,7 +67,7 @@ public class SkeletonBoss : MonoBehaviour
     IEnumerator AttackRoutine()
     {
         isAttacking = true;
-        rb.velocity = Vector2.zero; // Stop moving during attack
+        rb.velocity = Vector2.zero;
 
         if (animator != null && player != null)
         {
@@ -69,25 +83,29 @@ public class SkeletonBoss : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(0.3f); // Wait for punch to hit
-
-        // No need to manually deactivate anything - punch just happens invisibly
-
-        yield return new WaitForSeconds(1f); // Wait after punching
-
+        yield return new WaitForSeconds(1f);
         isAttacking = false;
     }
 
-    // Called by Animation Events
-    public void RightPunchHit()
+    IEnumerator SpikeTrailRoutine()
     {
-        TryHitPlayer();
+        isAttacking = true;
+        rb.velocity = Vector2.zero;
+
+        if (animator != null)
+        {
+            animator.SetTrigger("SummonSpikes");
+        }
+
+        lastSpikeAttackTime = Time.time;
+
+        yield return new WaitForSeconds(spikeTrailDuration + 1f); // Wait for attack to finish
+        isAttacking = false;
     }
 
-    public void LeftPunchHit()
-    {
-        TryHitPlayer();
-    }
+    // Animation Event Methods
+    public void RightPunchHit() => TryHitPlayer();
+    public void LeftPunchHit() => TryHitPlayer();
 
     void TryHitPlayer()
     {
@@ -100,14 +118,12 @@ public class SkeletonBoss : MonoBehaviour
                 Rigidbody2D playerRb = hit.GetComponent<Rigidbody2D>();
 
                 if (wizardHealth != null)
-                {
                     wizardHealth.TakeDamage(damage);
-                }
 
                 if (playerRb != null)
                 {
-                    Vector2 knockbackDirection = (hit.transform.position - transform.position).normalized;
-                    StartCoroutine(ApplyKnockback(playerRb, knockbackDirection));
+                    Vector2 knockbackDir = (hit.transform.position - transform.position).normalized;
+                    StartCoroutine(ApplyKnockback(playerRb, knockbackDir));
                 }
             }
         }
@@ -128,7 +144,28 @@ public class SkeletonBoss : MonoBehaviour
         }
     }
 
-    // (Optional) Draw attack range in Scene view
+    public void StartSpawningSpikeTrail()
+    {
+        StartCoroutine(SpawnSpikeTrail());
+    }
+
+    IEnumerator SpawnSpikeTrail()
+    {
+        float timer = 0f;
+        while (timer < spikeTrailDuration)
+        {
+            if (player != null && spikePrefab != null)
+            {
+                Vector3 spawnPos = player.position;
+                GameObject spike = Instantiate(spikePrefab, spawnPos, Quaternion.identity);
+                Destroy(spike, spikeLifetime);
+            }
+
+            yield return new WaitForSeconds(spikeSpawnInterval);
+            timer += spikeSpawnInterval;
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
