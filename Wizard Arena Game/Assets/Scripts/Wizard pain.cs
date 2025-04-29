@@ -22,6 +22,7 @@ public class Wizardpain : MonoBehaviour
                 audioSource.clip = WizardPain;
                 audioSource.Play();
             }
+
         }
     }
 }
