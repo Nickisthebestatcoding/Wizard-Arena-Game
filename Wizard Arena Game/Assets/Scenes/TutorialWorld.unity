@@ -11533,7 +11533,6 @@ GameObject:
   - component: {fileID: 1544979006}
   - component: {fileID: 1544979009}
   - component: {fileID: 1544979011}
-  - component: {fileID: 1544979010}
   m_Layer: 6
   m_Name: Wizard (Main)
   m_TagString: Wizard
@@ -11794,6 +11793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   healthBarUI: {fileID: 1544979004}
+  WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
 --- !u!114 &1544979003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11871,19 +11871,6 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 1
   dashKey: 101
---- !u!114 &1544979010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1544978990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 467fc1b51e8fd42daafff0e8e5ca0028, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
 --- !u!82 &1544979011
 AudioSource:
   m_ObjectHideFlags: 0

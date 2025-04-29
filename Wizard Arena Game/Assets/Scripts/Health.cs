@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     public float maxHealth = 10f;
     private float currentHealth;
     public WizardHealthBar healthBarUI;
+    public AudioClip WizardPain;
 
     void Start()
     {
@@ -26,6 +27,11 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0)
             Die();
+
+        if (WizardPain != null)
+        {
+            GetComponent<AudioSource>().PlayOneShot(WizardPain);
+        }
     }
 
     void Die()
