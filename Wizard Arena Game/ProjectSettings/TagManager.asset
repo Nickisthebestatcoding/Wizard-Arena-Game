@@ -71,3 +71,6 @@ TagManager:
   - name: text
     uniqueID: 3197703987
     locked: 0
+  - name: beans
+    uniqueID: 3712454641
+    locked: 0
