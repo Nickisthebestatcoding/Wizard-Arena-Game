@@ -16938,11 +16938,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6531783292527653354, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: spikeSpawnInterval
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6531783292527653354, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: spikeTrailDuration
-      value: 2.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6531783292527653354, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: spikeWarningPrefab
@@ -16958,11 +16958,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8334193773073235692, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -26.92
+      value: -13.85
       objectReference: {fileID: 0}
     - target: {fileID: 8334193773073235692, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.5
+      value: -3.69
       objectReference: {fileID: 0}
     - target: {fileID: 8334193773073235692, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: m_LocalPosition.z
