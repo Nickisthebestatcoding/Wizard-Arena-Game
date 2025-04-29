@@ -17,6 +17,13 @@ public class SkeletonBoss : MonoBehaviour
     private Animator animator;
     private bool isAttacking = false;
 
+    [Header("Spike Attack Settings")]
+    public GameObject spikePrefab;
+    public float spikeLifetime = 3f;
+    public float spikeAttackCooldown = 5f;
+
+    private float lastSpikeAttackTime = -Mathf.Infinity;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Wizard").transform;
@@ -34,7 +41,14 @@ public class SkeletonBoss : MonoBehaviour
         {
             if (distance > stopDistance)
             {
-                MoveTowardsPlayer();
+                if (Time.time >= lastSpikeAttackTime + spikeAttackCooldown)
+                {
+                    StartCoroutine(SpikeAttackRoutine());
+                }
+                else
+                {
+                    MoveTowardsPlayer();
+                }
             }
             else
             {
@@ -53,41 +67,51 @@ public class SkeletonBoss : MonoBehaviour
     IEnumerator AttackRoutine()
     {
         isAttacking = true;
-        rb.velocity = Vector2.zero; // Stop moving during attack
+        rb.velocity = Vector2.zero;
 
         if (animator != null && player != null)
         {
             float xDifference = player.position.x - transform.position.x;
 
             if (xDifference > 0f)
-            {
                 animator.SetTrigger("RightPunch");
-            }
             else
-            {
                 animator.SetTrigger("LeftPunch");
-            }
         }
 
-        yield return new WaitForSeconds(0.3f); // Wait for punch to hit
-
-        // No need to manually deactivate anything - punch just happens invisibly
-
-        yield return new WaitForSeconds(1f); // Wait after punching
-
+        yield return new WaitForSeconds(0.3f); // Wait for punch hit
+        yield return new WaitForSeconds(1f);   // Recovery time
         isAttacking = false;
     }
 
-    // Called by Animation Events
-    public void RightPunchHit()
+    IEnumerator SpikeAttackRoutine()
     {
-        TryHitPlayer();
+        isAttacking = true;
+        rb.velocity = Vector2.zero;
+
+        if (animator != null)
+        {
+            animator.SetTrigger("SummonSpikes");
+        }
+
+        lastSpikeAttackTime = Time.time;
+
+        yield return new WaitForSeconds(1.5f); // Adjust based on your animation
+        isAttacking = false;
     }
 
-    public void LeftPunchHit()
+    public void SummonSpikes()
     {
-        TryHitPlayer();
+        if (player != null && spikePrefab != null)
+        {
+            Vector3 spawnPosition = player.position;
+            GameObject spike = Instantiate(spikePrefab, spawnPosition, Quaternion.identity);
+            Destroy(spike, spikeLifetime);
+        }
     }
+
+    public void RightPunchHit() => TryHitPlayer();
+    public void LeftPunchHit() => TryHitPlayer();
 
     void TryHitPlayer()
     {
@@ -100,14 +124,12 @@ public class SkeletonBoss : MonoBehaviour
                 Rigidbody2D playerRb = hit.GetComponent<Rigidbody2D>();
 
                 if (wizardHealth != null)
-                {
                     wizardHealth.TakeDamage(damage);
-                }
 
                 if (playerRb != null)
                 {
-                    Vector2 knockbackDirection = (hit.transform.position - transform.position).normalized;
-                    StartCoroutine(ApplyKnockback(playerRb, knockbackDirection));
+                    Vector2 knockbackDir = (hit.transform.position - transform.position).normalized;
+                    StartCoroutine(ApplyKnockback(playerRb, knockbackDir));
                 }
             }
         }
@@ -115,20 +137,16 @@ public class SkeletonBoss : MonoBehaviour
 
     IEnumerator ApplyKnockback(Rigidbody2D targetRb, Vector2 direction)
     {
-        if (targetRb != null)
+        float timer = 0f;
+        while (timer < knockbackDuration)
         {
-            float timer = 0f;
-            while (timer < knockbackDuration)
-            {
-                targetRb.velocity = direction * knockbackForce;
-                timer += Time.deltaTime;
-                yield return null;
-            }
-            targetRb.velocity = Vector2.zero;
+            targetRb.velocity = direction * knockbackForce;
+            timer += Time.deltaTime;
+            yield return null;
         }
+        targetRb.velocity = Vector2.zero;
     }
 
-    // (Optional) Draw attack range in Scene view
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
