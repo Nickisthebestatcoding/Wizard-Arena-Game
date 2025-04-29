@@ -16829,11 +16829,11 @@ PrefabInstance:
       objectReference: {fileID: 6294354255181000150, guid: 0be134c8a4fa74dc297de407cb86559e, type: 3}
     - target: {fileID: 6531783292527653354, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: spikeSpawnInterval
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6531783292527653354, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: spikeAttackCooldown
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8334193773073235692, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
       propertyPath: m_LocalPosition.x

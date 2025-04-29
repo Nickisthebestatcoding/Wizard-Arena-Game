@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,16 +20,22 @@ public class SkeletonBoss : MonoBehaviour
     public GameObject spikePrefab;
     public float spikeLifetime = 3f;
     public float spikeTrailDuration = 2f;
-    public float spikeSpawnInterval = 0.2f;
+    public float spikeSpawnInterval = 0.5f; // Adjusted spawn interval for slower spikes
     public float spikeAttackCooldown = 5f;
 
     private float lastSpikeAttackTime = -999f;
+
+    // Public variables to track player position
+    [Header("Player Tracking Settings")]
+    public Vector3 previousPlayerPosition; // Expose this to see in the Inspector
+    public float playerPositionTrackingInterval = 1f; // Track player's position every second (can change in Inspector)
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Wizard").transform;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        previousPlayerPosition = player.position; // Initialize the position tracker
     }
 
     void Update()
@@ -55,6 +60,12 @@ public class SkeletonBoss : MonoBehaviour
             {
                 MoveTowardsPlayer();
             }
+        }
+
+        // Track player's position every interval
+        if (Time.time % playerPositionTrackingInterval < 0.1f)
+        {
+            previousPlayerPosition = player.position;
         }
     }
 
@@ -99,7 +110,44 @@ public class SkeletonBoss : MonoBehaviour
 
         lastSpikeAttackTime = Time.time;
 
+        // Add a short delay before spikes start spawning
+        yield return new WaitForSeconds(0.5f); // Initial delay before spikes start
+
+        // Call the PerformSpikeAttack coroutine
+        StartCoroutine(PerformSpikeAttack());
+
         yield return new WaitForSeconds(spikeTrailDuration + 1f); // Wait for attack to finish
+        isAttacking = false;
+    }
+
+    // Perform the Spike Attack
+    IEnumerator PerformSpikeAttack()
+    {
+        float spawnDuration = 2f; // Duration of the attack
+        float timePassed = 0f;
+        float spawnInterval = 0.5f; // Delay between each spike spawn
+        float initialDelay = 0.5f;  // Delay before first spike spawn to make it dodgeable
+
+        // Wait for the initial delay before starting the spike spawn
+        yield return new WaitForSeconds(initialDelay);
+
+        while (timePassed < spawnDuration)
+        {
+            if (player != null)
+            {
+                // Spawn the spike at the position where the wizard was 1 second ago
+                Vector3 spawnPosition = new Vector3(previousPlayerPosition.x, previousPlayerPosition.y - 1f, previousPlayerPosition.z);
+
+                // Instantiate the spike at the calculated position
+                GameObject spike = Instantiate(spikePrefab, spawnPosition, Quaternion.identity);
+                Destroy(spike, spikeLifetime); // Destroy after the lifetime
+            }
+
+            yield return new WaitForSeconds(spawnInterval); // Delay between spikes
+            timePassed += spawnInterval;
+        }
+
+        yield return new WaitForSeconds(1f); // Post-attack cooldown
         isAttacking = false;
     }
 
@@ -142,36 +190,6 @@ public class SkeletonBoss : MonoBehaviour
             }
             targetRb.velocity = Vector2.zero;
         }
-    }
-
-    public void StartSpawningSpikeTrail()
-    {
-        StartCoroutine(SpawnSpikeTrail());
-        Debug.Log("▶ Spike trail started");
-    }
-
-    IEnumerator SpawnSpikeTrail()
-    {
-        float timer = 0f;
-
-        while (timer < spikeTrailDuration)
-        {
-            if (player != null && spikePrefab != null)
-            {
-                Vector3 spawnPosition = player.position;
-
-                // Optional: show a warning effect or delay before actual spike spawns
-                yield return new WaitForSeconds(0.3f); // Delay to allow dodging
-
-                GameObject spike = Instantiate(spikePrefab, spawnPosition, Quaternion.identity);
-                Destroy(spike, spikeLifetime);
-            }
-
-            yield return new WaitForSeconds(spikeSpawnInterval); // Time between spikes
-            timer += spikeSpawnInterval;
-        }
-
-        isAttacking = false;
     }
 
     void OnDrawGizmosSelected()
