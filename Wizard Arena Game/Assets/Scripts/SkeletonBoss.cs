@@ -153,19 +153,25 @@ public class SkeletonBoss : MonoBehaviour
     IEnumerator SpawnSpikeTrail()
     {
         float timer = 0f;
+
         while (timer < spikeTrailDuration)
         {
             if (player != null && spikePrefab != null)
             {
-                Vector3 spawnPos = player.position;
-                GameObject spike = Instantiate(spikePrefab, spawnPos, Quaternion.identity);
+                Vector3 spawnPosition = player.position;
+
+                // Optional: show a warning effect or delay before actual spike spawns
+                yield return new WaitForSeconds(0.3f); // Delay to allow dodging
+
+                GameObject spike = Instantiate(spikePrefab, spawnPosition, Quaternion.identity);
                 Destroy(spike, spikeLifetime);
             }
 
-            yield return new WaitForSeconds(spikeSpawnInterval);
+            yield return new WaitForSeconds(spikeSpawnInterval); // Time between spikes
             timer += spikeSpawnInterval;
         }
-        Debug.Log("Spawning spike at: " + player.position);
+
+        isAttacking = false;
     }
 
     void OnDrawGizmosSelected()
