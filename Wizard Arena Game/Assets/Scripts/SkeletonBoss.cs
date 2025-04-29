@@ -23,14 +23,10 @@ public class SkeletonBoss : MonoBehaviour
     public float spikeSpawnInterval = 0.5f; // Adjusted spawn interval for slower spikes
     public float spikeAttackCooldown = 5f;
 
-
-
     private float lastSpikeAttackTime = -999f;
 
-    // Public variables to track player position
+    // Public variables for spike warning
     [Header("Player Tracking Settings")]
-    public Vector3 previousPlayerPosition; // Expose this to see in the Inspector
-    public float playerPositionTrackingInterval = 1f; // Track player's position every second (can change in Inspector)
     public GameObject spikeWarningPrefab; // Assign a red flash or circle in Inspector
     public float warningDelay = 1f;
 
@@ -39,7 +35,6 @@ public class SkeletonBoss : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Wizard").transform;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        previousPlayerPosition = player.position; // Initialize the position tracker
     }
 
     void Update()
@@ -64,12 +59,6 @@ public class SkeletonBoss : MonoBehaviour
             {
                 MoveTowardsPlayer();
             }
-        }
-
-        // Track player's position every interval
-        if (Time.time % playerPositionTrackingInterval < 0.1f)
-        {
-            previousPlayerPosition = player.position;
         }
     }
 
@@ -114,13 +103,13 @@ public class SkeletonBoss : MonoBehaviour
 
         lastSpikeAttackTime = Time.time;
 
-        // Add a short delay before spikes start spawning
-        yield return new WaitForSeconds(0.5f); // Initial delay before spikes start
+        // Wait for animation to finish (assume ~1s), then give a short window to escape
+        yield return new WaitForSeconds(1.2f); // Delay before spike tracking starts
 
-        // Call the PerformSpikeAttack coroutine
+        // Begin spike spawning
         StartCoroutine(PerformSpikeAttack());
 
-        yield return new WaitForSeconds(spikeTrailDuration + 1f); // Wait for attack to finish
+        yield return new WaitForSeconds(spikeTrailDuration + 1f); // Attack finishes
         isAttacking = false;
     }
 
@@ -135,35 +124,27 @@ public class SkeletonBoss : MonoBehaviour
 
         float timePassed = 0f;
 
-        List<Vector3> trackedPositions = new List<Vector3>();
-
-        // Track player positions over time
+        // Track the player's position for spike spawning
         while (timePassed < spikeTrailDuration)
         {
-            if (player != null)
-            {
-                trackedPositions.Add(player.position);
-            }
+            // Spawn spikes at the player's current position
+            Vector3 playerPosition = player.position;
 
-            yield return new WaitForSeconds(spikeSpawnInterval);
-            timePassed += spikeSpawnInterval;
-        }
-
-        // Now spawn spikes where the player used to be
-        foreach (Vector3 trackedPos in trackedPositions)
-        {
             if (spikeWarningPrefab != null)
             {
                 // Show warning first
-                GameObject warning = Instantiate(spikeWarningPrefab, trackedPos, Quaternion.identity);
+                GameObject warning = Instantiate(spikeWarningPrefab, playerPosition, Quaternion.identity);
                 Destroy(warning, warningDelay); // auto-cleanup
             }
 
             // Wait before spike spawns
-            yield return new WaitForSeconds(warningDelay);
+            yield return new WaitForSeconds(spikeSpawnInterval);
 
-            GameObject spike = Instantiate(spikePrefab, trackedPos, Quaternion.identity);
+            // Spawn the spike at the current position
+            GameObject spike = Instantiate(spikePrefab, playerPosition, Quaternion.identity);
             Destroy(spike, spikeLifetime);
+
+            timePassed += spikeSpawnInterval;
         }
 
         yield return new WaitForSeconds(1f); // Cooldown
@@ -217,4 +198,3 @@ public class SkeletonBoss : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
-
