@@ -21605,7 +21605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f341af093e7fc44ca90206d8824035b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonBossPrefab: {fileID: 5163326332697730076, guid: d4252812e13df463599f17fefee2ad1d, type: 3}
+  skeletonBossPrefab: {fileID: 7869963653369972329, guid: 72de63469a9bb41a0ae3946f8cbacf3d, type: 3}
   spawnPoint: {fileID: 414810060}
   summoningCircle: {fileID: 554823744}
   necromancer: {fileID: 1380900911}
