@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -99,7 +98,50 @@ public class SkeletonBoss : MonoBehaviour
 
         lastSpikeAttackTime = Time.time;
 
+        // Add a short delay before spikes start spawning
+        yield return new WaitForSeconds(0.5f); // Initial delay before spikes start
+
+        // Call the PerformSpikeAttack coroutine
+        StartCoroutine(PerformSpikeAttack());
+
         yield return new WaitForSeconds(spikeTrailDuration + 1f); // Wait for attack to finish
+        isAttacking = false;
+    }
+
+    // Perform the Spike Attack
+    IEnumerator PerformSpikeAttack()
+    {
+        isAttacking = true;
+        rb.velocity = Vector2.zero;
+
+        if (animator != null)
+            animator.SetTrigger("SpikeAttack");
+
+        float spawnDuration = 2f; // Duration of the attack
+        float timePassed = 0f;
+        float spawnInterval = 0.5f; // Increased delay between each spike spawn to slow it down
+        float initialDelay = 0.5f;  // Delay before first spike spawn to make it dodgeable
+
+        // Wait for the initial delay before starting the spike spawn
+        yield return new WaitForSeconds(initialDelay);
+
+        while (timePassed < spawnDuration)
+        {
+            if (player != null)
+            {
+                // Set spawn position below the player
+                Vector3 spawnPosition = new Vector3(player.position.x, player.position.y - 1f, player.position.z);
+
+                // Instantiate the spike at the calculated position
+                GameObject spike = Instantiate(spikePrefab, spawnPosition, Quaternion.identity);
+                Destroy(spike, spikeLifetime); // Destroy after the lifetime
+            }
+
+            yield return new WaitForSeconds(spawnInterval); // Delay between spikes
+            timePassed += spawnInterval;
+        }
+
+        yield return new WaitForSeconds(1f); // Post-attack cooldown
         isAttacking = false;
     }
 
@@ -142,36 +184,6 @@ public class SkeletonBoss : MonoBehaviour
             }
             targetRb.velocity = Vector2.zero;
         }
-    }
-
-    public void StartSpawningSpikeTrail()
-    {
-        StartCoroutine(SpawnSpikeTrail());
-        Debug.Log("▶ Spike trail started");
-    }
-
-    IEnumerator SpawnSpikeTrail()
-    {
-        float timer = 0f;
-
-        while (timer < spikeTrailDuration)
-        {
-            if (player != null && spikePrefab != null)
-            {
-                Vector3 spawnPosition = player.position;
-
-                // Optional: show a warning effect or delay before actual spike spawns
-                yield return new WaitForSeconds(0.3f); // Delay to allow dodging
-
-                GameObject spike = Instantiate(spikePrefab, spawnPosition, Quaternion.identity);
-                Destroy(spike, spikeLifetime);
-            }
-
-            yield return new WaitForSeconds(spikeSpawnInterval); // Time between spikes
-            timer += spikeSpawnInterval;
-        }
-
-        isAttacking = false;
     }
 
     void OnDrawGizmosSelected()
