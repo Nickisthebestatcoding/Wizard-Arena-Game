@@ -5,7 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - healthBarUI: {instanceID: 0}
-  - GameOverText: {fileID: 7495855324850905533, guid: f12147175557c4e158796c6ba107647e, type: 3}
+  - WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
