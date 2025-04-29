@@ -198,3 +198,4 @@ public class SkeletonBoss : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
+
