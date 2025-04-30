@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Boss
   - Spike
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Wizard
   - FireBall
   - ' Boss'
-  - 
+  - coin
   - 
   - 
   - 
