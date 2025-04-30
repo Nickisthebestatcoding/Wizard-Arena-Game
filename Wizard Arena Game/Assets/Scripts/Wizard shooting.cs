@@ -1,57 +1,105 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Wizardshooting : MonoBehaviour
+public class EnemyWizardAI : MonoBehaviour
 {
-    public GameObject fireballPrefab;  // The fireball prefab
-    public float fireballSpeed = 10f;  // Speed of the fireball
-    public Transform fireballSpawnPoint;  // Point where the fireball will spawn (e.g., in front of the wizard)
-    // Start is called before the first frame update
-    public float fireCooldown = 1f;
+    public float detectionRadius = 10f;  // How close the player must be to be detected
+    public float attackRange = 5f;       // Range within which the enemy stays but attacks
+    public float moveSpeed = 3f;         // Movement speed of the wizard
+    public GameObject projectilePrefab;  // The projectile prefab to shoot
+    public Transform shootPoint;         // Where the projectile will shoot from
+    public float shootDelay = 1f;        // Time between shots
+    private float shootCooldown;
 
-    private float lastFireTime = -Mathf.Infinity;
+    private Transform player;            // The player reference
+    private bool isPlayerInRange = false; // Whether the player is within range
+    private Vector2 randomMoveTarget;     // Target position for random movement
+    private float randomMoveCooldown = 2f; // Time interval before the enemy chooses a new random move target
+    private float randomMoveTimer;        // Timer to keep track of when to change target
+
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Wizard").transform;
+        randomMoveTarget = transform.position;  // Start with the enemy's current position
+        randomMoveTimer = randomMoveCooldown;
     }
 
-    // Update is called once per frame
-    private void Update()
+    void Update()
     {
-        // If the wizard is tagged "Wizard" and the player clicks the mouse button (left-click)
-        if (this.CompareTag("Wizard") && Input.GetMouseButtonDown(0) && Time.time >= lastFireTime + fireCooldown) // 0 is left-click
+        if (Vector2.Distance(transform.position, player.position) <= detectionRadius)
         {
-            ShootFireball();
-            lastFireTime = Time.time;
+            isPlayerInRange = true;
+            RotateTowardsPlayer();
+            if (Vector2.Distance(transform.position, player.position) <= attackRange)
+            {
+                RandomMoveInRange();
+                AttackPlayer();
+            }
+            else
+            {
+                MoveTowardsPlayer();
+            }
+        }
+        else
+        {
+            isPlayerInRange = false;
+            StopMoving();
+        }
+
+        // Handle random movement cooldown
+        if (randomMoveTimer > 0)
+        {
+            randomMoveTimer -= Time.deltaTime;
+        }
+        else
+        {
+            randomMoveTarget = new Vector2(transform.position.x + Random.Range(-3f, 3f), transform.position.y + Random.Range(-3f, 3f));
+            randomMoveTimer = randomMoveCooldown;  // Reset the timer
         }
     }
 
-
-    private void ShootFireball()
+    void RotateTowardsPlayer()
     {
-        // Get the mouse position in world space
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0; // Ensure the z-axis is 0 (since we're working in 2D)
+        Vector2 direction = player.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    }
 
-        // Calculate the direction from the wizard to the mouse position
-        Vector2 direction = (mousePosition - fireballSpawnPoint.position).normalized;
-
-        // Instantiate the fireball at the spawn point
-        GameObject fireball = Instantiate(fireballPrefab, fireballSpawnPoint.position, Quaternion.identity);
-
-        // Get the Rigidbody2D component of the fireball
-        Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
-        if (rb != null)
+    void MoveTowardsPlayer()
+    {
+        if (Vector2.Distance(transform.position, player.position) > attackRange)
         {
-            // Set the fireball's velocity towards the mouse position
-            rb.velocity = direction * fireballSpeed;
+            Vector2 direction = (player.position - transform.position).normalized;
+            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
         }
+    }
 
+    void RandomMoveInRange()
+    {
+        // Move randomly within the attack range
+        transform.position = Vector2.MoveTowards(transform.position, randomMoveTarget, moveSpeed * Time.deltaTime);
+    }
 
-        // Optionally, you can rotate the fireball to face the direction it's moving
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-        fireball.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    void AttackPlayer()
+    {
+        if (shootCooldown <= 0f)
+        {
+            ShootProjectile();
+            shootCooldown = shootDelay;
+        }
+        else
+        {
+            shootCooldown -= Time.deltaTime;
+        }
+    }
 
+    void ShootProjectile()
+    {
+        Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+    }
+
+    void StopMoving()
+    {
+        // Optional: Stop movement when the player is not within range
+        // You can add more idle animations or logic here
     }
 }
