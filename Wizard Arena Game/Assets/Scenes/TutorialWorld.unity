@@ -13996,6 +13996,7 @@ GameObject:
   - component: {fileID: 1544979006}
   - component: {fileID: 1544979009}
   - component: {fileID: 1544979011}
+  - component: {fileID: 1544979012}
   m_Layer: 6
   m_Name: Wizard (Main)
   m_TagString: Wizard
@@ -14239,12 +14240,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53c8a54f933c4350a8c6e47e6d54904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 10
-  attackRange: 5
-  moveSpeed: 3
-  projectilePrefab: {fileID: 0}
-  shootPoint: {fileID: 0}
-  shootDelay: 1
+  fireballPrefab: {fileID: 0}
+  fireballSpeed: 10
+  fireballSpawnPoint: {fileID: 0}
+  fireCooldown: 1
 --- !u!114 &1544979002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14433,6 +14432,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1544979012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544978990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b53c8a54f933c4350a8c6e47e6d54904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireballPrefab: {fileID: 8247750139965071724, guid: 0c5509bddb5f348f29bd399e16421738, type: 3}
+  fireballSpeed: 10
+  fireballSpawnPoint: {fileID: 129781560}
+  fireCooldown: 0.7
 --- !u!1001 &1546961751
 PrefabInstance:
   m_ObjectHideFlags: 0
