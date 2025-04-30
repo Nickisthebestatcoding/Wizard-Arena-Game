@@ -245,7 +245,7 @@ MonoBehaviour:
   moveSpeed: 3
   damage: 1
   attackRange: 6
-  knockbackForce: 5
+  knockbackForce: 10
   knockbackDuration: 0.2
   stopDistance: 6
   spikePrefab: {fileID: 6294354255181000150, guid: 0be134c8a4fa74dc297de407cb86559e, type: 3}
@@ -255,6 +255,9 @@ MonoBehaviour:
   spikeAttackCooldown: 30
   spikeWarningPrefab: {fileID: 557851855872042132, guid: e23bc9a32e3a84b8bbe2760dae771911, type: 3}
   warningDelay: 0.5
+  enragedMoveSpeed: 6
+  enragedDamage: 2
+  enragedColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &3421997529652693302
 MonoBehaviour:
   m_ObjectHideFlags: 0
