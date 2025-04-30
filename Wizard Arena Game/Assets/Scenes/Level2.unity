@@ -28875,7 +28875,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1778923396}
   - component: {fileID: 1778923395}
-  - component: {fileID: 1778923394}
   m_Layer: 0
   m_Name: wizard frozone (1)-12 (dragged)
   m_TagString: Untagged
@@ -28883,24 +28882,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1778923394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778923393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2382c573dce7944fdbd8003fa095667d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRadius: 10
-  attackRange: 5
-  moveSpeed: 3
-  projectilePrefab: {fileID: 8247750139965071724, guid: 0c5509bddb5f348f29bd399e16421738, type: 3}
-  shootPoint: {fileID: 1047023420}
-  shootDelay: 1
 --- !u!212 &1778923395
 SpriteRenderer:
   m_ObjectHideFlags: 0
