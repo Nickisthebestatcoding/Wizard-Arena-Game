@@ -22619,6 +22619,11 @@ MonoBehaviour:
   summonDelay: 2
   screenShakeDuration: 0.5
   screenShakeIntensity: 0.2
+  mainCamera: {fileID: 0}
+  zoomDuringSummon: 20
+  zoomDuringFight: 12
+  zoomDefault: 8
+  zoomSpeed: 2
 --- !u!1001 &1602741055
 PrefabInstance:
   m_ObjectHideFlags: 0
