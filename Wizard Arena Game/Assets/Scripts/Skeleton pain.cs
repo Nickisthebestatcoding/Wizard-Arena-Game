@@ -5,7 +5,7 @@ using UnityEngine;
 public class SkeletonPain : MonoBehaviour
 {
     public AudioClip BoneCrack;
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()

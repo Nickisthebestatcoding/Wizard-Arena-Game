@@ -153,8 +153,8 @@ GameObject:
   - component: {fileID: 8555115973606877310}
   - component: {fileID: 1998888955215629795}
   - component: {fileID: 3463585562101757587}
-  - component: {fileID: 3937675033781290742}
   - component: {fileID: -3986790100607295906}
+  - component: {fileID: 389181391717584899}
   m_Layer: 8
   m_Name: attack bone idle-1 (dragged) 1
   m_TagString: Untagged
@@ -408,7 +408,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!82 &3937675033781290742
+--- !u!114 &-3986790100607295906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7869963653369972329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4db9975c96c4dba9d972e8204e3dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoneCrack: {fileID: 8300000, guid: f6d2da263ea964de390ab84719a3ac5d, type: 3}
+  audioSource: {fileID: 389181391717584899}
+--- !u!82 &389181391717584899
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -418,7 +432,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 28ca6c2dab3cd466d9a0de014b3449c5, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -504,16 +518,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-3986790100607295906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7869963653369972329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d4db9975c96c4dba9d972e8204e3dc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BoneCrack: {fileID: 8300000, guid: f6d2da263ea964de390ab84719a3ac5d, type: 3}
