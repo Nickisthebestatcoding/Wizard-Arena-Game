@@ -78,4 +78,8 @@ public class Health : MonoBehaviour
 
         Debug.Log(gameObject.name + " health reset.");
     }
+    public float GetHealthPercent()
+    {
+        return currentHealth / maxHealth;
+    }
 }

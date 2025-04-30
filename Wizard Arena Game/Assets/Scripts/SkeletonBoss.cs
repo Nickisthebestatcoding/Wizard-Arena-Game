@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SkeletonBoss : MonoBehaviour
@@ -20,26 +19,37 @@ public class SkeletonBoss : MonoBehaviour
     public GameObject spikePrefab;
     public float spikeLifetime = 3f;
     public float spikeTrailDuration = 2f;
-    public float spikeSpawnInterval = 0.5f; // Adjusted spawn interval for slower spikes
+    public float spikeSpawnInterval = 0.5f;
     public float spikeAttackCooldown = 5f;
 
     private float lastSpikeAttackTime = -999f;
 
-    // Public variables for spike warning
     [Header("Player Tracking Settings")]
-    public GameObject spikeWarningPrefab; // Assign a red flash or circle in Inspector
+    public GameObject spikeWarningPrefab;
     public float warningDelay = 1f;
+
+    [Header("Enrage Settings")]
+    public float enragedMoveSpeed = 3.5f;
+    public float enragedDamage = 2f;
+    public Color enragedColor = Color.red;
+    private bool isEnraged = false;
+    private Health health;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Wizard").transform;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        health = GetComponent<Health>(); // <-- Get Health component
+        spriteRenderer = GetComponent<SpriteRenderer>(); // <-- Get SpriteRenderer
     }
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null || health == null) return;
+
+        CheckEnrage(); // <-- Check for enrage
 
         float distance = Vector2.Distance(transform.position, player.position);
 
@@ -68,6 +78,21 @@ public class SkeletonBoss : MonoBehaviour
         rb.velocity = direction * moveSpeed;
     }
 
+    void CheckEnrage()
+    {
+        if (!isEnraged && health != null && health.GetHealthPercent() <= 0.5f)
+        {
+            isEnraged = true;
+            moveSpeed = enragedMoveSpeed;
+            damage = enragedDamage;
+
+            if (spriteRenderer != null)
+                spriteRenderer.color = enragedColor;
+
+            Debug.Log("Skeleton Boss is enraged!");
+        }
+    }
+
     IEnumerator AttackRoutine()
     {
         isAttacking = true;
@@ -76,15 +101,7 @@ public class SkeletonBoss : MonoBehaviour
         if (animator != null && player != null)
         {
             float xDifference = player.position.x - transform.position.x;
-
-            if (xDifference > 0f)
-            {
-                animator.SetTrigger("RightPunch");
-            }
-            else
-            {
-                animator.SetTrigger("LeftPunch");
-            }
+            animator.SetTrigger(xDifference > 0f ? "RightPunch" : "LeftPunch");
         }
 
         yield return new WaitForSeconds(1f);
@@ -97,23 +114,18 @@ public class SkeletonBoss : MonoBehaviour
         rb.velocity = Vector2.zero;
 
         if (animator != null)
-        {
             animator.SetTrigger("SummonSpikes");
-        }
 
         lastSpikeAttackTime = Time.time;
 
-        // Wait for animation to finish (assume ~1s), then give a short window to escape
-        yield return new WaitForSeconds(1.2f); // Delay before spike tracking starts
+        yield return new WaitForSeconds(1.2f);
 
-        // Begin spike spawning
         StartCoroutine(PerformSpikeAttack());
 
-        yield return new WaitForSeconds(spikeTrailDuration + 1f); // Attack finishes
+        yield return new WaitForSeconds(spikeTrailDuration + 1f);
         isAttacking = false;
     }
 
-    // Perform the Spike Attack
     IEnumerator PerformSpikeAttack()
     {
         isAttacking = true;
@@ -124,34 +136,28 @@ public class SkeletonBoss : MonoBehaviour
 
         float timePassed = 0f;
 
-        // Track the player's position for spike spawning
         while (timePassed < spikeTrailDuration)
         {
-            // Spawn spikes at the player's current position
             Vector3 playerPosition = player.position;
 
             if (spikeWarningPrefab != null)
             {
-                // Show warning first
                 GameObject warning = Instantiate(spikeWarningPrefab, playerPosition, Quaternion.identity);
-                Destroy(warning, warningDelay); // auto-cleanup
+                Destroy(warning, warningDelay);
             }
 
-            // Wait before spike spawns
             yield return new WaitForSeconds(spikeSpawnInterval);
 
-            // Spawn the spike at the current position
             GameObject spike = Instantiate(spikePrefab, playerPosition, Quaternion.identity);
             Destroy(spike, spikeLifetime);
 
             timePassed += spikeSpawnInterval;
         }
 
-        yield return new WaitForSeconds(1f); // Cooldown
+        yield return new WaitForSeconds(1f);
         isAttacking = false;
     }
 
-    // Animation Event Methods
     public void RightPunchHit() => TryHitPlayer();
     public void LeftPunchHit() => TryHitPlayer();
 
@@ -179,17 +185,14 @@ public class SkeletonBoss : MonoBehaviour
 
     IEnumerator ApplyKnockback(Rigidbody2D targetRb, Vector2 direction)
     {
-        if (targetRb != null)
+        float timer = 0f;
+        while (timer < knockbackDuration)
         {
-            float timer = 0f;
-            while (timer < knockbackDuration)
-            {
-                targetRb.velocity = direction * knockbackForce;
-                timer += Time.deltaTime;
-                yield return null;
-            }
-            targetRb.velocity = Vector2.zero;
+            targetRb.velocity = direction * knockbackForce;
+            timer += Time.deltaTime;
+            yield return null;
         }
+        targetRb.velocity = Vector2.zero;
     }
 
     void OnDrawGizmosSelected()
