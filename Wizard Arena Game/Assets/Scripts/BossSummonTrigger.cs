@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BossSummonTrigger : MonoBehaviour
 {
@@ -11,7 +9,7 @@ public class BossSummonTrigger : MonoBehaviour
     public GameObject summoningCircle;
     public GameObject necromancer;
 
-    public GameObject[] borders;  // Assign your border GameObjects in Inspector
+    public GameObject[] borders;
     private Health bossHealth;
 
     private bool hasSpawned = false;
@@ -20,8 +18,18 @@ public class BossSummonTrigger : MonoBehaviour
     public float screenShakeDuration = 0.5f;
     public float screenShakeIntensity = 0.2f;
 
+    [Header("Camera Zoom")]
+    public Camera mainCamera;
+    public float zoomDuringSummon = 4f;
+    public float zoomDuringFight = 6f;
+    public float zoomDefault = 8f;
+    public float zoomSpeed = 2f;
+
     private void Start()
     {
+        if (mainCamera == null)
+            mainCamera = Camera.main;
+
         if (summoningCircle != null)
             summoningCircle.SetActive(false);
 
@@ -72,6 +80,9 @@ public class BossSummonTrigger : MonoBehaviour
             StartCoroutine(FadeIn(necromancer, 1f));
         }
 
+        // Zoom out more during summoning
+        yield return StartCoroutine(ZoomCamera(zoomDuringSummon));
+
         yield return new WaitForSeconds(1.5f);
 
         if (necromancer != null)
@@ -98,6 +109,26 @@ public class BossSummonTrigger : MonoBehaviour
 
         if (summoningCircle != null)
             summoningCircle.SetActive(false);
+
+        // Zoom in slightly for boss fight
+        yield return StartCoroutine(ZoomCamera(zoomDuringFight));
+    }
+
+    IEnumerator ZoomCamera(float targetSize)
+    {
+        if (mainCamera == null) yield break;
+
+        float startSize = mainCamera.orthographicSize;
+        float t = 0f;
+
+        while (Mathf.Abs(mainCamera.orthographicSize - targetSize) > 0.05f)
+        {
+            t += Time.deltaTime * zoomSpeed;
+            mainCamera.orthographicSize = Mathf.Lerp(startSize, targetSize, t);
+            yield return null;
+        }
+
+        mainCamera.orthographicSize = targetSize;
     }
 
     IEnumerator FadeIn(GameObject obj, float duration)
@@ -138,11 +169,14 @@ public class BossSummonTrigger : MonoBehaviour
         sr.color = endColor;
         obj.SetActive(false);
     }
+
     public void ResetBossState()
     {
         hasSpawned = false;
 
-        // Destroy the current boss if it exists
+        // Reset camera zoom
+        StartCoroutine(ZoomCamera(zoomDefault));
+
         if (bossHealth != null && bossHealth.gameObject != null)
         {
             Destroy(bossHealth.gameObject);
