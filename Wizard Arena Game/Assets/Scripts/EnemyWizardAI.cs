@@ -103,3 +103,4 @@ public class EnemyWizardAI : MonoBehaviour
         // You can add more idle animations or logic here
     }
 }
+
