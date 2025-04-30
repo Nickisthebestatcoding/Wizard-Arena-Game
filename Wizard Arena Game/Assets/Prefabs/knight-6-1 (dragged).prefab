@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   healthBarUI: {fileID: 0}
+  WizardPain: {fileID: 0}
 --- !u!114 &8412877628414209150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,8 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 183243dea51cb498da836ad0b057ad99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4.3
-  chaseRange: 14
+  moveSpeed: 5
+  chaseRange: 16
   attackRange: 2.5
   attackCooldown: 1.5
   damage: 1
