@@ -15171,7 +15171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b065740baf25d41cbb2d1e53a64974fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinText: 0
+  coinText: 1
 --- !u!4 &1644959321
 Transform:
   m_ObjectHideFlags: 0
