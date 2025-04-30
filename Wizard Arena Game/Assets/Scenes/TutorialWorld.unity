@@ -14239,10 +14239,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53c8a54f933c4350a8c6e47e6d54904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireballPrefab: {fileID: 8247750139965071724, guid: 0c5509bddb5f348f29bd399e16421738, type: 3}
-  fireballSpeed: 10
-  fireballSpawnPoint: {fileID: 129781560}
-  fireCooldown: 0.5
+  detectionRadius: 10
+  attackRange: 5
+  moveSpeed: 3
+  projectilePrefab: {fileID: 0}
+  shootPoint: {fileID: 0}
+  shootDelay: 1
 --- !u!114 &1544979002
 MonoBehaviour:
   m_ObjectHideFlags: 0
