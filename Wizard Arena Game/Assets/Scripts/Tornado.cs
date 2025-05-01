@@ -3,40 +3,64 @@ using UnityEngine;
 
 public class TornadoProjectile : MonoBehaviour
 {
-    public float speed = 2f;
-    public float knockbackForce = 8f;
-    public float knockbackDuration = 0.3f;
+    public float moveSpeed = 5f;          // Speed at which the tornado moves
+    public float knockbackForce = 10f;    // The force applied to the player when hit by the tornado
+    public float knockbackDuration = 0.5f; // Duration of knockback
+    public Vector2 direction;             // Direction the tornado moves in
 
-    private void Update()
-    {
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
-    }
+    private Rigidbody2D rb;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void Start()
     {
-        if (other.CompareTag("Wizard"))
+        rb = GetComponent<Rigidbody2D>();
+
+        // Make the tornado move in the given direction
+        if (direction != Vector2.zero)
         {
-            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
-                StartCoroutine(ApplyKnockback(rb, knockbackDirection));
-            }
+            rb.velocity = direction.normalized * moveSpeed;
         }
-
-        Destroy(gameObject); // Destroy on any collision
+        else
+        {
+            // If no direction is given, just move upward by default
+            rb.velocity = Vector2.up * moveSpeed;
+        }
     }
 
-    private IEnumerator ApplyKnockback(Rigidbody2D rb, Vector2 direction)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wizard"))
+        {
+            // Apply knockback to the wizard
+            Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
+            if (playerRb != null)
+            {
+                // Calculate the knockback direction (opposite of the tornado's position)
+                Vector2 knockbackDirection = (collision.transform.position - transform.position).normalized;
+                StartCoroutine(ApplyKnockback(playerRb, knockbackDirection));
+            }
+
+            // Call ResetSliding on the wizard
+            WizardScript wizardScript = collision.gameObject.GetComponent<WizardScript>();
+            if (wizardScript != null)
+            {
+                wizardScript.ResetSliding();
+            }
+
+            // Destroy the tornado projectile after collision
+            Destroy(gameObject);
+        }
+    }
+
+    // Knockback effect applied to the wizard
+    IEnumerator ApplyKnockback(Rigidbody2D targetRb, Vector2 direction)
     {
         float timer = 0f;
         while (timer < knockbackDuration)
         {
-            rb.velocity = direction * knockbackForce;
+            targetRb.velocity = direction * knockbackForce; // Apply knockback force
             timer += Time.deltaTime;
             yield return null;
         }
-
-        rb.velocity = Vector2.zero;
+        targetRb.velocity = Vector2.zero; // Stop the knockback after duration
     }
 }
