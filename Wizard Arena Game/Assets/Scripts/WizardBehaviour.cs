@@ -13,7 +13,8 @@ public class WizardScript : MonoBehaviour
     float WORLD_MIN_Y = -120.0f;
     float WORLD_MAX_X = 120.0f;
     float WORLD_MAX_Y = 120.0f;
-    
+    public bool canMove = true;
+
     public TextMeshProUGUI CompletedText;
     // utility objects to limit the positions
     PositionClamp spriteClamp;
@@ -43,24 +44,15 @@ public class WizardScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameOver)
-        { // move the wizard in the current direciton at the current speed
+        if (!gameOver && canMove)
+        {
             transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime * speed,
                                 Input.GetAxis("Vertical") * Time.deltaTime * speed, 0);
-
-            
-            
         }
-        // Now that the position has been updated, limit
-        // the X and Y coordinates and make sure they
-        // do not go beyond certain boundaries
-        spriteClamp.limitMovement(transform.position, transform);
 
-        // update new camera position (X and Y changes only)
-        // to match new sprite position
+        spriteClamp.limitMovement(transform.position, transform);
         cameraClamp.limitMovement(transform.position, Camera.main.transform);
 
-        
 
     }
 }
