@@ -11,24 +11,40 @@ public class IceBullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        // Make the bullet move in the direction it is facing
-        rb.velocity = transform.up * speed;  // Use transform.up (local forward direction)
+        rb.velocity = transform.up * speed;  // Move in the forward direction of the ice bullet
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Wizard"))
+        GameObject target = collision.gameObject;
+
+        // Check if the bullet hits the wizard
+        if (target.CompareTag("Wizard"))
         {
-            PlayerFreeze freeze = collision.GetComponent<PlayerFreeze>();
+            PlayerFreeze freeze = target.GetComponent<PlayerFreeze>();
             if (freeze != null)
-                freeze.Freeze(freezeDuration);
+            {
+                freeze.Freeze(freezeDuration);  // Freeze the wizard for the set duration
+            }
 
-            Health health = collision.GetComponent<Health>();
+            Health health = target.GetComponent<Health>();
             if (health != null)
-                health.TakeDamage(damage);
+            {
+                health.TakeDamage(damage);  // Apply damage to the wizard
+            }
 
-            Destroy(gameObject);
+            Destroy(gameObject);  // Destroy the ice bullet on impact
+            return;  // Exit the method to avoid applying damage to other objects
         }
+
+        // If the bullet hits anything else, check if it has health and apply damage
+        Health otherHealth = target.GetComponent<Health>();
+        if (otherHealth != null)
+        {
+            otherHealth.TakeDamage(damage);  // Apply damage to other objects
+        }
+
+        // Destroy the ice bullet after it touches anything (wizard or other objects)
+        Destroy(gameObject);
     }
 }
