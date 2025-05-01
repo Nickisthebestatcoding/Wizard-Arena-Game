@@ -43,7 +43,7 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    
+
     public void ResetLevel()
     {
         Debug.Log("🔁 Resetting Level 🔁");
@@ -54,8 +54,14 @@ public class LevelManager : MonoBehaviour
             wizard.transform.position = wizardStartPos;
             wizard.transform.rotation = wizardStartRot;
             wizard.SetActive(true);
+
             if (wizardHealth != null)
                 wizardHealth.ResetHealth();
+
+            // 🔧 Reset dash state
+            Dash2D dashScript = wizard.GetComponent<Dash2D>();
+            if (dashScript != null)
+                dashScript.ResetDash();
         }
 
         // Enemies Reset
@@ -63,8 +69,8 @@ public class LevelManager : MonoBehaviour
         {
             if (enemy != null)
             {
-                enemy.transform.position = enemyStartPos[enemy];  // Resetting position
-                enemy.transform.rotation = enemyStartRot[enemy];  // Resetting rotation
+                enemy.transform.position = enemyStartPos[enemy];
+                enemy.transform.rotation = enemyStartRot[enemy];
                 enemy.SetActive(true);
 
                 Health hp = enemy.GetComponent<Health>();
@@ -73,6 +79,7 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+
     public void ShowGameOver()
     {
         Debug.Log("💀 Game Over! 💀");
