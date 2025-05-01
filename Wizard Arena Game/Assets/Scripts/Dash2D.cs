@@ -43,4 +43,12 @@ public class Dash2D : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
+    public void ResetDash()
+    {
+        StopAllCoroutines();
+        isDashing = false;
+        canDash = true;
+        rb.velocity = Vector2.zero;
+    }
+
 }
