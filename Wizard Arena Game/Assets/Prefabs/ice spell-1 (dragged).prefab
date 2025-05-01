@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4564652602393747768}
   - component: {fileID: 1034846893247157794}
   - component: {fileID: -3983227470227018860}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ice spell-1 (dragged)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
