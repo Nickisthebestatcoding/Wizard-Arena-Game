@@ -1,54 +1,57 @@
-using System.Collections;
 using UnityEngine;
 
-public class TornadoProjectile : MonoBehaviour
+public class TornadoBullet : MonoBehaviour
 {
     public float speed = 2f;
-    public float knockbackDistance = 3f;
-    public float knockbackSpeed = 10f;  // How fast the wizard is pushed
-    public float stunAfterSlide = 0.3f; // How long to wait after slide before re-enabling movement
+    public float damage = 2f;
+    public float knockbackForce = 5f;
+    public float knockbackDuration = 0.3f;
 
-    private void Update()
+    private Rigidbody2D rb;
+
+    void Start()
     {
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = transform.up * speed;  // Move in the bullet's forward direction
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Wizard"))
+        GameObject target = collision.gameObject;
+
+        if (target.CompareTag("Wizard"))
         {
-            WizardScript wizard = other.GetComponent<WizardScript>();
-            if (wizard != null)
+            // Apply knockback
+            WizardMovement wizardMovement = target.GetComponent<WizardMovement>();
+            if (wizardMovement != null)
             {
-                Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
-                StartCoroutine(SlideWizardBack(wizard, knockbackDirection));
+                Vector2 knockbackDir = (target.transform.position - transform.position).normalized;
+
+                // Safety fallback in case direction is zero
+                if (knockbackDir == Vector2.zero)
+                    knockbackDir = Vector2.up;
+
+                wizardMovement.ApplyPush(knockbackDir * knockbackForce, knockbackDuration);
             }
+
+            // Apply damage
+            Health health = target.GetComponent<Health>();
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+            }
+
+            Destroy(gameObject);  // Destroy bullet on impact
+            return;
         }
 
-        Destroy(gameObject); // Destroy the tornado on collision
-    }
-
-    private IEnumerator SlideWizardBack(WizardScript wizard, Vector2 direction)
-    {
-        wizard.canMove = false;
-
-        Vector3 startPos = wizard.transform.position;
-        Vector3 targetPos = startPos + (Vector3)(direction * knockbackDistance);
-
-        float distance = Vector3.Distance(startPos, targetPos);
-        float elapsed = 0f;
-
-        while (Vector3.Distance(wizard.transform.position, targetPos) > 0.05f)
+        // Damage other objects if they have Health
+        Health otherHealth = target.GetComponent<Health>();
+        if (otherHealth != null)
         {
-            wizard.transform.position = Vector3.MoveTowards(wizard.transform.position, targetPos, knockbackSpeed * Time.deltaTime);
-            elapsed += Time.deltaTime;
-            yield return null;
+            otherHealth.TakeDamage(damage);
         }
 
-        // Snap to final position
-        wizard.transform.position = targetPos;
-
-        yield return new WaitForSeconds(stunAfterSlide);
-        wizard.canMove = true;
+        Destroy(gameObject);  // Destroy bullet after hitting anything
     }
 }

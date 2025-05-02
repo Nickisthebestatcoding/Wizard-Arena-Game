@@ -259,7 +259,7 @@ MonoBehaviour:
   moveSpeed: 3
   projectilePrefab: {fileID: 6769926026113190741, guid: 0c74f0198cd54408cbe24150f90cb129, type: 3}
   shootPoint: {fileID: 6966679576263245442}
-  shootDelay: 2
+  shootDelay: 1.5
 --- !u!60 &5887032997972456685
 PolygonCollider2D:
   m_ObjectHideFlags: 0
