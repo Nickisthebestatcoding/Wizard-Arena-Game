@@ -5,6 +5,7 @@ public class PlayerFreeze : MonoBehaviour
     private SpriteRenderer sr;
     private Color originalColor;
     private WizardScript wizardScript;
+    private bool isFrozen = false;
 
     void Start()
     {
@@ -19,6 +20,8 @@ public class PlayerFreeze : MonoBehaviour
             wizardScript.canMove = false;
 
         sr.color = Color.cyan;
+        isFrozen = true;
+        CancelInvoke(nameof(Unfreeze));
         Invoke(nameof(Unfreeze), duration);
     }
 
@@ -28,5 +31,15 @@ public class PlayerFreeze : MonoBehaviour
             wizardScript.canMove = true;
 
         sr.color = originalColor;
+        isFrozen = false;
+    }
+
+    public void ResetEffect()
+    {
+        if (isFrozen)
+        {
+            CancelInvoke(nameof(Unfreeze));
+            Unfreeze();
+        }
     }
 }

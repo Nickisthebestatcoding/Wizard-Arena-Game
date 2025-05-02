@@ -13,10 +13,6 @@ public class LevelManager : MonoBehaviour
     private Dictionary<GameObject, Vector3> enemyStartPos = new Dictionary<GameObject, Vector3>();
     private Dictionary<GameObject, Quaternion> enemyStartRot = new Dictionary<GameObject, Quaternion>();
 
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
         wizard = GameObject.FindGameObjectWithTag("Wizard");
@@ -31,24 +27,16 @@ public class LevelManager : MonoBehaviour
         foreach (GameObject enemy in enemyObjs)
         {
             enemies.Add(enemy);
-            enemyStartPos[enemy] = enemy.transform.position;  // Storing position
-            enemyStartRot[enemy] = enemy.transform.rotation;  // Storing rotation
+            enemyStartPos[enemy] = enemy.transform.position;
+            enemyStartRot[enemy] = enemy.transform.rotation;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-    }
-
 
     public void ResetLevel()
     {
         Debug.Log("🔁 Resetting Level 🔁");
 
-        // Wizard Reset
+        // 🧙‍♂️ Wizard Reset
         if (wizard != null)
         {
             wizard.transform.position = wizardStartPos;
@@ -58,13 +46,23 @@ public class LevelManager : MonoBehaviour
             if (wizardHealth != null)
                 wizardHealth.ResetHealth();
 
-            // 🔧 Reset dash state
+            // Reset dash
             Dash2D dashScript = wizard.GetComponent<Dash2D>();
             if (dashScript != null)
                 dashScript.ResetDash();
+
+            // Reset poison effect
+            PoisonEffect poison = wizard.GetComponent<PoisonEffect>();
+            if (poison != null)
+                poison.ResetEffect();
+
+            // Reset freeze effect
+            PlayerFreeze freeze = wizard.GetComponent<PlayerFreeze>();
+            if (freeze != null)
+                freeze.ResetEffect();
         }
 
-        // Enemies Reset
+        // 💀 Enemies Reset
         foreach (GameObject enemy in enemies)
         {
             if (enemy != null)
@@ -83,10 +81,6 @@ public class LevelManager : MonoBehaviour
     public void ShowGameOver()
     {
         Debug.Log("💀 Game Over! 💀");
-
-        // Optional: Trigger a UI Game Over screen here
-        // For now, you can just pause the game or log
-        // Time.timeScale = 0f;
+        // Optional: Show game over UI or pause the game
     }
 }
-
