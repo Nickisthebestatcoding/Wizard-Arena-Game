@@ -8,10 +8,10 @@ public class WizardScript : MonoBehaviour
     public float speed = 4.5f;
     private float originalSpeed;
 
-    float WORLD_MIN_X = -120.0f;
-    float WORLD_MIN_Y = -120.0f;
-    float WORLD_MAX_X = 120.0f;
-    float WORLD_MAX_Y = 120.0f;
+    float WORLD_MIN_X = -140.0f;
+    float WORLD_MIN_Y = -140.0f;
+    float WORLD_MAX_X = 140.0f;
+    float WORLD_MAX_Y = 140.0f;
 
     public bool canMove = true;
     public TextMeshProUGUI CompletedText;
