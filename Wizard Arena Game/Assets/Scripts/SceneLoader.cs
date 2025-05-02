@@ -7,7 +7,7 @@ public class SceneLoader : MonoBehaviour
 {
     public string sceneName;
 
-    void OnPointerClick()
+    void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(1))
         {
