@@ -5345,6 +5345,7 @@ GameObject:
   - component: {fileID: 301363901}
   - component: {fileID: 301363900}
   - component: {fileID: 301363902}
+  - component: {fileID: 301363903}
   m_Layer: 0
   m_Name: capitalism-1 (dragged)
   m_TagString: Untagged
@@ -5464,6 +5465,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 18, y: 14.1}
   m_EdgeRadius: 0
+--- !u!114 &301363903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301363899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf27877ef82f41a8a053908ca0cb85f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: shop UI 1
 --- !u!1001 &302442213
 PrefabInstance:
   m_ObjectHideFlags: 0
