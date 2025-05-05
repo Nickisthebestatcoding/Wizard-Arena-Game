@@ -1,11 +1,12 @@
 using UnityEngine;
 
-
 public class EnemyFreeze : MonoBehaviour
 {
     private SpriteRenderer sr;
     private Color originalColor;
     private bool isFrozen = false;
+    private bool wasEnragedColor = false;
+
     private KnightBehavior knightBehavior;
     private EnemyWizardAI enemyWizardAI;
     private SkeletonBoss skeletonBoss;
@@ -15,7 +16,6 @@ public class EnemyFreeze : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         originalColor = sr.color;
 
-        // Get the respective scripts based on the type of enemy
         knightBehavior = GetComponent<KnightBehavior>();
         enemyWizardAI = GetComponent<EnemyWizardAI>();
         skeletonBoss = GetComponent<SkeletonBoss>();
@@ -23,7 +23,6 @@ public class EnemyFreeze : MonoBehaviour
 
     public void Freeze(float duration)
     {
-        // Disable behavior of specific enemies if they exist
         if (knightBehavior != null)
             knightBehavior.enabled = false;
         if (enemyWizardAI != null)
@@ -31,18 +30,21 @@ public class EnemyFreeze : MonoBehaviour
         if (skeletonBoss != null)
             skeletonBoss.enabled = false;
 
-        // Change color to indicate freeze state
+        // Track if the current color is already the enraged color
+        if (skeletonBoss != null && sr.color == skeletonBoss.enragedColor)
+        {
+            wasEnragedColor = true;
+        }
+
         sr.color = Color.cyan;
         isFrozen = true;
 
-        // Ensure only one unfreeze is called after the given duration
         CancelInvoke(nameof(Unfreeze));
         Invoke(nameof(Unfreeze), duration);
     }
 
     void Unfreeze()
     {
-        // Re-enable behavior after freeze period
         if (knightBehavior != null)
             knightBehavior.enabled = true;
         if (enemyWizardAI != null)
@@ -50,18 +52,26 @@ public class EnemyFreeze : MonoBehaviour
         if (skeletonBoss != null)
             skeletonBoss.enabled = true;
 
-        // Revert sprite color back to original
-        sr.color = originalColor;
+        // Restore the correct color based on enraged state
+        if (wasEnragedColor && skeletonBoss != null)
+        {
+            sr.color = skeletonBoss.enragedColor;
+        }
+        else
+        {
+            sr.color = originalColor;
+        }
+
         isFrozen = false;
+        wasEnragedColor = false;
     }
 
-    // Allows resetting the freeze effect manually if needed
     public void ResetEffect()
     {
         if (isFrozen)
         {
             CancelInvoke(nameof(Unfreeze));
-            Unfreeze();  // Immediately unfreeze the enemy
+            Unfreeze();
         }
     }
 }
