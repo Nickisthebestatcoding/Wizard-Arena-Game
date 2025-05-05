@@ -11594,7 +11594,7 @@ GameObject:
   - component: {fileID: 1412544682}
   - component: {fileID: 1412544681}
   - component: {fileID: 1412544683}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: New Piskel-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18955,6 +18955,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d2c302b2f47d47f1936a56d5bb25adb, type: 3}
+--- !u!1001 &9070401018754564243
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5451675476688999089, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.7949
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451675476688999089, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.5587
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451675476688999089, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451675476688999089, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451675476688999089, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451675476688999089, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451675476688999089, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451675476688999089, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451675476688999089, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451675476688999089, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8406519548528273096, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+      propertyPath: m_Name
+      value: Wizardtwister (1)-1 (dragged) (2) Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
 --- !u!1001 &9142414053101146391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19279,3 +19336,4 @@ SceneRoots:
   - {fileID: 1930461081}
   - {fileID: 5860638537809882971}
   - {fileID: 1917575773}
+  - {fileID: 9070401018754564243}
