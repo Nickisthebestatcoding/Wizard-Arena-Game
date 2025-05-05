@@ -6,7 +6,7 @@ public class EnemyFreeze : MonoBehaviour
     private SpriteRenderer sr;
     private Color originalColor;
     private bool isFrozen = false;
-    private knightBehavior KnightBehavior;
+    private KnightBehavior knightBehavior;
     private EnemyWizardAI enemyWizardAI;
     private SkeletonBoss skeletonBoss;
 
@@ -16,46 +16,52 @@ public class EnemyFreeze : MonoBehaviour
         originalColor = sr.color;
 
         // Get the respective scripts based on the type of enemy
-        KnightBehavior = GetComponent<knightBehavior>();
+        knightBehavior = GetComponent<KnightBehavior>();
         enemyWizardAI = GetComponent<EnemyWizardAI>();
         skeletonBoss = GetComponent<SkeletonBoss>();
     }
 
     public void Freeze(float duration)
     {
-        if (KnightBehavior != null)
-            KnightBehavior.enabled = false;  // Disable movement and behavior for knight
+        // Disable behavior of specific enemies if they exist
+        if (knightBehavior != null)
+            knightBehavior.enabled = false;
         if (enemyWizardAI != null)
-            enemyWizardAI.enabled = false;  // Disable movement and behavior for enemy wizard
+            enemyWizardAI.enabled = false;
         if (skeletonBoss != null)
-            skeletonBoss.enabled = false;  // Disable movement and behavior for skeleton boss
+            skeletonBoss.enabled = false;
 
-        sr.color = Color.cyan;  // Change color to indicate freeze
+        // Change color to indicate freeze state
+        sr.color = Color.cyan;
         isFrozen = true;
 
+        // Ensure only one unfreeze is called after the given duration
         CancelInvoke(nameof(Unfreeze));
         Invoke(nameof(Unfreeze), duration);
     }
 
     void Unfreeze()
     {
-        if (KnightBehavior != null)
-            KnightBehavior.enabled = true;  // Re-enable knight behavior
+        // Re-enable behavior after freeze period
+        if (knightBehavior != null)
+            knightBehavior.enabled = true;
         if (enemyWizardAI != null)
-            enemyWizardAI.enabled = true;  // Re-enable enemy wizard behavior
+            enemyWizardAI.enabled = true;
         if (skeletonBoss != null)
-            skeletonBoss.enabled = true;  // Re-enable skeleton boss behavior
+            skeletonBoss.enabled = true;
 
-        sr.color = originalColor;  // Revert color
+        // Revert sprite color back to original
+        sr.color = originalColor;
         isFrozen = false;
     }
 
+    // Allows resetting the freeze effect manually if needed
     public void ResetEffect()
     {
         if (isFrozen)
         {
             CancelInvoke(nameof(Unfreeze));
-            Unfreeze();
+            Unfreeze();  // Immediately unfreeze the enemy
         }
     }
 }
