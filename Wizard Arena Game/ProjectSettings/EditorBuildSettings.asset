@@ -21,8 +21,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Level2.unity
     guid: 1f74afbb521c8446ea5823ea4f0a42c0
   - enabled: 1
+    path: Assets/Scenes/ShopUI2.unity
+    guid: eb9758c290ea0450a85ac0acd5db8e74
+  - enabled: 1
     path: Assets/Scenes/Level3.unity
     guid: 6b804ed1bd0384554b79a86ae3173646
+  - enabled: 1
+    path: Assets/Scenes/ShopUI3.unity
+    guid: 3074f0bb4b2f041729a35831aa554655
   - enabled: 1
     path: Assets/Scenes/BossFight.unity
     guid: 574acfaeeb53346f6ba717c0cfb7ccda

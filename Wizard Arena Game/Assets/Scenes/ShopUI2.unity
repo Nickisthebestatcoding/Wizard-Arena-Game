@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1658, y: 253.37}
+  m_AnchoredPosition: {x: -1484, y: 255.17}
   m_SizeDelta: {x: 200, y: 68.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &199326198
@@ -314,7 +314,7 @@ MonoBehaviour:
   ItemID: 3
   PriceTxt: {fileID: 298773146}
   QuantityTxt: {fileID: 658301593}
-  ShopManager: {fileID: 0}
+  ShopManager: {fileID: 1799139084}
 --- !u!114 &285273176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1799139085}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
         m_MethodName: Buy
         m_Mode: 1
@@ -766,11 +766,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1061987565}
-  m_Father: {fileID: 2032089663}
+  m_Father: {fileID: 2115416945}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 90, y: -291}
+  m_AnchoredPosition: {x: 700, y: -492.00006}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &472885894
@@ -826,7 +826,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level1
+          m_StringArgument: Level2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &472885895
@@ -1770,7 +1770,7 @@ MonoBehaviour:
   ItemID: 1
   PriceTxt: {fileID: 380164834}
   QuantityTxt: {fileID: 2042847586}
-  ShopManager: {fileID: 0}
+  ShopManager: {fileID: 1799139084}
 --- !u!114 &1323067314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1815,7 +1815,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1799139085}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
         m_MethodName: Buy
         m_Mode: 1
@@ -2046,8 +2046,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45654d2664d14d04a4c5b53fb61c1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 15
-  CoinsTXT: {fileID: 0}
+  coins: 27
+  CoinsTXT: {fileID: 199326198}
 --- !u!4 &1799139086
 Transform:
   m_ObjectHideFlags: 0
@@ -2187,7 +2187,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.06666667, g: 0.30588236, b: 0.06666667, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2353,7 +2353,6 @@ RectTransform:
   - {fileID: 411420705}
   - {fileID: 1119121247}
   - {fileID: 1876565301}
-  - {fileID: 472885893}
   m_Father: {fileID: 482089447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2376,7 +2375,7 @@ MonoBehaviour:
   ItemID: 4
   PriceTxt: {fileID: 411420706}
   QuantityTxt: {fileID: 1119121248}
-  ShopManager: {fileID: 0}
+  ShopManager: {fileID: 1799139084}
 --- !u!114 &2032089665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2421,7 +2420,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1799139085}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
         m_MethodName: Buy
         m_Mode: 1
@@ -2582,6 +2581,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 482089447}
+  - {fileID: 472885893}
   m_Father: {fileID: 783882633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
