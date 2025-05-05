@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class LightningSpell : MonoBehaviour
 {
@@ -33,14 +32,6 @@ public class LightningSpell : MonoBehaviour
                 health.TakeDamage(damage);
             }
 
-            // Turn the enemy purple
-            SpriteRenderer sr = target.GetComponent<SpriteRenderer>();
-            if (sr != null)
-            {
-                sr.color = Color.magenta; // Change color to purple
-                StartCoroutine(ResetColorAfterDelay(sr)); // Start the coroutine to reset the color
-            }
-
             // Chain to other enemies within the range
             ChainLightning(target);
         }
@@ -65,25 +56,8 @@ public class LightningSpell : MonoBehaviour
                     health.TakeDamage(damage * chainDamageMultiplier); // Apply reduced damage
                 }
 
-                // Turn the chained enemy purple
-                SpriteRenderer sr = enemy.GetComponent<SpriteRenderer>();
-                if (sr != null)
-                {
-                    sr.color = Color.magenta; // Change color to purple
-                    StartCoroutine(ResetColorAfterDelay(sr)); // Start the coroutine to reset the color
-                }
-
                 chainedCount++; // Increase the count of chained enemies
             }
-        }
-    }
-
-    private IEnumerator ResetColorAfterDelay(SpriteRenderer sr)
-    {
-        yield return new WaitForSeconds(1f); // Wait for 1 second
-        if (sr != null) // Make sure the SpriteRenderer still exists
-        {
-            sr.color = Color.white; // Reset the color to original
         }
     }
 
