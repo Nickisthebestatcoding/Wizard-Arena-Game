@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class knightbehavior : MonoBehaviour
+public class KnightBehavior : MonoBehaviour
 {
     public float moveSpeed = 2.1f;
     public float chaseRange = 15.0f;
@@ -150,3 +150,5 @@ public class knightbehavior : MonoBehaviour
         Debug.Log(gameObject.name + " has been reset.");
     }
 }
+
+
