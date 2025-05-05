@@ -1,11 +1,12 @@
 using UnityEngine;
 
+
 public class EnemyFreeze : MonoBehaviour
 {
     private SpriteRenderer sr;
     private Color originalColor;
     private bool isFrozen = false;
-    private KnightBehavior knightBehavior;
+    private knightBehavior KnightBehavior;
     private EnemyWizardAI enemyWizardAI;
     private SkeletonBoss skeletonBoss;
 
@@ -15,15 +16,15 @@ public class EnemyFreeze : MonoBehaviour
         originalColor = sr.color;
 
         // Get the respective scripts based on the type of enemy
-        knightBehavior = GetComponent<KnightBehavior>();
+        KnightBehavior = GetComponent<knightBehavior>();
         enemyWizardAI = GetComponent<EnemyWizardAI>();
         skeletonBoss = GetComponent<SkeletonBoss>();
     }
 
     public void Freeze(float duration)
     {
-        if (knightBehavior != null)
-            knightBehavior.enabled = false;  // Disable movement and behavior for knight
+        if (KnightBehavior != null)
+            KnightBehavior.enabled = false;  // Disable movement and behavior for knight
         if (enemyWizardAI != null)
             enemyWizardAI.enabled = false;  // Disable movement and behavior for enemy wizard
         if (skeletonBoss != null)
@@ -38,8 +39,8 @@ public class EnemyFreeze : MonoBehaviour
 
     void Unfreeze()
     {
-        if (knightBehavior != null)
-            knightBehavior.enabled = true;  // Re-enable knight behavior
+        if (KnightBehavior != null)
+            KnightBehavior.enabled = true;  // Re-enable knight behavior
         if (enemyWizardAI != null)
             enemyWizardAI.enabled = true;  // Re-enable enemy wizard behavior
         if (skeletonBoss != null)
