@@ -4,9 +4,7 @@ public class WizardTornadoBullet : MonoBehaviour
 {
     public float speed = 2f;
     public float damage = 2f;
-    public float knockbackForce = 5f;
-    public float bossKnockbackMultiplier = 0.4f; // Bosses get less knockback
-    public float knockbackDuration = 0.3f;
+    public float lifetime = 20f; // The bullet will live for 20 seconds
 
     private Rigidbody2D rb;
 
@@ -14,6 +12,9 @@ public class WizardTornadoBullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.up * speed;
+
+        // Destroy the bullet after 20 seconds
+        Destroy(gameObject, lifetime);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -24,17 +25,7 @@ public class WizardTornadoBullet : MonoBehaviour
 
         if (isEnemy || isBoss)
         {
-            // Apply knockback
-            WizardMovement wizardMovement = target.GetComponent<WizardMovement>();
-            if (wizardMovement != null)
-            {
-                Vector2 knockbackDir = (target.transform.position - transform.position).normalized;
-                if (knockbackDir == Vector2.zero)
-                    knockbackDir = Vector2.up;
-
-                float force = isBoss ? knockbackForce * bossKnockbackMultiplier : knockbackForce;
-                wizardMovement.ApplyPush(knockbackDir * force, knockbackDuration);
-            }
+            Debug.Log("Tornado hit: " + target.name);
 
             // Apply damage
             Health health = target.GetComponent<Health>();
@@ -42,9 +33,6 @@ public class WizardTornadoBullet : MonoBehaviour
             {
                 health.TakeDamage(damage);
             }
-
-            Destroy(gameObject);
-            return;
         }
 
         // Damage other objects if they have Health
@@ -53,7 +41,5 @@ public class WizardTornadoBullet : MonoBehaviour
         {
             otherHealth.TakeDamage(damage);
         }
-
-        Destroy(gameObject);
     }
 }
