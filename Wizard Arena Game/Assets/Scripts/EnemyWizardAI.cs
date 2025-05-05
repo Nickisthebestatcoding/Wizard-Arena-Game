@@ -91,6 +91,7 @@ public class EnemyWizardAI : MonoBehaviour
     {
         Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
     }
+
 }
 
 

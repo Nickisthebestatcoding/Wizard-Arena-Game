@@ -262,4 +262,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   freezeDuration: 1
-  damage: 0.5
+  damage: 1
