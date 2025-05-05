@@ -5346,7 +5346,7 @@ GameObject:
   - component: {fileID: 301363900}
   - component: {fileID: 301363903}
   - component: {fileID: 301363902}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: capitalism-1 (dragged)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
