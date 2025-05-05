@@ -18,26 +18,26 @@ public class WizardIceBullet : MonoBehaviour
     {
         GameObject target = collision.gameObject;
 
-        // Check if the bullet hits an enemy or boss (ensure they are tagged as "Enemy" or similar)
-        if (target.CompareTag("Enemy"))
+        // Check if the bullet hits an enemy or boss
+        if (target.CompareTag("Enemy") || target.CompareTag("Boss"))
         {
             EnemyFreeze freeze = target.GetComponent<EnemyFreeze>();
             if (freeze != null)
             {
-                freeze.Freeze(freezeDuration);  // Freeze the enemy for the set duration
+                freeze.Freeze(freezeDuration);  // Freeze the enemy/boss
             }
 
             Health health = target.GetComponent<Health>();
             if (health != null)
             {
-                health.TakeDamage(damage);  // Apply damage to the enemy/boss
+                health.TakeDamage(damage);  // Apply damage
             }
 
             Destroy(gameObject);  // Destroy the ice bullet on impact
-            return;  // Exit the method to avoid applying damage to other objects
+            return;
         }
 
-        // Destroy the ice bullet after it touches any other object that is not an enemy/boss
+        // Destroy bullet if it hits something else
         Destroy(gameObject);
     }
 }
