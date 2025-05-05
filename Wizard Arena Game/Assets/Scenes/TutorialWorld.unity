@@ -13055,14 +13055,14 @@ MonoBehaviour:
   fireballPrefab: {fileID: 8247750139965071724, guid: 0c5509bddb5f348f29bd399e16421738, type: 3}
   lightningPrefab: {fileID: 6440011539996498930, guid: 0f7ccd35e86ea4dd7ab68ff8d84d33b4, type: 3}
   iceBulletPrefab: {fileID: 5755910993399523153, guid: e43575b8beb944d12b6756190844ca5d, type: 3}
-  tornadoPrefab: {fileID: 0}
+  tornadoPrefab: {fileID: 8406519548528273096, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
   firePoint: {fileID: 129781560}
   lightningSpawnPoint: {fileID: 1812335885}
   fireForce: 10
   fireballCooldown: 0.5
   lightningCooldown: 1.5
   iceBulletCooldown: 0.7
-  tornadoCooldown: 2
+  tornadoCooldown: 0.5
 --- !u!114 &1544979013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18548,6 +18548,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4024383903255180239, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+      propertyPath: knockbackForce
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5451675476688999089, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.77
@@ -18591,6 +18595,10 @@ PrefabInstance:
     - target: {fileID: 8406519548528273096, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
       propertyPath: m_Name
       value: Wizardtwister (1)-1 (dragged) (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8406519548528273096, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+      propertyPath: m_TagString
+      value: Wizard attack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

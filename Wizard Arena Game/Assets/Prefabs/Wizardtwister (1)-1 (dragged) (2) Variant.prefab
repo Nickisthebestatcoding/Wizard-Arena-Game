@@ -86,8 +86,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9470985c3b2c42afa728b1a14c164a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  damage: 2
-  knockbackForce: 5
+  speed: 6
+  damage: 0.5
+  knockbackForce: 150
   bossKnockbackMultiplier: 0.4
   knockbackDuration: 0.3
