@@ -5,16 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public string sceneName;
+    public string sceneToLoad;
 
-    void OnMouseDown()
+    void Update()
     {
         if (Input.GetMouseButtonDown(1))
         {
-            if (!string.IsNullOrEmpty(sceneName))
-            {
-                SceneManager.LoadScene(sceneName);
-            }
+            SceneManager.LoadScene(sceneToLoad);
         }
     }
 }
