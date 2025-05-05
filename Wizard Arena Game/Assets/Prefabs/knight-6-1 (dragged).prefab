@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -3601898500879706452}
   - component: {fileID: 4575361656715965191}
   - component: {fileID: -13798565663871210}
+  - component: {fileID: -1717730368149056780}
   m_Layer: 0
   m_Name: knight-6-1 (dragged)
   m_TagString: Enemy
@@ -398,3 +399,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KnightPain: {fileID: 8300000, guid: e2cad18f02c96450db264a302c6e9904, type: 3}
+--- !u!114 &-1717730368149056780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4188522655309973621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b89d703f1f0498fa590473239d1f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
