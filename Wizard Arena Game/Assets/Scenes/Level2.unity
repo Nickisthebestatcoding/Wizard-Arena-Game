@@ -38567,7 +38567,7 @@ GameObject:
   - component: {fileID: 2103160035}
   - component: {fileID: 2103160034}
   - component: {fileID: 2103160036}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Whitetent (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
