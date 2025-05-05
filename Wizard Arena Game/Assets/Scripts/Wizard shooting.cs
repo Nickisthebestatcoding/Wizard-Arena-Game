@@ -5,10 +5,16 @@ public class SpellCaster : MonoBehaviour
     public GameObject fireballPrefab;
     public GameObject lightningPrefab;
 
-    public Transform firePoint;           // Used for fireball
-    public Transform lightningSpawnPoint; // New one for lightning
+    public Transform firePoint;
+    public Transform lightningSpawnPoint;
 
     public float fireForce = 10f;
+
+    public float fireballCooldown = 0.5f;
+    public float lightningCooldown = 1.5f;
+
+    private float nextFireballTime = 0f;
+    private float nextLightningTime = 0f;
 
     private enum SpellType { Fireball, Lightning }
     private SpellType currentSpell = SpellType.Fireball;
@@ -22,21 +28,30 @@ public class SpellCaster : MonoBehaviour
             currentSpell = SpellType.Fireball;
 
         if (Input.GetButtonDown("Fire1"))
-            CastSpell();
+        {
+            if (currentSpell == SpellType.Fireball && Time.time >= nextFireballTime)
+            {
+                CastFireball();
+                nextFireballTime = Time.time + fireballCooldown;
+            }
+            else if (currentSpell == SpellType.Lightning && Time.time >= nextLightningTime)
+            {
+                CastLightning();
+                nextLightningTime = Time.time + lightningCooldown;
+            }
+        }
     }
 
-    void CastSpell()
+    void CastFireball()
     {
-        if (currentSpell == SpellType.Fireball)
-        {
-            GameObject fireball = Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
-            Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
-            if (rb != null)
-                rb.velocity = firePoint.up * fireForce;
-        }
-        else if (currentSpell == SpellType.Lightning)
-        {
-            GameObject lightning = Instantiate(lightningPrefab, lightningSpawnPoint.position, lightningSpawnPoint.rotation, lightningSpawnPoint);
-        }
+        GameObject fireball = Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
+        if (rb != null)
+            rb.velocity = firePoint.up * fireForce;
+    }
+
+    void CastLightning()
+    {
+        Instantiate(lightningPrefab, lightningSpawnPoint.position, lightningSpawnPoint.rotation, lightningSpawnPoint);
     }
 }
