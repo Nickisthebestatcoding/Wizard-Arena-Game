@@ -12,6 +12,9 @@ TagManager:
   - Spike
   - Coin
   - EnemyWizard
+  - Event
+  - Items
+  - Necro
   layers:
   - Default
   - TransparentFX
