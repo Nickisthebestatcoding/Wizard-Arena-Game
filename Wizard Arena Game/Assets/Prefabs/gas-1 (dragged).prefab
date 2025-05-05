@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8553660993036723313}
   - component: {fileID: 477765381938505029}
   - component: {fileID: 5137753219881629718}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: gas-1 (dragged)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
