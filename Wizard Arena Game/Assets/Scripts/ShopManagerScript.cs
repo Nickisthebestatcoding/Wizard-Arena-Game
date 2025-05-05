@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShopManagerScript : MonoBehaviour
 {
 
     public int[,] shopItems = new int[5,5];
     public float coins;
-    public Text CoinsTXT;
+    public TextMeshProUGUI CoinsTXT;
 
     void Start()
     {
