@@ -13062,7 +13062,7 @@ MonoBehaviour:
   fireballCooldown: 0.5
   lightningCooldown: 1.5
   iceBulletCooldown: 0.7
-  tornadoCooldown: 0.5
+  tornadoCooldown: 1
 --- !u!114 &1544979013
 MonoBehaviour:
   m_ObjectHideFlags: 0

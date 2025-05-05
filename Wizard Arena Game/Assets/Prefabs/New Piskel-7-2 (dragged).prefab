@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3007641193806219327}
   - component: {fileID: 1565066707443681354}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: New Piskel-7-2 (dragged)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

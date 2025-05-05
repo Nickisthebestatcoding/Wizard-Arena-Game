@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5858288615827760765}
   - component: {fileID: 1684327145100228233}
   - component: {fileID: -2798798258714406290}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Grey Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
