@@ -1,22 +1,25 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyWizardAI : MonoBehaviour
 {
-    public float detectionRadius = 10f;     // Detection range
-    public float attackRange = 5f;          // Range to attack and move randomly
-    public float moveSpeed = 3f;            // Movement speed
-    public GameObject projectilePrefab;     // Projectile to shoot
-    public Transform shootPoint;            // Where projectile spawns
-    public float shootDelay = 1f;           // Delay between shots
+    public float detectionRadius = 10f;
+    public float attackRange = 5f;
+    public float moveSpeed = 3f;
+    public GameObject projectilePrefab;
+    public Transform shootPoint;
+    public float shootDelay = 1f;
 
-    private Transform player;               // Reference to player
-    private float shootCooldown;            // Internal timer for shooting
-    private Vector2 randomMoveTarget;       // Random position to move to
+    private Transform player;
+    private float shootCooldown;
+    private Vector2 randomMoveTarget;
+
+    private Coroutine knockbackRoutine;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Wizard").transform;
-        randomMoveTarget = transform.position; // Start at current pos
+        randomMoveTarget = transform.position;
     }
 
     void Update()
@@ -37,10 +40,6 @@ public class EnemyWizardAI : MonoBehaviour
                 MoveTowardsPlayer();
             }
         }
-        else
-        {
-            // Optional: idle behavior when player is out of range
-        }
     }
 
     void RotateTowardsPlayer()
@@ -58,10 +57,7 @@ public class EnemyWizardAI : MonoBehaviour
 
     void MoveRandomly()
     {
-        // Move toward random target
         transform.position = Vector2.MoveTowards(transform.position, randomMoveTarget, moveSpeed * Time.deltaTime);
-
-        // Pick a new target if close enough to current
         if (Vector2.Distance(transform.position, randomMoveTarget) < 0.2f)
         {
             PickNewRandomTarget();
@@ -92,6 +88,27 @@ public class EnemyWizardAI : MonoBehaviour
         Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
     }
 
+    public void ApplyPush(Vector2 force, float duration)
+    {
+        if (knockbackRoutine != null)
+            StopCoroutine(knockbackRoutine);
+
+        knockbackRoutine = StartCoroutine(ApplyKnockback(force, duration));
+    }
+
+    private IEnumerator ApplyKnockback(Vector2 force, float duration)
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb == null) yield break;
+
+        float timer = 0f;
+        while (timer < duration)
+        {
+            rb.velocity = force;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        rb.velocity = Vector2.zero;
+    }
 }
-
-
