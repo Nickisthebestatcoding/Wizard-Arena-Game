@@ -8,25 +8,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7888105160781709743, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -7888105160781709743, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2083348019653960525, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
       propertyPath: m_Name
       value: Wizardtwister (1)-1 (dragged) (2) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2083348019653960525, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2587389416521258804, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7923762
+      value: 1.471918
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587389416521258804, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1092541
       objectReference: {fileID: 0}
     - target: {fileID: 2587389416521258804, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.77
+      value: -17.7949
       objectReference: {fileID: 0}
     - target: {fileID: 2587389416521258804, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.83
+      value: 13.5587
       objectReference: {fileID: 0}
     - target: {fileID: 2587389416521258804, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -60,6 +72,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4926812800580167036, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6136829932219356068, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
     m_RemovedGameObjects: []
@@ -88,6 +104,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   damage: 0.5
-  knockbackForce: 150
-  bossKnockbackMultiplier: 0.4
-  knockbackDuration: 0.3
+  lifetime: 20

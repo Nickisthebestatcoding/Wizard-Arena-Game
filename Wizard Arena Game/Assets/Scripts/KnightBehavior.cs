@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KnightBehavior : MonoBehaviour
@@ -17,11 +16,11 @@ public class KnightBehavior : MonoBehaviour
     public LayerMask wizardLayer; // Set this to the Wizard layer in Inspector
     public float knockbackRadius = 1.5f;
     private Health health;
-    private Vector3 startPos; // ?? Start position
-    private Quaternion startRot; // ?? Start rotation
+    private Vector3 startPos;
+    private Quaternion startRot;
 
+    private Coroutine knockbackRoutine;
 
-    // Start is called before the first frame update
     private void Start()
     {
         GameObject wizard = GameObject.FindGameObjectWithTag("Wizard");
@@ -36,15 +35,12 @@ public class KnightBehavior : MonoBehaviour
         }
 
         animator = GetComponent<Animator>();
-        health = GetComponent<Health>(); // ?? Cache the health
+        health = GetComponent<Health>();
 
-
-        // ?? Record starting position/rotation
         startPos = transform.position;
         startRot = transform.rotation;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (wizardTransform == null) return;
@@ -56,13 +52,11 @@ public class KnightBehavior : MonoBehaviour
 
         if (distanceToWizard <= attackRange)
         {
-            // Stop moving & attack
             animator.SetBool("isAttacking", true);
 
             if (Time.time - lastAttackTime >= attackCooldown)
             {
                 lastAttackTime = Time.time;
-                // Attack animation will trigger damage via animation event
             }
         }
         else if (distanceToWizard <= chaseRange)
@@ -82,8 +76,8 @@ public class KnightBehavior : MonoBehaviour
         {
             animator.SetBool("isAttacking", false);
         }
-
     }
+
     public void DealDamage()
     {
         if (wizardTransform == null) return;
@@ -91,21 +85,20 @@ public class KnightBehavior : MonoBehaviour
         float distance = Vector3.Distance(transform.position, wizardTransform.position);
         if (distance <= attackRange)
         {
-            // Deal damage
             Health wizardHealth = wizardTransform.GetComponent<Health>();
             if (wizardHealth != null)
             {
                 wizardHealth.TakeDamage(damage);
             }
 
-            // Apply knockback if possible
             WizardMovement wizardMovement = wizardTransform.GetComponent<WizardMovement>();
             if (wizardMovement != null)
             {
                 Vector2 knockbackDirection = (wizardTransform.position - transform.position).normalized;
-                wizardMovement.ApplyPush(knockbackDirection * knockbackForce, 0.3f); // 0.3s duration, tweak as needed
+                wizardMovement.ApplyPush(knockbackDirection * knockbackForce, 0.3f);
             }
         }
+
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, knockbackRadius, wizardLayer);
 
         foreach (var hit in hits)
@@ -121,19 +114,35 @@ public class KnightBehavior : MonoBehaviour
             if (wizardMovement != null)
             {
                 Vector2 knockbackDir = (hit.transform.position - transform.position).normalized;
-
-                // Fallback in case they're overlapping perfectly (zero vector)
-                if (knockbackDir == Vector2.zero)
-                {
-                    knockbackDir = Vector2.up; // arbitrary direction
-                }
-
                 wizardMovement.ApplyPush(knockbackDir * knockbackForce, 0.3f);
             }
         }
     }
 
-    // ?? This is the method your LevelManager will call to reset this knight
+    public void ApplyPush(Vector2 force, float duration)
+    {
+        if (knockbackRoutine != null)
+            StopCoroutine(knockbackRoutine);
+
+        knockbackRoutine = StartCoroutine(ApplyKnockback(force, duration));
+    }
+
+    private IEnumerator ApplyKnockback(Vector2 force, float duration)
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb == null) yield break;
+
+        float timer = 0f;
+        while (timer < duration)
+        {
+            rb.velocity = force;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        rb.velocity = Vector2.zero;
+    }
+
     public void ResetEnemy()
     {
         transform.position = startPos;
@@ -141,15 +150,12 @@ public class KnightBehavior : MonoBehaviour
 
         if (health != null)
         {
-            health.ResetHealth(); // Make sure Health.cs has this method
+            health.ResetHealth();
         }
 
-        gameObject.SetActive(true); // Reactivate if disabled
-        animator.SetBool("isAttacking", false); // Reset animation state
+        gameObject.SetActive(true);
+        animator.SetBool("isAttacking", false);
 
         Debug.Log(gameObject.name + " has been reset.");
     }
-
 }
-
-
