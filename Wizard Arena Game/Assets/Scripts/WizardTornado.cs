@@ -5,6 +5,7 @@ public class WizardTornadoBullet : MonoBehaviour
     public float speed = 2f;
     public float damage = 2f;
     public float knockbackForce = 5f;
+    public float bossKnockbackMultiplier = 0.4f; // Bosses get less knockback
     public float knockbackDuration = 0.3f;
 
     private Rigidbody2D rb;
@@ -12,26 +13,27 @@ public class WizardTornadoBullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = transform.up * speed;  // Move in the bullet's forward direction
+        rb.velocity = transform.up * speed;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject target = collision.gameObject;
+        bool isEnemy = target.CompareTag("Enemy");
+        bool isBoss = target.CompareTag("Boss");
 
-        if (target.CompareTag("Wizard"))
+        if (isEnemy || isBoss)
         {
             // Apply knockback
             WizardMovement wizardMovement = target.GetComponent<WizardMovement>();
             if (wizardMovement != null)
             {
                 Vector2 knockbackDir = (target.transform.position - transform.position).normalized;
-
-                // Safety fallback in case direction is zero
                 if (knockbackDir == Vector2.zero)
                     knockbackDir = Vector2.up;
 
-                wizardMovement.ApplyPush(knockbackDir * knockbackForce, knockbackDuration);
+                float force = isBoss ? knockbackForce * bossKnockbackMultiplier : knockbackForce;
+                wizardMovement.ApplyPush(knockbackDir * force, knockbackDuration);
             }
 
             // Apply damage
@@ -41,7 +43,7 @@ public class WizardTornadoBullet : MonoBehaviour
                 health.TakeDamage(damage);
             }
 
-            Destroy(gameObject);  // Destroy bullet on impact
+            Destroy(gameObject);
             return;
         }
 
@@ -52,6 +54,6 @@ public class WizardTornadoBullet : MonoBehaviour
             otherHealth.TakeDamage(damage);
         }
 
-        Destroy(gameObject);  // Destroy bullet after hitting anything
+        Destroy(gameObject);
     }
 }
