@@ -14468,7 +14468,7 @@ GameObject:
   - component: {fileID: 1716498696}
   - component: {fileID: 1716498695}
   - component: {fileID: 1716498694}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: New Piskel-4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
