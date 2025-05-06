@@ -3,9 +3,25 @@ using TMPro; // Use UnityEngine.UI if you're using regular Text
 
 public class GameTimer : MonoBehaviour
 {
-    public TextMeshProUGUI timerText; // Replace with `public Text timerText;` if using UI.Text
+    public static GameTimer instance;
+    public TextMeshProUGUI timerText;
+
     private float timer = 0f;
     private bool isRunning = true;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject); // Prevent duplicates
+            return;
+        }
+    }
 
     void Update()
     {
@@ -22,17 +38,15 @@ public class GameTimer : MonoBehaviour
         int seconds = Mathf.FloorToInt(timer % 60f);
         int milliseconds = Mathf.FloorToInt((timer * 1000f) % 1000f);
 
-        timerText.text = string.Format("{0:00}:{1:00}.{2:000}", minutes, seconds, milliseconds);
+        if (timerText != null)
+            timerText.text = string.Format("{0:00}:{1:00}.{2:000}", minutes, seconds, milliseconds);
     }
 
-    public void StopTimer()
-    {
-        isRunning = false;
-    }
-
+    public void StopTimer() => isRunning = false;
     public void ResetTimer()
     {
         timer = 0f;
         isRunning = true;
     }
 }
+
