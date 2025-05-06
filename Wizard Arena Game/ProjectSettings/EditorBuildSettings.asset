@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Title Card.unity
+    guid: 7715a1d877d264919932dfc0bdf03788
+  - enabled: 1
     path: Assets/Scenes/TutorialWorld.unity
     guid: 4feb9d31e498246debfe644a1a0ef56b
   - enabled: 1
