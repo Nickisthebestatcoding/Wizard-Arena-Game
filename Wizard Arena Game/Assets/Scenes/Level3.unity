@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdad4a458ebca4ccf95751b8af67d81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Level1: Level3
+  Level1: BossFight
 --- !u!60 &68814778
 PolygonCollider2D:
   m_ObjectHideFlags: 0
