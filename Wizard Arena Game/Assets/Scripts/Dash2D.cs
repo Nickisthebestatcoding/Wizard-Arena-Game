@@ -8,10 +8,13 @@ public class Dash2D : MonoBehaviour
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
     public KeyCode dashKey = KeyCode.LeftShift;
-
+    private Vector2 moveInput;
     private Rigidbody2D rb;
     private bool isDashing = false;
     private bool canDash = true;
+
+    
+
 
     private void Start()
     {
