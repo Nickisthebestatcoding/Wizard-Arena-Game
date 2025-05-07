@@ -1134,8 +1134,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 10000
+  near clip plane: 0
+  far clip plane: 100000
   field of view: 60
   orthographic: 1
   orthographic size: 5.5
@@ -1766,7 +1766,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
-  m_PlaneDistance: 10000
+  m_PlaneDistance: 50000
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 38435102}
   m_HandleRect: {fileID: 38435101}
   m_Direction: 0
-  m_Value: -0.000030517578
+  m_Value: 0.000030517578
   m_Size: 0.9987516
   m_NumberOfSteps: 0
   m_OnValueChanged:
