@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4926812800580167036}
   - component: {fileID: -7888105160781709743}
   - component: {fileID: -3478638240311142542}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: twister (1)-1 (dragged)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,9 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70099c0d598ca455c8ce25e733620dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  damage: 0.2
-  knockbackForce: 150
+  speed: 10
+  damage: 0.1
+  knockbackForce: 600
   knockbackDuration: 0.3
 --- !u!60 &4926812800580167036
 PolygonCollider2D:
