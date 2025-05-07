@@ -10,14 +10,14 @@ public class ShopManagerScript : MonoBehaviour
     public int[,] shopItems = new int[5, 5];
     public float coins;
     public TextMeshProUGUI CoinsTXT;
-    public WizardCoinManager totalCoins;
+
 
     public int healthFlaskCount = 0; // Track the number of health flasks
     public bool[] spellsUnlocked = new bool[5]; // Track unlocked spells
 
     void Start()
     {
-        CoinsTXT.text = "totalCoins";
+        CoinsTXT.text = "Coins:" + coins;
 
         // ID's for shop items
         shopItems[1, 1] = 1; // Health Flask
@@ -52,7 +52,7 @@ public class ShopManagerScript : MonoBehaviour
             shopItems[3, itemID]++;
 
             // Update UI
-            CoinsTXT.text = "totalCoins" ;
+            CoinsTXT.text = "Coins: " + coins;
             ButtonRef.GetComponent<Buttoninfo>().QuantityTxt.text = shopItems[3, itemID].ToString();
 
             // If the health flask is bought, increase its count
