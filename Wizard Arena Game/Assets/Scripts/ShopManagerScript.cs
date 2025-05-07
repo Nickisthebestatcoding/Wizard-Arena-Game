@@ -11,6 +11,7 @@ public class ShopManagerScript : MonoBehaviour
     public float coins;
     public TextMeshProUGUI CoinsTXT;
 
+
     public int healthFlaskCount = 0; // Track the number of health flasks
     public bool[] spellsUnlocked = new bool[5]; // Track unlocked spells
 
