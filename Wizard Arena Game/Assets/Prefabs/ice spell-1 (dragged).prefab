@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   freezeDuration: 1
-  damage: 1
+  damage: 2
 --- !u!95 &4564652602393747768
 Animator:
   serializedVersion: 5
