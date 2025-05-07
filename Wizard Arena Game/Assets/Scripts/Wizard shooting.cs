@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class SpellCaster : MonoBehaviour
 {
@@ -28,32 +28,38 @@ public class SpellCaster : MonoBehaviour
     private ShopManagerScript shopManager;
     private SpriteRenderer spriteRenderer;
     private Coroutine flashCoroutine;
+    private Health wizardHealth;
 
-    private float spellSwitchCooldown = 1f;     // Cooldown duration
-    private float nextSpellSwitchTime = 0f;     // Time until next switch is allowed
+    private float spellSwitchCooldown = 1f;
+    private float nextSpellSwitchTime = 0f;
+
+    public int flaskCount = 1;  // Start with one healing flask
+    public float healAmount = 5f;
 
     void Start()
     {
         shopManager = FindObjectOfType<ShopManagerScript>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        wizardHealth = GetComponent<Health>();
     }
 
     void Update()
     {
-        // Handle spell switching
         if (Time.time >= nextSpellSwitchTime)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1) && IsSpellUnlocked(SpellType.Fireball))
-                SwitchSpell(SpellType.Fireball);
-            if (Input.GetKeyDown(KeyCode.Alpha2) && IsSpellUnlocked(SpellType.IceBullet))
-                SwitchSpell(SpellType.IceBullet);
-            if (Input.GetKeyDown(KeyCode.Alpha3) && IsSpellUnlocked(SpellType.Tornado))
-                SwitchSpell(SpellType.Tornado);
             if (Input.GetKeyDown(KeyCode.Alpha4) && IsSpellUnlocked(SpellType.Lightning))
                 SwitchSpell(SpellType.Lightning);
+
+            if (Input.GetKeyDown(KeyCode.Alpha1)) // Fireball always unlocked
+                SwitchSpell(SpellType.Fireball);
+
+            if (Input.GetKeyDown(KeyCode.Alpha2) && IsSpellUnlocked(SpellType.IceBullet))
+                SwitchSpell(SpellType.IceBullet);
+
+            if (Input.GetKeyDown(KeyCode.Alpha3) && IsSpellUnlocked(SpellType.Tornado))
+                SwitchSpell(SpellType.Tornado);
         }
 
-        // Handle spell casting
         if (Input.GetButtonDown("Fire1"))
         {
             if (!IsSpellUnlocked(currentSpell)) return;
@@ -91,24 +97,14 @@ public class SpellCaster : MonoBehaviour
             }
         }
 
-        // Heal the wizard when pressing Q, if health flasks are available
-        if (Input.GetKeyDown(KeyCode.Q) && shopManager.healthFlaskCount > 0)
+        if (Input.GetKeyDown(KeyCode.Q) && flaskCount > 0 && wizardHealth != null)
         {
-            Heal();
+            wizardHealth.TakeDamage(-healAmount); // Negative damage = healing
+            flaskCount--;
+            Debug.Log("Used healing flask. Remaining: " + flaskCount);
         }
     }
 
-    // Heal the wizard and decrease flask count
-    void Heal()
-    {
-        // Heal the wizard (replace this with your health restoration logic)
-        Debug.Log("Healed!");
-
-        // Decrease health flask count
-        shopManager.healthFlaskCount--;
-    }
-
-    // Switch spell and trigger flash color
     void SwitchSpell(SpellType newSpell)
     {
         currentSpell = newSpell;
@@ -137,7 +133,6 @@ public class SpellCaster : MonoBehaviour
         flashCoroutine = StartCoroutine(FlashColor(flashColor, 0.5f));
     }
 
-    // Coroutine to flash color when switching spells
     IEnumerator FlashColor(Color flashColor, float duration)
     {
         Color originalColor = spriteRenderer.color;
@@ -146,14 +141,12 @@ public class SpellCaster : MonoBehaviour
         spriteRenderer.color = originalColor;
     }
 
-    // Check if the spell is unlocked
     bool IsSpellUnlocked(SpellType spell)
     {
-        if (spell == SpellType.Fireball) return true; // Fireball is always unlocked
+        if (spell == SpellType.Fireball) return true;
         return shopManager.spellsUnlocked[(int)spell];
     }
 
-    // Cast fireball spell
     void CastFireball()
     {
         GameObject fireball = Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
@@ -162,13 +155,11 @@ public class SpellCaster : MonoBehaviour
             rb.velocity = firePoint.up * fireForce;
     }
 
-    // Cast lightning spell
     void CastLightning()
     {
         Instantiate(lightningPrefab, lightningSpawnPoint.position, lightningSpawnPoint.rotation, lightningSpawnPoint);
     }
 
-    // Cast ice bullet spell
     void CastIceBullet()
     {
         GameObject iceBullet = Instantiate(iceBulletPrefab, firePoint.position, firePoint.rotation);
@@ -177,7 +168,6 @@ public class SpellCaster : MonoBehaviour
             rb.velocity = firePoint.up * fireForce;
     }
 
-    // Cast tornado spell
     void CastTornado()
     {
         GameObject tornado = Instantiate(tornadoPrefab, firePoint.position, firePoint.rotation);
