@@ -87,4 +87,4 @@ MonoBehaviour:
   attackRange: 15
   projectilePrefab: {fileID: 2083348019653960525, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
   shootPoint: {fileID: 1718188895190679248}
-  shootDelay: 3
+  shootDelay: 2

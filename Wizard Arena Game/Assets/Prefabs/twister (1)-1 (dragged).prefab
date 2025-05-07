@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4926812800580167036}
   - component: {fileID: -7888105160781709743}
   - component: {fileID: -3478638240311142542}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: twister (1)-1 (dragged)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
