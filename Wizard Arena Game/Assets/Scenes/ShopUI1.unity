@@ -518,8 +518,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45654d2664d14d04a4c5b53fb61c1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 10
+  coins: 100
   CoinsTXT: {fileID: 427518373}
+  healthFlaskCount: 0
+  spellsUnlocked: 0000000000
 --- !u!4 &171233091
 Transform:
   m_ObjectHideFlags: 0
@@ -2290,8 +2292,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 38435102}
   m_HandleRect: {fileID: 38435101}
   m_Direction: 0
-  m_Value: 0.000030517578
-  m_Size: 0.9987516
+  m_Value: 0.000030515715
+  m_Size: 0.99875146
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

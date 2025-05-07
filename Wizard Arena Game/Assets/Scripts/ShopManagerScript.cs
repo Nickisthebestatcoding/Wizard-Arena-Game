@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.EventSystems; // Added for EventSystem
 
 public class ShopManagerScript : MonoBehaviour
 {
@@ -9,66 +11,68 @@ public class ShopManagerScript : MonoBehaviour
     public float coins;
     public TextMeshProUGUI CoinsTXT;
 
-    public int healthFlaskCount = 0; // Track how many health flasks the player has
-    public bool[] spellsUnlocked = new bool[5]; // Track which spells are unlocked (index 0 for Fireball, etc.)
+    public int healthFlaskCount = 0; // Track the number of health flasks
+    public bool[] spellsUnlocked = new bool[5]; // Track unlocked spells
 
     void Start()
     {
         CoinsTXT.text = "Coins:" + coins;
 
-        // IDs for items
-        shopItems[1, 1] = 1;  // Health Flask
-        shopItems[1, 2] = 2;  // Ice Bullet
-        shopItems[1, 3] = 3;  // Tornado
-        shopItems[1, 4] = 4;  // Lightning
+        // ID's for shop items
+        shopItems[1, 1] = 1; // Health Flask
+        shopItems[1, 2] = 2; // Ice Bullet
+        shopItems[1, 3] = 3; // Tornado
+        shopItems[1, 4] = 4; // Lightning
 
-        // Prices
-        shopItems[2, 1] = 5;  // Price for health flask
-        shopItems[2, 2] = 10; // Price for ice bullet
-        shopItems[2, 3] = 20; // Price for tornado
-        shopItems[2, 4] = 30; // Price for lightning
+        // Prices of items
+        shopItems[2, 1] = 3;  // Health Flask cost
+        shopItems[2, 2] = 10; // Ice Bullet cost
+        shopItems[2, 3] = 20; // Tornado cost
+        shopItems[2, 4] = 30; // Lightning cost
 
-        // Quantities (initially 0)
-        shopItems[3, 1] = 0; // Health flask quantity
-        shopItems[3, 2] = 0; // Ice bullet quantity
-        shopItems[3, 3] = 0; // Tornado quantity
-        shopItems[3, 4] = 0; // Lightning quantity
-
-        // Set initial unlocked spells (you can modify based on the game design)
-        spellsUnlocked[0] = true; // Fireball is always unlocked
+        // Quantity of items
+        shopItems[3, 1] = 0;
+        shopItems[3, 2] = 0;
+        shopItems[3, 3] = 0;
+        shopItems[3, 4] = 0;
     }
 
     public void Buy()
     {
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
 
-        if (coins >= shopItems[2, ButtonRef.GetComponent<Buttoninfo>().ItemID])
-        {
-            coins -= shopItems[2, ButtonRef.GetComponent<Buttoninfo>().ItemID];
-            shopItems[3, ButtonRef.GetComponent<Buttoninfo>().ItemID]++;
-            CoinsTXT.text = "Coins:" + coins;
+        int itemID = ButtonRef.GetComponent<Buttoninfo>().ItemID;
 
-            // If we bought a health flask, increment the flask count
-            if (ButtonRef.GetComponent<Buttoninfo>().ItemID == 1)
+        // Check if the player has enough coins to buy the item
+        if (coins >= shopItems[2, itemID])
+        {
+            // Deduct the cost from coins
+            coins -= shopItems[2, itemID];
+            shopItems[3, itemID]++;
+
+            // Update UI
+            CoinsTXT.text = "Coins: " + coins;
+            ButtonRef.GetComponent<Buttoninfo>().QuantityTxt.text = shopItems[3, itemID].ToString();
+
+            // If the health flask is bought, increase its count
+            if (itemID == 1)
             {
                 healthFlaskCount++;
             }
 
-            // If a spell is bought, unlock it (you can change this based on which item is being bought)
-            if (ButtonRef.GetComponent<Buttoninfo>().ItemID == 2) // Ice Bullet
+            // Unlock spells when bought
+            if (itemID == 2)
             {
-                spellsUnlocked[2] = true;
+                spellsUnlocked[2] = true; // Unlock Ice Bullet
             }
-            if (ButtonRef.GetComponent<Buttoninfo>().ItemID == 3) // Tornado
+            if (itemID == 3)
             {
-                spellsUnlocked[3] = true;
+                spellsUnlocked[3] = true; // Unlock Tornado
             }
-            if (ButtonRef.GetComponent<Buttoninfo>().ItemID == 4) // Lightning
+            if (itemID == 4)
             {
-                spellsUnlocked[4] = true;
+                spellsUnlocked[4] = true; // Unlock Lightning
             }
-
-            ButtonRef.GetComponent<Buttoninfo>().QuantityTxt.text = shopItems[3, ButtonRef.GetComponent<Buttoninfo>().ItemID].ToString();
         }
     }
 }

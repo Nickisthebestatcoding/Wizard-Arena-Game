@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class WizardScript : MonoBehaviour
 {
@@ -28,6 +29,15 @@ public class WizardScript : MonoBehaviour
     {
         originalSpeed = speed;
         rb = GetComponent<Rigidbody2D>();
+
+        // Expand clamp if in Boss Fight scene
+        if (SceneManager.GetActiveScene().name == "BossFight")
+        {
+            WORLD_MIN_X = -900.0f;
+            WORLD_MIN_Y = -900.0f;
+            WORLD_MAX_X = 900.0f;
+            WORLD_MAX_Y = 900.0f;
+        }
 
         Renderer r = GetComponent<Renderer>();
         spriteClamp = new PositionClamp(WORLD_MIN_X, WORLD_MIN_Y, WORLD_MAX_X, WORLD_MAX_Y, r);
