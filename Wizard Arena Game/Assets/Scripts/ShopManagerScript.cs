@@ -13,6 +13,9 @@ public class ShopManagerScript : MonoBehaviour
 
 
     public int healthFlaskCount = 0; // Track the number of health flasks
+    public int IceBulletCount = 0;
+    public int TornadoCount = 0;
+    public int LightningCount = 0;
     public bool[] spellsUnlocked = new bool[5]; // Track unlocked spells
 
     void Start()
@@ -61,19 +64,38 @@ public class ShopManagerScript : MonoBehaviour
                 healthFlaskCount++;
             }
 
-            // Unlock spells when bought
+            // If spells are bought, increase their count
             if (itemID == 2)
             {
-                spellsUnlocked[2] = true; // Unlock Ice Bullet
+                IceBulletCount++;
             }
             if (itemID == 3)
             {
-                spellsUnlocked[3] = true; // Unlock Tornado
+                TornadoCount++;
             }
             if (itemID == 4)
+            {
+                LightningCount++;
+            }
+
+            //Spell unlock
+            if(IceBulletCount >= 1)
+            {
+                spellsUnlocked[2] = true; // Unlock Ice
+            }
+            if(TornadoCount >= 1)
+            {
+                spellsUnlocked[3] = true; // Unlock Tornado
+            }
+            if(LightningCount >= 1)
             {
                 spellsUnlocked[4] = true; // Unlock Lightning
             }
         }
+    }
+
+    private void Update()
+    {
+        
     }
 }
