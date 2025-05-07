@@ -1057,7 +1057,7 @@ Transform:
   m_GameObject: {fileID: 123333620}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.41, y: -8.02, z: 0}
+  m_LocalPosition: {x: 7.19, y: -5.59, z: 0}
   m_LocalScale: {x: 9.41112, y: 6.763081, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13396,6 +13396,8 @@ MonoBehaviour:
   lightningCooldown: 1.5
   iceBulletCooldown: 0.7
   tornadoCooldown: 1
+  flaskCount: 1
+  healAmount: 5
 --- !u!114 &1544979013
 MonoBehaviour:
   m_ObjectHideFlags: 0
