@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class SpellCaster : MonoBehaviour
 {
@@ -29,8 +28,8 @@ public class SpellCaster : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Coroutine flashCoroutine;
 
-    private float spellSwitchCooldown = 1f;     // Cooldown duration
-    private float nextSpellSwitchTime = 0f;     // Time until next switch is allowed
+    private float spellSwitchCooldown = 1f;
+    private float nextSpellSwitchTime = 0f;
 
     void Start()
     {
@@ -40,21 +39,16 @@ public class SpellCaster : MonoBehaviour
 
     void Update()
     {
+        // Switch spells if cooldown is up
         if (Time.time >= nextSpellSwitchTime)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha4) && IsSpellUnlocked(SpellType.Lightning))
-                SwitchSpell(SpellType.Lightning);
-
-            if (Input.GetKeyDown(KeyCode.Alpha1)) // Fireball always unlocked
-                SwitchSpell(SpellType.Fireball);
-
-            if (Input.GetKeyDown(KeyCode.Alpha2) && IsSpellUnlocked(SpellType.IceBullet))
-                SwitchSpell(SpellType.IceBullet);
-
-            if (Input.GetKeyDown(KeyCode.Alpha3) && IsSpellUnlocked(SpellType.Tornado))
-                SwitchSpell(SpellType.Tornado);
+            if (Input.GetKeyDown(KeyCode.Alpha1)) currentSpell = SpellType.Fireball;
+            if (Input.GetKeyDown(KeyCode.Alpha2) && IsSpellUnlocked(SpellType.IceBullet)) currentSpell = SpellType.IceBullet;
+            if (Input.GetKeyDown(KeyCode.Alpha3) && IsSpellUnlocked(SpellType.Tornado)) currentSpell = SpellType.Tornado;
+            if (Input.GetKeyDown(KeyCode.Alpha4) && IsSpellUnlocked(SpellType.Lightning)) currentSpell = SpellType.Lightning;
         }
 
+        // Handle spell casting
         if (Input.GetButtonDown("Fire1"))
         {
             if (!IsSpellUnlocked(currentSpell)) return;
@@ -91,48 +85,25 @@ public class SpellCaster : MonoBehaviour
                     break;
             }
         }
-    }
 
-    void SwitchSpell(SpellType newSpell)
-    {
-        currentSpell = newSpell;
-        nextSpellSwitchTime = Time.time + spellSwitchCooldown;
-
-        Color flashColor = Color.white;
-        switch (newSpell)
+        // Healing with health flask when pressing Q
+        if (Input.GetKeyDown(KeyCode.Q) && shopManager.healthFlaskCount > 0)
         {
-            case SpellType.Fireball:
-                flashColor = Color.red;
-                break;
-            case SpellType.IceBullet:
-                flashColor = Color.blue;
-                break;
-            case SpellType.Tornado:
-                flashColor = Color.white;
-                break;
-            case SpellType.Lightning:
-                flashColor = new Color(0.5f, 0f, 0.5f); // Purple
-                break;
+            Heal();
         }
-
-        if (flashCoroutine != null)
-            StopCoroutine(flashCoroutine);
-
-        flashCoroutine = StartCoroutine(FlashColor(flashColor, 0.5f));
     }
 
-    IEnumerator FlashColor(Color flashColor, float duration)
+    void Heal()
     {
-        Color originalColor = spriteRenderer.color;
-        spriteRenderer.color = flashColor;
-        yield return new WaitForSeconds(duration);
-        spriteRenderer.color = originalColor;
+        // Heal the player here (you can add health restoration logic)
+        Debug.Log("Healed!");
+        shopManager.healthFlaskCount--;
     }
 
     bool IsSpellUnlocked(SpellType spell)
     {
-        if (spell == SpellType.Fireball) return true;
-        return shopManager.spellsUnlocked[(int)spell];
+        if (spell == SpellType.Fireball) return true; // Fireball is always unlocked
+        return shopManager.spellsUnlocked[(int)spell]; // Check if the spell is unlocked
     }
 
     void CastFireball()
