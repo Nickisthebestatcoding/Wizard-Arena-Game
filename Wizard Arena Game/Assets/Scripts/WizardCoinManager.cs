@@ -24,6 +24,11 @@ public class WizardCoinManager : MonoBehaviour
 
     private void Start()
     {
+        if (coinText == null)
+        {
+            coinText = GameObject.Find("OverworldCoinsText")?.GetComponent<TextMeshProUGUI>();
+        }
+
         UpdateCoinUI();
     }
 
@@ -31,6 +36,19 @@ public class WizardCoinManager : MonoBehaviour
     {
         totalCoins += amount;
         UpdateCoinUI();
+        WizardCoinManager.Instance.AddCoins(5);
+    }
+
+    public bool SpendCoins(int amount)
+    {
+        if (totalCoins >= amount)
+        {
+            totalCoins -= amount;
+            Debug.Log("Coins after purchase: " + totalCoins);
+            return true;
+        }
+        Debug.Log("Not enough coins.");
+        return false;
     }
 
     void UpdateCoinUI()
@@ -39,5 +57,13 @@ public class WizardCoinManager : MonoBehaviour
         {
             coinText.text = "Coins: " + totalCoins.ToString(); // Update the text with the coin count
         }
+    }
+    public int GetCoins()
+    {
+        return totalCoins;
+    }
+    private void Update()
+    {
+        UpdateCoinUI();
     }
 }
