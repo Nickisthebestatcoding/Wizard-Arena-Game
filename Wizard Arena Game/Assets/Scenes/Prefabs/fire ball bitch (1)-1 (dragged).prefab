@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 275451023753234405}
   - component: {fileID: 9097291859210762623}
   - component: {fileID: 126947310519031130}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: fire ball bitch (1)-1 (dragged)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
