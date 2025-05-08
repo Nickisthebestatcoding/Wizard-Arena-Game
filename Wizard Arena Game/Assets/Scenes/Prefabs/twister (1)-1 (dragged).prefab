@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   damage: 0.1
-  knockbackForce: 200
+  knockbackForce: 150
   knockbackDuration: 0.3
 --- !u!60 &4926812800580167036
 PolygonCollider2D:
