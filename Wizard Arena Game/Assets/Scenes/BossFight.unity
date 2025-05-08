@@ -513,8 +513,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 284384611
-  m_SortingLayer: 1
+  m_SortingLayerID: 271981637
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bd8eb22dd9052493785fe5d7b08efd10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -556,12 +556,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRadius: 50
-  attackRange: 15
+  attackRange: 5
   moveSpeed: 3
   projectilePrefab: {fileID: 4098352964649898985, guid: c67e6c6e1c5574fce9188ab052fee123, type: 3}
   shootPoint: {fileID: 1853340824}
   shootDelay: 1
   fadeDuration: 0.5
+  timeBeforeTeleport: 3
 --- !u!1 &99460957
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +696,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.32484868, g: 0.75252426, b: 0.9433962, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
