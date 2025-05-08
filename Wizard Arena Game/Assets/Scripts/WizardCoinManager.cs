@@ -36,7 +36,7 @@ public class WizardCoinManager : MonoBehaviour
     {
         totalCoins += amount;
         UpdateCoinUI();
-        WizardCoinManager.Instance.AddCoins(5);
+
     }
 
     public bool SpendCoins(int amount)
@@ -58,10 +58,12 @@ public class WizardCoinManager : MonoBehaviour
             coinText.text = "Coins: " + totalCoins.ToString(); // Update the text with the coin count
         }
     }
+
     public int GetCoins()
     {
         return totalCoins;
     }
+
     private void Update()
     {
         UpdateCoinUI();
