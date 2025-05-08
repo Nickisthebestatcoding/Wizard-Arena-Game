@@ -397,7 +397,7 @@ SpriteRenderer:
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &36494034
@@ -669,7 +669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3219400792639356828, guid: 5a7e8a6fecf7c4cabad53a729d66dc79, type: 3}
       propertyPath: coinValue
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4753181513203735086, guid: 5a7e8a6fecf7c4cabad53a729d66dc79, type: 3}
       propertyPath: m_Name
@@ -8877,7 +8877,7 @@ SpriteRenderer:
   m_Size: {x: 21.76, y: 21.76}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1045260708
