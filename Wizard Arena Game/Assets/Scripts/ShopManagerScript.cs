@@ -8,8 +8,8 @@ using TMPro;
 public class ShopManagerScript : MonoBehaviour
 {
     public int[,] shopItems = new int[5, 5];
-    public float coins;
     public TextMeshProUGUI CoinsTXT;
+
 
 
     public int healthFlaskCount = 0; // Track the number of health flasks
@@ -20,7 +20,7 @@ public class ShopManagerScript : MonoBehaviour
 
     void Start()
     {
-        CoinsTXT.text = "Coins:" + coins;
+        CoinsTXT.text = "Coins:" + WizardCoinManager.Instance.GetCoins();
 
         // ID's for shop items
         shopItems[1, 1] = 1; // Health Flask
@@ -47,16 +47,15 @@ public class ShopManagerScript : MonoBehaviour
 
         int itemID = ButtonRef.GetComponent<Buttoninfo>().ItemID;
 
-        // Check if the player has enough coins to buy the item
-        if (coins >= shopItems[2, itemID])
-        {
-            // Deduct the cost from coins
-            coins -= shopItems[2, itemID];
-            shopItems[3, itemID]++;
+        int itemCost = shopItems[2, itemID];
 
-            // Update UI
-            CoinsTXT.text = "Coins: " + coins;
+        // Check if the player has enough coins to buy the item
+        if (WizardCoinManager.Instance.SpendCoins(itemCost))
+        {
+            shopItems[3, itemID]++;
+            CoinsTXT.text = "Coins: " + WizardCoinManager.Instance.GetCoins();
             ButtonRef.GetComponent<Buttoninfo>().QuantityTxt.text = shopItems[3, itemID].ToString();
+
 
             // If the health flask is bought, increase its count
             if (itemID == 1)
@@ -94,8 +93,8 @@ public class ShopManagerScript : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
-        
+        CoinsTXT.text = "Coins: " + WizardCoinManager.Instance.GetCoins();
     }
 }
