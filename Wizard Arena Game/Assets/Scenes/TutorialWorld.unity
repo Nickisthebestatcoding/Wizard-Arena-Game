@@ -9442,9 +9442,16 @@ GameObject:
   - component: {fileID: 1090028038}
   - component: {fileID: 1090028037}
   - component: {fileID: 1090028036}
-  m_Layer: 0
-  m_Name: wizard time main
-  m_TagString: Untagged
+  - component: {fileID: 1090028049}
+  - component: {fileID: 1090028048}
+  - component: {fileID: 1090028047}
+  - component: {fileID: 1090028046}
+  - component: {fileID: 1090028045}
+  - component: {fileID: 1090028044}
+  - component: {fileID: 1090028043}
+  m_Layer: 6
+  m_Name: Wizard
+  m_TagString: Wizard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9531,8 +9538,8 @@ Transform:
   m_GameObject: {fileID: 1090028031}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000012809915, y: 0.00000013658318, z: 0.7296494, w: -0.6838215}
-  m_LocalPosition: {x: -4.88, y: -1.43, z: 0}
-  m_LocalScale: {x: 0.777972, y: 0.7932529, z: 1}
+  m_LocalPosition: {x: -4.880003, y: -1.4300003, z: 0}
+  m_LocalScale: {x: 0.77797234, y: 0.793253, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 129781560}
@@ -9548,7 +9555,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1090028031}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f8bdab9e5bd8c450fa41a49f94f7158a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -9746,9 +9753,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -9757,10 +9764,123 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1090028043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090028031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7536b55184049e7bd5c8ddf7cecf73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1090028044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090028031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46fabd96934924551b16ea29aec13674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1090028045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090028031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49a2b9b49b8d47158b1e0a2bafb6b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1090028046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090028031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9378a15ff16254718b9e1e7dbedbfddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1090028047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090028031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b53c8a54f933c4350a8c6e47e6d54904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireballPrefab: {fileID: 8247750139965071724, guid: 0c5509bddb5f348f29bd399e16421738, type: 3}
+  lightningPrefab: {fileID: 6440011539996498930, guid: 0f7ccd35e86ea4dd7ab68ff8d84d33b4, type: 3}
+  iceBulletPrefab: {fileID: 5755910993399523153, guid: e43575b8beb944d12b6756190844ca5d, type: 3}
+  tornadoPrefab: {fileID: 8406519548528273096, guid: 9fd0edf4850fb4f5cbe9ab2e57949441, type: 3}
+  firePoint: {fileID: 129781560}
+  lightningSpawnPoint: {fileID: 1812335885}
+  fireForce: 10
+  fireballCooldown: 0.5
+  lightningCooldown: 1.5
+  iceBulletCooldown: 0.7
+  tornadoCooldown: 1
+  flaskCount: 1
+  healAmount: 5
+--- !u!114 &1090028048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090028031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  healthBarUI: {fileID: 1544979004}
+  WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
+--- !u!114 &1090028049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090028031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09fb86daf9f674af4abfbea6c223cc3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarImage: {fileID: 1118137314}
+  healthSprites:
+  - {fileID: 21300000, guid: 2d30f45dafd4f48bfa6caca2958ab045, type: 3}
+  - {fileID: 21300000, guid: 45735f024b55f40d58f7bc94f4626f50, type: 3}
+  - {fileID: 21300000, guid: feaf8d608dcf040d39208c2198c34672, type: 3}
+  - {fileID: 21300000, guid: ab5e7d4bebace484199bdcc63cc6db35, type: 3}
+  - {fileID: 21300000, guid: 935879e0b475b4b3785c6fe5720d6671, type: 3}
+  - {fileID: 21300000, guid: a98418c9af95d4c1eb63541d01e6587d, type: 3}
+  - {fileID: 21300000, guid: 8a1750e60463c4790946e02ed21c46c6, type: 3}
+  - {fileID: 21300000, guid: ccc9f4690f5f6409d9e1996aebfb9fb8, type: 3}
+  - {fileID: 21300000, guid: 0cce3fc3314a545a6b4706bad53bc014, type: 3}
+  - {fileID: 21300000, guid: 97f4c95e059b743aeaf23d0b369d9997, type: 3}
+  - {fileID: 21300000, guid: 3dfd2e702b21e42dd9199fb8223b76ef, type: 3}
 --- !u!1 &1093150528
 GameObject:
   m_ObjectHideFlags: 0
@@ -19574,6 +19694,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1090028034}
   - {fileID: 1544978996}
   - {fileID: 1384855190}
   - {fileID: 24171959}
@@ -19833,6 +19954,5 @@ SceneRoots:
   - {fileID: 531666386}
   - {fileID: 36494034}
   - {fileID: 1045260708}
-  - {fileID: 1090028034}
   - {fileID: 2088918920}
   - {fileID: 896985852}
