@@ -10,7 +10,13 @@ public class Necromancer : MonoBehaviour
     public Transform shootPoint;
     public float shootDelay = 1f;
     public float fadeDuration = 0.5f;
-    public float timeBeforeTeleport = 5f; // Public variable for teleport delay
+    public float timeBeforeTeleport = 5f;
+
+    [Header("Giant Fireball Attack")]
+    public GameObject giantFireballPrefab;
+    public Transform giantFireballShootPoint;
+    public float giantFireballCooldown = 20f;
+    public float giantFireballChance = 0.01f; // Chance per frame
 
     private Transform player;
     private float shootCooldown;
@@ -21,20 +27,32 @@ public class Necromancer : MonoBehaviour
     private float timeOutsideAttackRange = 0f;
     private bool isTeleporting = false;
 
+    private float giantFireballTimer = 0f;
+    private bool isCastingGiantFireball = false;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Wizard").transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
         randomMoveTarget = transform.position;
     }
-     
+
     void Update()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
+        // Update fireball cooldown timer
+        if (giantFireballTimer > 0f)
+            giantFireballTimer -= Time.deltaTime;
+
         if (distanceToPlayer <= detectionRadius)
         {
             RotateTowardsPlayer();
+
+            TryCastGiantFireball();
+
+            // If casting fireball, stop all other behavior
+            if (isCastingGiantFireball) return;
 
             if (distanceToPlayer > attackRange)
             {
@@ -110,14 +128,11 @@ public class Necromancer : MonoBehaviour
     {
         isTeleporting = true;
 
-        // Fade out
         yield return StartCoroutine(FadeOut());
 
-        // Teleport to random position around player within attack range
         Vector2 randomOffset = Random.insideUnitCircle.normalized * Random.Range(2f, attackRange);
         transform.position = player.position + (Vector3)randomOffset;
 
-        // Fade in
         yield return StartCoroutine(FadeIn());
 
         timeOutsideAttackRange = 0f;
@@ -154,6 +169,30 @@ public class Necromancer : MonoBehaviour
             color.a = alpha;
             spriteRenderer.color = color;
         }
+    }
+
+    void TryCastGiantFireball()
+    {
+        if (!isCastingGiantFireball && giantFireballTimer <= 0f && Random.value < giantFireballChance)
+        {
+            StartCoroutine(CastGiantFireball());
+        }
+    }
+
+    IEnumerator CastGiantFireball()
+    {
+        isCastingGiantFireball = true;
+
+        // Optional delay or animation
+        yield return new WaitForSeconds(1f);
+
+        if (giantFireballPrefab != null && giantFireballShootPoint != null)
+        {
+            Instantiate(giantFireballPrefab, giantFireballShootPoint.position, giantFireballShootPoint.rotation);
+        }
+
+        giantFireballTimer = giantFireballCooldown;
+        isCastingGiantFireball = false;
     }
 
     public void ApplyPush(Vector2 force, float duration)
