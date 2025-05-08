@@ -467,6 +467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 81714413}
   - component: {fileID: 81714412}
+  - component: {fileID: 81714414}
   m_Layer: 0
   m_Name: wizard time (1)-1 (dragged)
   m_TagString: Untagged
@@ -535,12 +536,31 @@ Transform:
   m_GameObject: {fileID: 81714411}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.8, y: 80.2, z: 0}
+  m_LocalPosition: {x: 32.26, y: 80.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &81714414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81714411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f25d9c7aac8046be8a427fcf5f673d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRadius: 10
+  attackRange: 5
+  moveSpeed: 3
+  projectilePrefab: {fileID: 4098352964649898985, guid: c67e6c6e1c5574fce9188ab052fee123, type: 3}
+  shootPoint: {fileID: 0}
+  shootDelay: 1
+  fadeDuration: 0.5
 --- !u!1 &99460957
 GameObject:
   m_ObjectHideFlags: 0
