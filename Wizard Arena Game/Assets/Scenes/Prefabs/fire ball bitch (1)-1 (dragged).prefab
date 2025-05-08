@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 275451023753234405}
   - component: {fileID: 9097291859210762623}
   - component: {fileID: 126947310519031130}
+  - component: {fileID: -7760410146407305537}
   m_Layer: 12
   m_Name: fire ball bitch (1)-1 (dragged)
   m_TagString: Untagged
@@ -170,3 +171,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-7760410146407305537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4098352964649898985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51f2bc0076ab4ceea5540eb08ed0774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  totalDamage: 3
+  duration: 2
+  tickInterval: 1
