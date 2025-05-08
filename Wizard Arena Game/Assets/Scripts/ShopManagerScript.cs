@@ -10,6 +10,7 @@ public class ShopManagerScript : MonoBehaviour
     public int[,] shopItems = new int[5, 5];
     public float coins;
     public TextMeshProUGUI CoinsTXT;
+    public GameObject wizard;
 
 
     public int healthFlaskCount = 0; // Track the number of health flasks
@@ -20,6 +21,11 @@ public class ShopManagerScript : MonoBehaviour
 
     void Start()
     {
+        wizard = GameObject.FindWithTag("Wizard");
+        if (wizard != null)
+        {
+            wizard.GetComponent<WizardMovement>().enabled = false;
+        }
         CoinsTXT.text = "Coins:" + coins;
 
         // ID's for shop items
