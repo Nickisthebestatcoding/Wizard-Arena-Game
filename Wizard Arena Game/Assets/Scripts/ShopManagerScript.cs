@@ -24,7 +24,7 @@ public class ShopManagerScript : MonoBehaviour
         wizard = GameObject.FindWithTag("Wizard");
         if (wizard != null)
         {
-            wizard.GetComponent<WizardMovement>().enabled = false;
+            wizard.GetComponent<WizardScript>().enabled = false;
         }
         CoinsTXT.text = "Coins:" + coins;
 

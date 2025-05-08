@@ -10,6 +10,7 @@ public class Necromancer : MonoBehaviour
     public Transform shootPoint;
     public float shootDelay = 1f;
     public float fadeDuration = 0.5f;
+    public float timeBeforeTeleport = 5f; // Public variable for teleport delay
 
     private Transform player;
     private float shootCooldown;
@@ -26,7 +27,7 @@ public class Necromancer : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         randomMoveTarget = transform.position;
     }
-
+     
     void Update()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
@@ -39,7 +40,7 @@ public class Necromancer : MonoBehaviour
             {
                 timeOutsideAttackRange += Time.deltaTime;
 
-                if (timeOutsideAttackRange >= 5f && !isTeleporting)
+                if (timeOutsideAttackRange >= timeBeforeTeleport && !isTeleporting)
                 {
                     StartCoroutine(TeleportIntoAttackRange());
                 }
@@ -119,7 +120,6 @@ public class Necromancer : MonoBehaviour
         // Fade in
         yield return StartCoroutine(FadeIn());
 
-        // Reset timer
         timeOutsideAttackRange = 0f;
         isTeleporting = false;
     }
