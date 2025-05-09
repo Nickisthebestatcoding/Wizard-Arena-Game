@@ -54,3 +54,5 @@ public class PoisonEffect : MonoBehaviour
             spriteRenderer.color = originalColor;
     }
 }
+
+

@@ -112,3 +112,4 @@ public class EnemyWizardAI : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 }
+

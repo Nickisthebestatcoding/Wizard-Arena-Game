@@ -34,3 +34,4 @@ public class PoisonBullet : MonoBehaviour
         Destroy(gameObject); // Destroy if it hits anything else
     }
 }
+
