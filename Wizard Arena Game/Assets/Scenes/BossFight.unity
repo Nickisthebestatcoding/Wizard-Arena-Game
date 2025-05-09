@@ -7748,7 +7748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb52ca3b9e5ee47b493cd718031c5df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossPrefab: {fileID: 9149431467870237510, guid: 8a7cac88bce6d4e6093e903592e5f0b4, type: 3}
+  bossPrefab: {fileID: 4436921520647235542, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
   bossSpawnPoint: {fileID: 563904180}
   gateToActivate: {fileID: 74365843}
   mainCamera: {fileID: 0}
