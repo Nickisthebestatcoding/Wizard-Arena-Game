@@ -5,7 +5,6 @@ public class BossSpawner : MonoBehaviour
 {
     public GameObject bossPrefab;
     public Transform bossSpawnPoint;
-    public Transform cameraFocusTarget; // ?? Drag necromancer or spawn point here
 
     public GameObject[] borders;
     private Health bossHealth;
@@ -17,7 +16,8 @@ public class BossSpawner : MonoBehaviour
     public float zoomSpeed = 2f;
 
     private bool hasSpawned = false;
-    private Vector3 originalCamPos;
+
+    public Transform zoomTarget; // Object to zoom into (can be the BossSpawner or any object)
 
     private void Start()
     {
@@ -25,7 +25,6 @@ public class BossSpawner : MonoBehaviour
             mainCamera = Camera.main;
 
         SetBordersActive(false);
-        originalCamPos = mainCamera.transform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -57,35 +56,45 @@ public class BossSpawner : MonoBehaviour
 
     IEnumerator SummoningSequence()
     {
-        // 1. Save original camera position
-        originalCamPos = mainCamera.transform.position;
-
-        // 2. Move camera to focus target
-        if (cameraFocusTarget != null)
-        {
-            Vector3 focusPos = new Vector3(cameraFocusTarget.position.x, cameraFocusTarget.position.y, originalCamPos.z);
-            mainCamera.transform.position = focusPos;
-        }
-
-        // 3. Zoom in on target
-        yield return StartCoroutine(ZoomCamera(zoomDuringSummon));
+        // Zoom in on the target (object or boss spawner)
+        yield return StartCoroutine(ZoomCameraToObject(zoomTarget, zoomDuringSummon));
         yield return new WaitForSeconds(1f);
 
-        // 4. Spawn boss
+        // Spawn boss
         if (bossPrefab != null && bossSpawnPoint != null)
         {
             GameObject boss = Instantiate(bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);
             bossHealth = boss.GetComponent<Health>();
         }
 
-        // 5. Zoom out to default and return to original camera position
-        yield return new WaitForSeconds(0.5f);
-        yield return StartCoroutine(ZoomCamera(zoomDefault));
-        mainCamera.transform.position = originalCamPos;
-
-        // 6. Zoom in slightly and stay that way for fight
-        yield return new WaitForSeconds(0.5f);
+        // Zoom in slightly for boss fight
+        yield return new WaitForSeconds(1f);
         yield return StartCoroutine(ZoomCamera(zoomDuringFight));
+    }
+
+    // New coroutine to zoom to a specific object
+    IEnumerator ZoomCameraToObject(Transform target, float targetSize)
+    {
+        if (mainCamera == null || target == null) yield break;
+
+        Vector3 targetPosition = target.position;
+        float startSize = mainCamera.orthographicSize;
+        Vector3 startPosition = mainCamera.transform.position;
+        float t = 0f;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * zoomSpeed;
+            // Move the camera towards the target object
+            mainCamera.transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+            // Zoom the camera towards the target size
+            mainCamera.orthographicSize = Mathf.Lerp(startSize, targetSize, t);
+            yield return null;
+        }
+
+        // Ensure we end exactly at the target position and size
+        mainCamera.transform.position = targetPosition;
+        mainCamera.orthographicSize = targetSize;
     }
 
     IEnumerator ZoomCamera(float targetSize)
@@ -108,6 +117,7 @@ public class BossSpawner : MonoBehaviour
     public void ResetBossState()
     {
         hasSpawned = false;
+
         StartCoroutine(ZoomCamera(zoomDefault));
 
         if (bossHealth != null && bossHealth.gameObject != null)
