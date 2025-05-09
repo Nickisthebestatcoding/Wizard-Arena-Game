@@ -4328,6 +4328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossSpawner: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!4 &712014451
 Transform:
   m_ObjectHideFlags: 0
@@ -8180,13 +8181,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossPrefab: {fileID: 4436921520647235542, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
   bossSpawnPoint: {fileID: 563904180}
-  cameraFocusTarget: {fileID: 563904180}
   borders: []
   mainCamera: {fileID: 0}
   zoomDuringSummon: 4
   zoomDuringFight: 20
   zoomDefault: 10
   zoomSpeed: 2
+  zoomTarget: {fileID: 563904180}
 --- !u!61 &2088930101
 BoxCollider2D:
   m_ObjectHideFlags: 0

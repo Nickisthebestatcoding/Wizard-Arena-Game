@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("Boss Spawner")]
     public BossSpawner bossSpawner; // Drag BossSpawner GameObject here in the Inspector
+    public Camera mainCamera; // Reference to the main camera
 
     void Start()
     {
@@ -85,11 +86,24 @@ public class LevelManager : MonoBehaviour
         {
             bossSpawner.ResetBossState();
         }
+
+        // Reset camera
+        ResetCamera();
     }
 
     public void ShowGameOver()
     {
         Debug.Log("💀 Game Over! 💀");
         // Optional: Show game over UI or pause the game
+    }
+
+    // New method to reset camera
+    private void ResetCamera()
+    {
+        if (mainCamera != null)
+        {
+            mainCamera.transform.position = new Vector3(0, 0, mainCamera.transform.position.z); // Reset position to (0, 0, z)
+            mainCamera.orthographicSize = 8f; // Default zoom level
+        }
     }
 }
