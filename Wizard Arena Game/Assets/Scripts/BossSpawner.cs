@@ -1,93 +1,105 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class BossSpawner : MonoBehaviour
 {
     public GameObject bossPrefab;
     public Transform bossSpawnPoint;
-    public GameObject gateToActivate;
-    public Camera mainCamera;
-    public Transform player;
-    public float zoomInSize = 3f;
-    public float zoomDuration = 1f;
-    public float holdTime = 1.5f;
 
-    private bool bossSpawned = false;
-    private float originalSize;
+    public GameObject[] borders;
+    private Health bossHealth;
+
+    public Camera mainCamera;
+    public float zoomDuringSummon = 4f;
+    public float zoomDuringFight = 6f;
+    public float zoomDefault = 8f;
+    public float zoomSpeed = 2f;
+
+    private bool hasSpawned = false;
 
     private void Start()
     {
         if (mainCamera == null)
             mainCamera = Camera.main;
 
-        originalSize = mainCamera.orthographicSize;
+        SetBordersActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (bossSpawned) return;
+        if (hasSpawned) return;
 
         if (other.CompareTag("Wizard"))
         {
-            bossSpawned = true;
-            StartCoroutine(SpawnBossSequence());
+            hasSpawned = true;
+            SetBordersActive(true);
+            StartCoroutine(SummoningSequence());
         }
     }
 
-    IEnumerator SpawnBossSequence()
+    private void SetBordersActive(bool isActive)
     {
-        gameObject.SetActive(false);
-
-        if (gateToActivate != null)
-            gateToActivate.SetActive(true);
-
-        // Zoom in on boss spawn point
-        yield return StartCoroutine(ZoomCamera(bossSpawnPoint.position, zoomInSize));
-
-        // Spawn boss and fade in
-        GameObject boss = Instantiate(bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);
-        SpriteRenderer sr = boss.GetComponent<SpriteRenderer>();
-        if (sr != null)
+        foreach (GameObject border in borders)
         {
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
-            float fadeDuration = 1f;
-            float t = 0;
-            while (t < fadeDuration)
-            {
-                float alpha = t / fadeDuration;
-                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, alpha);
-                t += Time.deltaTime;
-                yield return null;
-            }
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
+            if (border != null)
+                border.SetActive(isActive);
         }
-
-        // Hold camera on boss
-        yield return new WaitForSeconds(holdTime);
-
-        // Zoom out to player
-        yield return StartCoroutine(ZoomCamera(player.position, originalSize));
     }
 
-    IEnumerator ZoomCamera(Vector3 targetPos, float targetSize)
+    public void OpenBorders()
     {
-        Vector3 startPos = mainCamera.transform.position;
+        Debug.Log("Opening borders.");
+        SetBordersActive(false);
+    }
+
+    IEnumerator SummoningSequence()
+    {
+        // Zoom in
+        yield return StartCoroutine(ZoomCamera(zoomDuringSummon));
+        yield return new WaitForSeconds(1f);
+
+        // Spawn boss
+        if (bossPrefab != null && bossSpawnPoint != null)
+        {
+            GameObject boss = Instantiate(bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);
+            bossHealth = boss.GetComponent<Health>();
+        }
+
+        // Zoom in slightly for boss fight
+        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(ZoomCamera(zoomDuringFight));
+    }
+
+    IEnumerator ZoomCamera(float targetSize)
+    {
+        if (mainCamera == null) yield break;
+
         float startSize = mainCamera.orthographicSize;
-
         float t = 0f;
-        while (t < zoomDuration)
+
+        while (Mathf.Abs(mainCamera.orthographicSize - targetSize) > 0.05f)
         {
-            t += Time.deltaTime;
-            float progress = t / zoomDuration;
-
-            // Lerp position (keep camera z position)
-            Vector3 newPos = Vector3.Lerp(startPos, new Vector3(targetPos.x, targetPos.y, startPos.z), progress);
-            mainCamera.transform.position = newPos;
-
-            // Lerp zoom
-            mainCamera.orthographicSize = Mathf.Lerp(startSize, targetSize, progress);
-
+            t += Time.deltaTime * zoomSpeed;
+            mainCamera.orthographicSize = Mathf.Lerp(startSize, targetSize, t);
             yield return null;
         }
+
+        mainCamera.orthographicSize = targetSize;
+    }
+
+    public void ResetBossState()
+    {
+        hasSpawned = false;
+
+        StartCoroutine(ZoomCamera(zoomDefault));
+
+        if (bossHealth != null && bossHealth.gameObject != null)
+        {
+            Destroy(bossHealth.gameObject);
+            bossHealth = null;
+        }
+
+        SetBordersActive(false);
+        gameObject.SetActive(true); // Reactivate trigger
     }
 }
