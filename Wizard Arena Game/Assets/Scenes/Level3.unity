@@ -1127,6 +1127,10 @@ PrefabInstance:
       value: New Piskel-7-1 (dragged)
       objectReference: {fileID: 0}
     - target: {fileID: 9092233153351999594, guid: 26972deb82328462da2e2b742dc71db8, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092233153351999594, guid: 26972deb82328462da2e2b742dc71db8, type: 3}
       propertyPath: m_TagString
       value: Fence
       objectReference: {fileID: 0}
