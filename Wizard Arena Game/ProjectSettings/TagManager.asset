@@ -80,3 +80,9 @@ TagManager:
   - name: beans
     uniqueID: 3712454641
     locked: 0
+  - name: shop
+    uniqueID: 818669771
+    locked: 0
+  - name: shop items
+    uniqueID: 880619865
+    locked: 0
