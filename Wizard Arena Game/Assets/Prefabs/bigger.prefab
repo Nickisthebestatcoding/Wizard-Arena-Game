@@ -185,5 +185,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   totalDamage: 7
-  duration: 2
+  duration: 1
   tickInterval: 1
