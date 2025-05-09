@@ -3,7 +3,13 @@ guid: b53c8a54f933c4350a8c6e47e6d54904
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - fireballPrefab: {fileID: 8247750139965071724, guid: 0c5509bddb5f348f29bd399e16421738, type: 3}
+  - lightningPrefab: {fileID: 6440011539996498930, guid: 0f7ccd35e86ea4dd7ab68ff8d84d33b4, type: 3}
+  - iceBulletPrefab: {fileID: 6769926026113190741, guid: 0c74f0198cd54408cbe24150f90cb129, type: 3}
+  - tornadoPrefab: {fileID: 2083348019653960525, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
+  - firePoint: {instanceID: 0}
+  - lightningSpawnPoint: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
