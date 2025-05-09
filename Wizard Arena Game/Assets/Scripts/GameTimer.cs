@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro; // Use UnityEngine.UI if you're using regular Text
+using UnityEngine.SceneManagement;
 
 public class GameTimer : MonoBehaviour
 {
@@ -29,6 +30,25 @@ public class GameTimer : MonoBehaviour
         {
             timer += Time.deltaTime;
             UpdateTimerDisplay();
+        }
+    }
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Replace "TargetScene" with your actual scene name
+        if (scene.name == "FinalFinal")
+        {
+            isRunning = false;
+            Debug.Log("Timer stopped in " + scene.name);
         }
     }
 
