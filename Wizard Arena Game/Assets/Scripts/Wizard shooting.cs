@@ -25,7 +25,6 @@ public class SpellCaster : MonoBehaviour
     private enum SpellType { Fireball = 0, IceBullet = 2, Tornado = 3, Lightning = 4 }
     private SpellType currentSpell = SpellType.Fireball;
 
-    private ShopManagerScript shopManager;
     private SpriteRenderer spriteRenderer;
     private Coroutine flashCoroutine;
     private Health wizardHealth;
@@ -38,7 +37,6 @@ public class SpellCaster : MonoBehaviour
 
     void Start()
     {
-        shopManager = FindObjectOfType<ShopManagerScript>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         wizardHealth = GetComponent<Health>();
     }
@@ -47,23 +45,21 @@ public class SpellCaster : MonoBehaviour
     {
         if (Time.time >= nextSpellSwitchTime)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha4) && IsSpellUnlocked(SpellType.Lightning))
+            if (Input.GetKeyDown(KeyCode.Alpha4))
                 SwitchSpell(SpellType.Lightning);
 
-            if (Input.GetKeyDown(KeyCode.Alpha1)) // Fireball always unlocked
+            if (Input.GetKeyDown(KeyCode.Alpha1))
                 SwitchSpell(SpellType.Fireball);
 
-            if (Input.GetKeyDown(KeyCode.Alpha2) && IsSpellUnlocked(SpellType.IceBullet))
+            if (Input.GetKeyDown(KeyCode.Alpha2))
                 SwitchSpell(SpellType.IceBullet);
 
-            if (Input.GetKeyDown(KeyCode.Alpha3) && IsSpellUnlocked(SpellType.Tornado))
+            if (Input.GetKeyDown(KeyCode.Alpha3))
                 SwitchSpell(SpellType.Tornado);
         }
 
         if (Input.GetButtonDown("Fire1"))
         {
-            if (!IsSpellUnlocked(currentSpell)) return;
-
             switch (currentSpell)
             {
                 case SpellType.Fireball:
@@ -139,12 +135,6 @@ public class SpellCaster : MonoBehaviour
         spriteRenderer.color = flashColor;
         yield return new WaitForSeconds(duration);
         spriteRenderer.color = originalColor;
-    }
-
-    bool IsSpellUnlocked(SpellType spell)
-    {
-        if (spell == SpellType.Fireball) return true;
-        return shopManager.spellsUnlocked[(int)spell];
     }
 
     void CastFireball()
