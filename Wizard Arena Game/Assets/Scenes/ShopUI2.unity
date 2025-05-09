@@ -1109,7 +1109,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1986559854}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 5000
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -2046,8 +2046,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45654d2664d14d04a4c5b53fb61c1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 27
   CoinsTXT: {fileID: 199326198}
+  healthFlaskCount: 0
+  IceBulletCount: 0
+  TornadoCount: 0
+  LightningCount: 0
+  spellsUnlocked: 0000000000
 --- !u!4 &1799139086
 Transform:
   m_ObjectHideFlags: 0
@@ -2209,8 +2213,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0
+  far clip plane: 100000
   field of view: 60
   orthographic: 1
   orthographic size: 5
