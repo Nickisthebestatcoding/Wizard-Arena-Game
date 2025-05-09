@@ -3466,6 +3466,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: New Piskel-7-1 (dragged) (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092233153351999594, guid: 26972deb82328462da2e2b742dc71db8, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3649,6 +3653,10 @@ PrefabInstance:
     - target: {fileID: 2588179668703838062, guid: 0df8aa7df4c1e4057a42ad4d5d0db304, type: 3}
       propertyPath: m_Name
       value: New Piskel-7-3 (dragged) (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588179668703838062, guid: 0df8aa7df4c1e4057a42ad4d5d0db304, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 9205393764784312077, guid: 0df8aa7df4c1e4057a42ad4d5d0db304, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6441,6 +6449,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: New Piskel-7-2 (dragged) (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7534137049536411315, guid: c80e81645ae274e30a70443b3f109585, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7783,6 +7795,10 @@ PrefabInstance:
     - target: {fileID: 7534137049536411315, guid: c80e81645ae274e30a70443b3f109585, type: 3}
       propertyPath: m_Name
       value: New Piskel-7-2 (dragged)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534137049536411315, guid: c80e81645ae274e30a70443b3f109585, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11217,6 +11233,10 @@ PrefabInstance:
     - target: {fileID: 2588179668703838062, guid: 0df8aa7df4c1e4057a42ad4d5d0db304, type: 3}
       propertyPath: m_Name
       value: New Piskel-7-3 (dragged)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588179668703838062, guid: 0df8aa7df4c1e4057a42ad4d5d0db304, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 9205393764784312077, guid: 0df8aa7df4c1e4057a42ad4d5d0db304, type: 3}
       propertyPath: m_LocalScale.x
