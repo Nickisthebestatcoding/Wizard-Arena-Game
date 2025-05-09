@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7047986355903489860}
   - component: {fileID: 3583498615404389788}
   - component: {fileID: -2810798237246324529}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: shocking intro-1 (dragged)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,6 +13,9 @@ public class LevelManager : MonoBehaviour
     private Dictionary<GameObject, Vector3> enemyStartPos = new Dictionary<GameObject, Vector3>();
     private Dictionary<GameObject, Quaternion> enemyStartRot = new Dictionary<GameObject, Quaternion>();
 
+    [Header("Boss Spawner")]
+    public BossSpawner bossSpawner; // Drag BossSpawner GameObject here in the Inspector
+
     void Start()
     {
         wizard = GameObject.FindGameObjectWithTag("Wizard");
@@ -75,6 +78,12 @@ public class LevelManager : MonoBehaviour
                 if (hp != null)
                     hp.ResetHealth();
             }
+        }
+
+        // 🧟 Boss Reset
+        if (bossSpawner != null)
+        {
+            bossSpawner.ResetBossState();
         }
     }
 
