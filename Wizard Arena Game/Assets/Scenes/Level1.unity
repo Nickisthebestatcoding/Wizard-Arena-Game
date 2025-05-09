@@ -5478,6 +5478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: ShopUI1
+  clickRange: 4
 --- !u!1001 &302442213
 PrefabInstance:
   m_ObjectHideFlags: 0
