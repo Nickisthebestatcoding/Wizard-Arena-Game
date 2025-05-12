@@ -126,7 +126,7 @@ MonoBehaviour:
   giantFireballChance_Phase2: 0.1
   circleAttackCooldown_Phase2: 40
   circleChance_Phase2: 0.1
-  detectionRadius_Phase2: 15
+  detectionRadius_Phase2: 400
   attackRange_Phase2: 5
   timeBeforeTeleport_Phase2: 0.5
 --- !u!50 &4563807965560304429

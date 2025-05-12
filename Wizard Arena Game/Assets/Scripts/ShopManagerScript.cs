@@ -62,18 +62,21 @@ public class ShopManagerScript : MonoBehaviour
             CoinsTXT.text = "Coins:" + WizardCoinManager.Instance.GetCoins();
             ButtonRef.GetComponent<Buttoninfo>().QuantityTxt.text = shopItems[3, itemID].ToString();
 
-            // If spells are bought, unlock them
-            if (itemID == 2)
-                spellsUnlocked[2] = true; // Unlock Ice Bullet
-            if (itemID == 3)
-                spellsUnlocked[3] = true; // Unlock Tornado
-            if (itemID == 4)
-                spellsUnlocked[4] = true; // Unlock Lightning
+            // Unlock the corresponding spell based on the itemID
+            switch (itemID)
+            {
+                case 2: // Ice Bullet
+                    spellsUnlocked[2] = true;
+                    break;
+                case 3: // Tornado
+                    spellsUnlocked[3] = true;
+                    break;
+                case 4: // Lightning
+                    spellsUnlocked[4] = true;
+                    break;
+                    // Add cases for other spells or items as needed
+            }
         }
     }
 
-    private void Update()
-    {
-        CoinsTXT.text = "Coins:" + WizardCoinManager.Instance.GetCoins();
-    }
 }

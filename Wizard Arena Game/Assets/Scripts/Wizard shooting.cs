@@ -92,14 +92,8 @@ public class SpellCaster : MonoBehaviour
                     break;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Q) && flaskCount > 0 && wizardHealth != null)
-        {
-            wizardHealth.TakeDamage(-healAmount); // Negative damage = healing
-            flaskCount--;
-            Debug.Log("Used healing flask. Remaining: " + flaskCount);
-        }
     }
+
 
     void SwitchSpell(SpellType newSpell)
     {
