@@ -37,6 +37,11 @@ public class Necromancer : MonoBehaviour
     public float giantFireballChance_Phase2 = 0.03f;
     public float circleAttackCooldown_Phase2 = 8f;
     public float circleChance_Phase2 = 0.02f;
+    public float detectionRadius_Phase2 = 15f;  // NEW
+    public float attackRange_Phase2 = 7f;       // NEW
+    public float timeBeforeTeleport_Phase2 = 2f; // faster teleporting in phase 2
+
+
 
     private float shootCooldown;
     private Transform player;
@@ -117,10 +122,15 @@ public class Necromancer : MonoBehaviour
             giantFireballChance = giantFireballChance_Phase2;
             circleAttackCooldown = circleAttackCooldown_Phase2;
             circleChance = circleChance_Phase2;
+            detectionRadius = detectionRadius_Phase2;
+            attackRange = attackRange_Phase2;
+            timeBeforeTeleport = timeBeforeTeleport_Phase2; // 🆕 set new teleport time
 
             Debug.Log("Necromancer entered Phase 2!");
         }
     }
+
+
 
     void RotateTowardsPlayer()
     {
