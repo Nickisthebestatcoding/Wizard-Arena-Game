@@ -5,7 +5,7 @@ using UnityEngine;
 public class WizardAnim : MonoBehaviour
 {
     Animator animator;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,16 +16,14 @@ public class WizardAnim : MonoBehaviour
     void Update()
     {
         bool isMoving = Input.GetKey(KeyCode.W) ||
-                       Input.GetKey(KeyCode.A) ||
-                       Input.GetKey(KeyCode.S) ||
-                       Input.GetKey(KeyCode.D);
+                        Input.GetKey(KeyCode.A) ||
+                        Input.GetKey(KeyCode.S) ||
+                        Input.GetKey(KeyCode.D);
 
+        bool isFiring = Input.GetButton("Fire1"); // Default mapped to left mouse button
 
-        // Update Animator parameter
+        // Update Animator parameters
         animator.SetBool("isWalking", isMoving);
+        animator.SetBool("isFiring", isFiring);
     }
-
-   
-    
 }
-

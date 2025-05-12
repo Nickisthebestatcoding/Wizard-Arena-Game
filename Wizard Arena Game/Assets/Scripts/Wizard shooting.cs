@@ -116,7 +116,7 @@ public class SpellCaster : MonoBehaviour
                 flashColor = Color.blue;
                 break;
             case SpellType.Tornado:
-                flashColor = Color.white;
+                flashColor = Color.grey;
                 break;
             case SpellType.Lightning:
                 flashColor = new Color(0.5f, 0f, 0.5f); // Purple
