@@ -16,6 +16,8 @@ TagManager:
   - Items
   - Necro
   - Fence
+  - Shop
+  - Timer
   layers:
   - Default
   - TransparentFX
@@ -32,7 +34,7 @@ TagManager:
   - Attacks
   - tornado
   - Fence
-  - 
+  - Timer
   - 
   - 
   - 
