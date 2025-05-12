@@ -18,17 +18,28 @@ public class Necromancer : MonoBehaviour
     public float giantFireballCooldown = 20f;
     public float giantFireballChance = 0.01f; // Chance per frame
 
+    [Header("Circle Attack")]
+    public float circleAttackChance = 0.002f; // Random chance per frame
+    public float circleRadius = 3f;
+    public float circleSpeed = 180f; // degrees per second
+    public float circleDuration = 4f;
+    public float circleShootDelay = 0.3f;
+    public float circleAttackCooldown = 10f;
+    private float circleAttackTimer = 0f;
+
     private Transform player;
     private float shootCooldown;
     private SpriteRenderer spriteRenderer;
     private Vector2 randomMoveTarget;
-
     private Coroutine knockbackRoutine;
     private float timeOutsideAttackRange = 0f;
     private bool isTeleporting = false;
 
     private float giantFireballTimer = 0f;
     private bool isCastingGiantFireball = false;
+    private bool isCircling = false;
+
+    private float circleAngle = 0f;
 
     void Start()
     {
@@ -39,11 +50,14 @@ public class Necromancer : MonoBehaviour
 
     void Update()
     {
+        if (player == null) return;
+
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        // Update fireball cooldown timer
         if (giantFireballTimer > 0f)
             giantFireballTimer -= Time.deltaTime;
+
+        if (isCastingGiantFireball || isCircling) return;
 
         if (distanceToPlayer <= detectionRadius)
         {
@@ -51,8 +65,18 @@ public class Necromancer : MonoBehaviour
 
             TryCastGiantFireball();
 
-            // If casting fireball, stop all other behavior
-            if (isCastingGiantFireball) return;
+            if (circleAttackTimer <= 0f && Random.value < circleAttackChance)
+            {
+                StartCoroutine(CircleAttack());
+                circleAttackTimer = circleAttackCooldown;
+                return;
+            }
+
+            if (circleAttackTimer > 0f)
+            {
+                circleAttackTimer -= Time.deltaTime;
+            }
+
 
             if (distanceToPlayer > attackRange)
             {
@@ -76,6 +100,7 @@ public class Necromancer : MonoBehaviour
         {
             timeOutsideAttackRange = 0f;
         }
+
     }
 
     void RotateTowardsPlayer()
@@ -182,8 +207,6 @@ public class Necromancer : MonoBehaviour
     IEnumerator CastGiantFireball()
     {
         isCastingGiantFireball = true;
-
-        // Optional delay or animation
         yield return new WaitForSeconds(1f);
 
         if (giantFireballPrefab != null && giantFireballShootPoint != null)
@@ -193,6 +216,42 @@ public class Necromancer : MonoBehaviour
 
         giantFireballTimer = giantFireballCooldown;
         isCastingGiantFireball = false;
+    }
+
+    IEnumerator CircleAttack()
+    {
+        isCircling = true;
+        float timer = 0f;
+        shootCooldown = 0f;
+        circleAngle = Random.Range(0f, 360f); // Start at a random angle
+
+        while (timer < circleDuration)
+        {
+            // Circle around the player
+            circleAngle += circleSpeed * Time.deltaTime;
+            float rad = circleAngle * Mathf.Deg2Rad;
+            Vector2 offset = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)) * circleRadius;
+            transform.position = player.position + (Vector3)offset;
+
+            // Face the player
+            RotateTowardsPlayer();
+
+            // Fire faster
+            if (shootCooldown <= 0f)
+            {
+                ShootProjectile();
+                shootCooldown = circleShootDelay;
+            }
+            else
+            {
+                shootCooldown -= Time.deltaTime;
+            }
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        isCircling = false;
     }
 
     public void ApplyPush(Vector2 force, float duration)
