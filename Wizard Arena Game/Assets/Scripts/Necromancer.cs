@@ -204,7 +204,7 @@ public class Necromancer : MonoBehaviour
     }
 
     private IEnumerator ApplyKnockback(Vector2 force, float duration)
-    {
+    { 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb == null) yield break;
 
@@ -215,7 +215,9 @@ public class Necromancer : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-
+        
         rb.velocity = Vector2.zero;
     }
 }
+
+

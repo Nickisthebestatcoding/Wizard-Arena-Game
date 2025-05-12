@@ -8183,11 +8183,10 @@ MonoBehaviour:
   bossSpawnPoint: {fileID: 563904180}
   borders: []
   mainCamera: {fileID: 0}
-  zoomDuringSummon: 4
-  zoomDuringFight: 20
+  zoomDuringSummon: 30
+  zoomDuringFight: 18
   zoomDefault: 10
   zoomSpeed: 2
-  zoomTarget: {fileID: 563904180}
 --- !u!61 &2088930101
 BoxCollider2D:
   m_ObjectHideFlags: 0
