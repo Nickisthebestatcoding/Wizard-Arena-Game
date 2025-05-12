@@ -7,17 +7,24 @@ using TMPro;
 
 public class ShopManagerScript : MonoBehaviour
 {
+    public static ShopManagerScript Instance;  // Singleton pattern
     public int[,] shopItems = new int[5, 5];
-    
     public TextMeshProUGUI CoinsTXT;
-    
-
 
     public int healthFlaskCount = 0; // Track the number of health flasks
     public int IceBulletCount = 0;
     public int TornadoCount = 0;
     public int LightningCount = 0;
     public bool[] spellsUnlocked = new bool[5]; // Track unlocked spells
+
+    void Awake()
+    {
+        // Ensure Singleton instance
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     void Start()
     {
@@ -45,9 +52,7 @@ public class ShopManagerScript : MonoBehaviour
     public void Buy()
     {
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
-
         int itemID = ButtonRef.GetComponent<Buttoninfo>().ItemID;
-
         int itemCost = shopItems[2, itemID];
 
         // Check if the player has enough coins to buy the item
@@ -57,39 +62,13 @@ public class ShopManagerScript : MonoBehaviour
             CoinsTXT.text = "Coins:" + WizardCoinManager.Instance.GetCoins();
             ButtonRef.GetComponent<Buttoninfo>().QuantityTxt.text = shopItems[3, itemID].ToString();
 
-            // If the health flask is bought, increase its count
-            if (itemID == 1)
-            {
-                healthFlaskCount++;
-            }
-
-            // If spells are bought, increase their count
+            // If spells are bought, unlock them
             if (itemID == 2)
-            {
-                IceBulletCount++;
-            }
+                spellsUnlocked[2] = true; // Unlock Ice Bullet
             if (itemID == 3)
-            {
-                TornadoCount++;
-            }
-            if (itemID == 4)
-            {
-                LightningCount++;
-            }
-
-            //Spell unlock
-            if(IceBulletCount >= 1)
-            {
-                spellsUnlocked[2] = true; // Unlock Ice
-            }
-            if(TornadoCount >= 1)
-            {
                 spellsUnlocked[3] = true; // Unlock Tornado
-            }
-            if(LightningCount >= 1)
-            {
+            if (itemID == 4)
                 spellsUnlocked[4] = true; // Unlock Lightning
-            }
         }
     }
 

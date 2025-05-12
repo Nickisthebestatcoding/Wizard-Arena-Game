@@ -45,16 +45,16 @@ public class SpellCaster : MonoBehaviour
     {
         if (Time.time >= nextSpellSwitchTime)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha4))
+            if (Input.GetKeyDown(KeyCode.Alpha4) && ShopManagerScript.Instance.spellsUnlocked[(int)SpellType.Lightning])
                 SwitchSpell(SpellType.Lightning);
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1) && ShopManagerScript.Instance.spellsUnlocked[(int)SpellType.Fireball])
                 SwitchSpell(SpellType.Fireball);
 
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetKeyDown(KeyCode.Alpha2) && ShopManagerScript.Instance.spellsUnlocked[(int)SpellType.IceBullet])
                 SwitchSpell(SpellType.IceBullet);
 
-            if (Input.GetKeyDown(KeyCode.Alpha3))
+            if (Input.GetKeyDown(KeyCode.Alpha3) && ShopManagerScript.Instance.spellsUnlocked[(int)SpellType.Tornado])
                 SwitchSpell(SpellType.Tornado);
         }
 
