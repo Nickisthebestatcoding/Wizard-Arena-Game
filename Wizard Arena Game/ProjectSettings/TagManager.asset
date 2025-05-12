@@ -16,6 +16,7 @@ TagManager:
   - Items
   - Necro
   - Fence
+  - Shop
   layers:
   - Default
   - TransparentFX
