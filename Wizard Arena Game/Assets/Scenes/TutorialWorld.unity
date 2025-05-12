@@ -323,7 +323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4601724543414920251, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
       propertyPath: maxHealth
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6376795783561927831, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -364,42 +364,6 @@ PrefabInstance:
     - target: {fileID: 6376795783561927831, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9153392541627029270, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
-      propertyPath: circleChance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9153392541627029270, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
-      propertyPath: moveSpeed_Phase2
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9153392541627029270, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
-      propertyPath: attackRange_Phase2
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9153392541627029270, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
-      propertyPath: circleChance_Phase2
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9153392541627029270, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
-      propertyPath: circleAttackCooldown
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 9153392541627029270, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
-      propertyPath: timeBeforeTeleport_Phase2
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9153392541627029270, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
-      propertyPath: giantFireballChance_Phase2
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9153392541627029270, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
-      propertyPath: circleAttackCooldown_Phase2
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 9153392541627029270, guid: 2b2b34880cd5040f7ad184e2cf8bd9d6, type: 3}
-      propertyPath: giantFireballCooldown_Phase2
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

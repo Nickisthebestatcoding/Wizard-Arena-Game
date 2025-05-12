@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f25d9c7aac8046be8a427fcf5f673d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 50
+  detectionRadius: 400
   attackRange: 15
   moveSpeed: 3
   projectilePrefab: {fileID: 4098352964649898985, guid: c67e6c6e1c5574fce9188ab052fee123, type: 3}
@@ -235,12 +235,20 @@ MonoBehaviour:
   giantFireballShootPoint: {fileID: 1194864776959229196}
   giantFireballCooldown: 20
   giantFireballChance: 0.1
-  circleAttackChance: 0.1
-  circleRadius: 15
-  circleSpeed: 180
   circleDuration: 4
-  circleShootDelay: 0.3
-  circleAttackCooldown: 20
+  circleRadius: 15
+  circleFireRateMultiplier: 0.3
+  circleAttackCooldown: 40
+  circleChance: 0.1
+  moveSpeed_Phase2: 3
+  shootDelay_Phase2: 0.5
+  giantFireballCooldown_Phase2: 20
+  giantFireballChance_Phase2: 0.1
+  circleAttackCooldown_Phase2: 40
+  circleChance_Phase2: 0.1
+  detectionRadius_Phase2: 15
+  attackRange_Phase2: 5
+  timeBeforeTeleport_Phase2: 0.5
 --- !u!50 &4533053026109103626
 Rigidbody2D:
   serializedVersion: 4

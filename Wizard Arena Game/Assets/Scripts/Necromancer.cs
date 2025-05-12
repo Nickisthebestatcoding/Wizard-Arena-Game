@@ -185,14 +185,38 @@ public class Necromancer : MonoBehaviour
     IEnumerator CastGiantFireball()
     {
         isCastingGiantFireball = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+
+        if (phase2Activated)
+        {
+            // Teleport backward from player before casting
+            Vector2 backDirection = (transform.position - player.position).normalized;
+            Vector2 backPosition = (Vector2)transform.position + backDirection * 5f;
+
+            // Optional: Clamp to stay inside the arena bounds if needed
+            transform.position = backPosition;
+        }
+
+        yield return new WaitForSeconds(0.5f);
 
         if (giantFireballPrefab && giantFireballShootPoint)
-            Instantiate(giantFireballPrefab, giantFireballShootPoint.position, giantFireballShootPoint.rotation);
+        {
+            int fireballCount = phase2Activated ? 3 : 1;
+
+            for (int i = 0; i < fireballCount; i++)
+            {
+                Instantiate(giantFireballPrefab, giantFireballShootPoint.position, giantFireballShootPoint.rotation);
+
+                if (phase2Activated && i < fireballCount - 1)
+                    yield return new WaitForSeconds(0.4f); // delay between each fireball
+            }
+        }
 
         giantFireballTimer = giantFireballCooldown;
         isCastingGiantFireball = false;
     }
+
+
 
     void TryCircleAttack()
     {
