@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
@@ -15,4 +16,6 @@ public class Coin : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
 }
