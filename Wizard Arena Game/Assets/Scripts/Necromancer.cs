@@ -217,7 +217,6 @@ public class Necromancer : MonoBehaviour
     }
 
 
-
     void TryCircleAttack()
     {
         float chance = phase2Activated ? circleChance_Phase2 : circleChance;
