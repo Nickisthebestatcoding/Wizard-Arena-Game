@@ -22,7 +22,7 @@ public class SpellCaster : MonoBehaviour
     private float nextIceBulletTime = 0f;
     private float nextTornadoTime = 0f;
 
-    private enum SpellType { Fireball = 0, IceBullet = 2, Tornado = 3, Lightning = 4 }
+    private enum SpellType { Fireball = 0, IceBullet = 1, Tornado = 2, Lightning = 3 }
     private SpellType currentSpell = SpellType.Fireball;
 
     private SpriteRenderer spriteRenderer;
@@ -35,26 +35,32 @@ public class SpellCaster : MonoBehaviour
     public int flaskCount = 1;  // Start with one healing flask
     public float healAmount = 5f;
 
+    // Tracks which spells are unlocked (default Fireball is unlocked)
+    private bool[] unlockedSpells = new bool[4];
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         wizardHealth = GetComponent<Health>();
+
+        // Initially unlock Fireball
+        unlockedSpells[(int)SpellType.Fireball] = true;
     }
 
     void Update()
     {
         if (Time.time >= nextSpellSwitchTime)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha4))
+            if (Input.GetKeyDown(KeyCode.Alpha4) && unlockedSpells[(int)SpellType.Lightning])
                 SwitchSpell(SpellType.Lightning);
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1) && unlockedSpells[(int)SpellType.Fireball])
                 SwitchSpell(SpellType.Fireball);
 
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetKeyDown(KeyCode.Alpha2) && unlockedSpells[(int)SpellType.IceBullet])
                 SwitchSpell(SpellType.IceBullet);
 
-            if (Input.GetKeyDown(KeyCode.Alpha3))
+            if (Input.GetKeyDown(KeyCode.Alpha3) && unlockedSpells[(int)SpellType.Tornado])
                 SwitchSpell(SpellType.Tornado);
         }
 
@@ -164,5 +170,15 @@ public class SpellCaster : MonoBehaviour
         Rigidbody2D rb = tornado.GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.velocity = firePoint.up * fireForce;
+    }
+
+    // Call this method when a player buys a book in the shop
+    public void UnlockSpell(int spellIndex)
+    {
+        if (spellIndex >= 0 && spellIndex < unlockedSpells.Length)
+        {
+            unlockedSpells[spellIndex] = true;
+            Debug.Log("Spell unlocked: " + (SpellType)spellIndex);
+        }
     }
 }
