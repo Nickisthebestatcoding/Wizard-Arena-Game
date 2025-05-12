@@ -28,4 +28,3 @@ public class WizardAnim : MonoBehaviour
         animator.SetBool("isIdle", isIdle);
     }
 }
-}
