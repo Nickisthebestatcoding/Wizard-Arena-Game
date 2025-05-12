@@ -25,6 +25,7 @@ public class WizardAnim : MonoBehaviour
         animator.SetBool("isWalking", isMoving);
     }
 
-
+   
+    
 }
 
