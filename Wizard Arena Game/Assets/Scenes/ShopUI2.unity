@@ -180,7 +180,7 @@ MonoBehaviour:
   ItemID: 2
   PriceTxt: {fileID: 494504857}
   QuantityTxt: {fileID: 768679090}
-  ShopManager: {fileID: 0}
+  ShopManager: {fileID: 1799139084}
 --- !u!114 &98210209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2072,7 +2072,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2005567818}
   m_HandleRect: {fileID: 2005567817}
   m_Direction: 0
-  m_Value: -0.000030517578
+  m_Value: 0.000030517578
   m_Size: 0.9987516
   m_NumberOfSteps: 0
   m_OnValueChanged:
