@@ -3602,6 +3602,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7424278, y: 9.50108}
   m_EdgeRadius: 0
+--- !u!1 &184647132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 184647133}
+  m_Layer: 0
+  m_Name: ShopEntrancePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &184647133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184647132}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 1.5, z: -8.3534975}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &185179049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5348,7 +5379,7 @@ GameObject:
   - component: {fileID: 301363902}
   m_Layer: 3
   m_Name: capitalism-1 (dragged)
-  m_TagString: Untagged
+  m_TagString: Shop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42441,3 +42472,4 @@ SceneRoots:
   - {fileID: 2092335395}
   - {fileID: 1868551094}
   - {fileID: 1713862539}
+  - {fileID: 184647133}
