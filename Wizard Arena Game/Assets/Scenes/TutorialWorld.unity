@@ -6486,9 +6486,9 @@ GameObject:
   - component: {fileID: 705653748}
   - component: {fileID: 705653750}
   - component: {fileID: 705653749}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: TimerText
-  m_TagString: Untagged
+  m_TagString: Timer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10511,7 +10511,7 @@ GameObject:
   - component: {fileID: 1118137312}
   - component: {fileID: 1118137315}
   - component: {fileID: 1118137314}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: 0 Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11850,7 +11850,7 @@ GameObject:
   - component: {fileID: 1245693433}
   - component: {fileID: 1245693432}
   - component: {fileID: 1245693434}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: CompletedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12380,7 +12380,7 @@ GameObject:
   - component: {fileID: 1292334244}
   - component: {fileID: 1292334246}
   - component: {fileID: 1292334245}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: coinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12857,7 +12857,7 @@ GameObject:
   - component: {fileID: 1384855192}
   - component: {fileID: 1384855193}
   - component: {fileID: 1384855194}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16664,7 +16664,7 @@ Transform:
   m_GameObject: {fileID: 1750512110}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100.5, y: -5.9, z: 0}
+  m_LocalPosition: {x: 14.7, y: -0, z: 0}
   m_LocalScale: {x: 6.5100656, y: 7.9525533, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
