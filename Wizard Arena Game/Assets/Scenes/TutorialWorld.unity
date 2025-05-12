@@ -550,6 +550,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7933296154683448091, guid: 06511c5b9b784498eba5b6ad7d362709, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8793324410969571023, guid: 06511c5b9b784498eba5b6ad7d362709, type: 3}
       propertyPath: m_Name
       value: New Piskel-3.png (13)
