@@ -18,13 +18,17 @@ public class WizardAnim : MonoBehaviour
                         Input.GetKey(KeyCode.S) ||
                         Input.GetKey(KeyCode.D);
 
-        bool isFiring = Input.GetButton("Fire1");
-
         bool isIdle = !isMoving;
 
-        // Update Animator parameters
+        // Fire animation should play once on click
+        if (Input.GetButtonDown("Fire1"))
+        {
+            animator.SetTrigger("Fire");
+        }
+
+        // Update other Animator parameters
         animator.SetBool("isWalking", isMoving);
-        animator.SetBool("isFiring", isFiring);
         animator.SetBool("isIdle", isIdle);
     }
 }
+
