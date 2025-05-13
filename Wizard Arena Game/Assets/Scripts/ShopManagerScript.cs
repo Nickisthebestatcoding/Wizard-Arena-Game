@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using TMPro;
 
 public class ShopManagerScript : MonoBehaviour
@@ -17,7 +16,6 @@ public class ShopManagerScript : MonoBehaviour
     public int TornadoCount = 0;
     public int LightningCount = 0;
 
-    // Individual unlocks
     public bool iceBulletUnlocked = false;
     public bool tornadoUnlocked = false;
     public bool lightningUnlocked = false;
@@ -25,9 +23,14 @@ public class ShopManagerScript : MonoBehaviour
     void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject); // Keeps unlocks between scenes
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
     void Start()
@@ -48,11 +51,17 @@ public class ShopManagerScript : MonoBehaviour
         shopItems[3, 2] = 0;
         shopItems[3, 3] = 0;
         shopItems[3, 4] = 0;
+
+        // Load saved unlocks
+        iceBulletUnlocked = PlayerPrefs.GetInt("IceBulletUnlocked", 0) == 1;
+        tornadoUnlocked = PlayerPrefs.GetInt("TornadoUnlocked", 0) == 1;
+        lightningUnlocked = PlayerPrefs.GetInt("LightningUnlocked", 0) == 1;
     }
 
     public void Buy()
     {
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
+
         int itemID = ButtonRef.GetComponent<Buttoninfo>().ItemID;
         int itemCost = shopItems[2, itemID];
 
@@ -62,23 +71,27 @@ public class ShopManagerScript : MonoBehaviour
             CoinsTXT.text = "Coins:" + WizardCoinManager.Instance.GetCoins();
             ButtonRef.GetComponent<Buttoninfo>().QuantityTxt.text = shopItems[3, itemID].ToString();
 
-            switch (itemID)
+            if (itemID == 1)
             {
-                case 1:
-                    healthFlaskCount++;
-                    break;
-                case 2:
-                    IceBulletCount++;
-                    iceBulletUnlocked = true;
-                    break;
-                case 3:
-                    TornadoCount++;
-                    tornadoUnlocked = true;
-                    break;
-                case 4:
-                    LightningCount++;
-                    lightningUnlocked = true;
-                    break;
+                healthFlaskCount++;
+            }
+            if (itemID == 2)
+            {
+                IceBulletCount++;
+                iceBulletUnlocked = true;
+                PlayerPrefs.SetInt("IceBulletUnlocked", 1);
+            }
+            if (itemID == 3)
+            {
+                TornadoCount++;
+                tornadoUnlocked = true;
+                PlayerPrefs.SetInt("TornadoUnlocked", 1);
+            }
+            if (itemID == 4)
+            {
+                LightningCount++;
+                lightningUnlocked = true;
+                PlayerPrefs.SetInt("LightningUnlocked", 1);
             }
         }
     }
