@@ -9732,6 +9732,9 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 1
   dashKey: 101
+  dashAudioSource: {fileID: 1090028051}
+  dashStartSound: {fileID: 8300000, guid: 80572361781e844b9baeb6a9fe7a9bf3, type: 3}
+  dashEndSound: {fileID: 0}
 --- !u!114 &1090028040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14388,6 +14391,9 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 1
   dashKey: 101
+  dashAudioSource: {fileID: 0}
+  dashStartSound: {fileID: 0}
+  dashEndSound: {fileID: 0}
 --- !u!82 &1544979011
 AudioSource:
   m_ObjectHideFlags: 0
