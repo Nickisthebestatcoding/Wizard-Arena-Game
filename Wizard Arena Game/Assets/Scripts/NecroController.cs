@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript1 : MonoBehaviour
+public class NecroController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject portalPrefab; // Assign in Inspector
+    public Transform portalSpawnPoint; // Where the portal should appear
+    private int health = 100;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (health <= 0)
+        {
+            SpawnPortal();
+            Destroy(gameObject); // Optional: Remove boss
+        }
+    }
+
+    void TakeDamage(int amount)
+    {
+        health -= amount;
+    }
+
+    private void SpawnPortal()
+    {
+        Instantiate(portalPrefab, portalSpawnPoint.position, Quaternion.identity);
     }
 }
