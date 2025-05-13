@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  freezeDuration: 1
+  freezeDuration: 2.5
   damage: 2
 --- !u!95 &4564652602393747768
 Animator:

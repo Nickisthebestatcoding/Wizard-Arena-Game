@@ -13,12 +13,20 @@ public class Dash2D : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
 
-    
-
+    // Audio-related variables
+    public AudioSource dashAudioSource;  // The AudioSource component attached to the GameObject
+    public AudioClip dashStartSound;     // Sound to play when the dash starts
+    public AudioClip dashEndSound;       // Sound to play when the dash ends
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // Optionally ensure AudioSource is attached and initialized
+        if (dashAudioSource == null)
+        {
+            dashAudioSource = GetComponent<AudioSource>();
+        }
     }
 
     private void Update()
@@ -34,18 +42,31 @@ public class Dash2D : MonoBehaviour
         isDashing = true;
         canDash = false;
 
+        // Play dash start sound
+        if (dashStartSound != null)
+        {
+            dashAudioSource.PlayOneShot(dashStartSound);
+        }
+
         // Dash upward instead of right
         Vector2 dashDirection = transform.up.normalized;
         rb.velocity = dashDirection * dashSpeed;
 
         yield return new WaitForSeconds(dashDuration);
 
+        // Stop dash movement and play dash end sound
         rb.velocity = Vector2.zero;
+        if (dashEndSound != null)
+        {
+            dashAudioSource.PlayOneShot(dashEndSound);
+        }
+
         isDashing = false;
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
+
     public void ResetDash()
     {
         StopAllCoroutines();
@@ -53,5 +74,4 @@ public class Dash2D : MonoBehaviour
         canDash = true;
         rb.velocity = Vector2.zero;
     }
-
 }
