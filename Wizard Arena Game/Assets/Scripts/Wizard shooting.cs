@@ -22,7 +22,7 @@ public class SpellCaster : MonoBehaviour
     private float nextIceBulletTime = 0f;
     private float nextTornadoTime = 0f;
 
-    private enum SpellType { Fireball = 0, IceBullet = 2, Tornado = 3, Lightning = 4 }
+    private enum SpellType { Fireball, IceBullet, Tornado, Lightning }
     private SpellType currentSpell = SpellType.Fireball;
 
     private SpriteRenderer spriteRenderer;
@@ -46,15 +46,15 @@ public class SpellCaster : MonoBehaviour
         if (Time.time >= nextSpellSwitchTime)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
-                SwitchSpell(SpellType.Fireball); // Always available
+                SwitchSpell(SpellType.Fireball);
 
-            if (Input.GetKeyDown(KeyCode.Alpha2) && ShopManagerScript.Instance.spellsUnlocked[2])
+            if (Input.GetKeyDown(KeyCode.Alpha2) && ShopManagerScript.Instance.iceBulletUnlocked)
                 SwitchSpell(SpellType.IceBullet);
 
-            if (Input.GetKeyDown(KeyCode.Alpha3) && ShopManagerScript.Instance.spellsUnlocked[3])
+            if (Input.GetKeyDown(KeyCode.Alpha3) && ShopManagerScript.Instance.tornadoUnlocked)
                 SwitchSpell(SpellType.Tornado);
 
-            if (Input.GetKeyDown(KeyCode.Alpha4) && ShopManagerScript.Instance.spellsUnlocked[4])
+            if (Input.GetKeyDown(KeyCode.Alpha4) && ShopManagerScript.Instance.lightningUnlocked)
                 SwitchSpell(SpellType.Lightning);
         }
 
@@ -111,7 +111,7 @@ public class SpellCaster : MonoBehaviour
         {
             case SpellType.Fireball: flashColor = Color.red; break;
             case SpellType.IceBullet: flashColor = Color.blue; break;
-            case SpellType.Tornado: flashColor = Color.grey; break;
+            case SpellType.Tornado: flashColor = Color.gray; break;
             case SpellType.Lightning: flashColor = new Color(0.5f, 0f, 0.5f); break;
         }
 

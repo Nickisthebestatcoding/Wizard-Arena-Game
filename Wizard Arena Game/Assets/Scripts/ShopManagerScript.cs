@@ -17,7 +17,10 @@ public class ShopManagerScript : MonoBehaviour
     public int TornadoCount = 0;
     public int LightningCount = 0;
 
-    public bool[] spellsUnlocked = new bool[5];
+    // Individual unlocks
+    public bool iceBulletUnlocked = false;
+    public bool tornadoUnlocked = false;
+    public bool lightningUnlocked = false;
 
     void Awake()
     {
@@ -65,20 +68,18 @@ public class ShopManagerScript : MonoBehaviour
                     healthFlaskCount++;
                     break;
                 case 2:
+                    IceBulletCount++;
+                    iceBulletUnlocked = true;
+                    break;
                 case 3:
+                    TornadoCount++;
+                    tornadoUnlocked = true;
+                    break;
                 case 4:
-                    UnlockSpell(itemID);
+                    LightningCount++;
+                    lightningUnlocked = true;
                     break;
             }
-        }
-    }
-
-    public void UnlockSpell(int spellIndex)
-    {
-        // Only unlocks the specific spell, nothing else.
-        if (spellIndex >= 0 && spellIndex < spellsUnlocked.Length)
-        {
-            spellsUnlocked[spellIndex] = true;
         }
     }
 
