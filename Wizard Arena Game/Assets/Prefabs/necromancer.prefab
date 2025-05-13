@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1523362279754121723}
   - component: {fileID: 866267798624590799}
   - component: {fileID: 1476623767661607059}
+  - component: {fileID: -3835211080810702442}
   m_Layer: 0
   m_Name: necromancer
   m_TagString: Boss
@@ -261,6 +262,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b89d703f1f0498fa590473239d1f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3835211080810702442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3900849881746063541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced44db2cab9b487d98d243e7b0f213d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  objectToDeactivate: {fileID: 2588179668703838062, guid: 0df8aa7df4c1e4057a42ad4d5d0db304, type: 3}
 --- !u!1 &6169151016626877946
 GameObject:
   m_ObjectHideFlags: 0
