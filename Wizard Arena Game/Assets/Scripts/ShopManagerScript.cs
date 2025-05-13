@@ -7,42 +7,40 @@ using TMPro;
 
 public class ShopManagerScript : MonoBehaviour
 {
-    public static ShopManagerScript Instance;  // Singleton pattern
+    public static ShopManagerScript Instance; // Singleton instance
+
     public int[,] shopItems = new int[5, 5];
     public TextMeshProUGUI CoinsTXT;
 
-    public int healthFlaskCount = 0; // Track the number of health flasks
+    public int healthFlaskCount = 0;
     public int IceBulletCount = 0;
     public int TornadoCount = 0;
     public int LightningCount = 0;
-    public bool[] spellsUnlocked = new bool[5]; // Track unlocked spells
+
+    public bool[] spellsUnlocked = new bool[5];
 
     void Awake()
     {
-        // Ensure Singleton instance
         if (Instance == null)
             Instance = this;
         else
-            Destroy(gameObject);
+            Destroy(gameObject); // Prevent duplicates
     }
 
     void Start()
     {
         CoinsTXT.text = "Coins:" + WizardCoinManager.Instance.GetCoins();
 
-        // ID's for shop items
         shopItems[1, 1] = 1; // Health Flask
         shopItems[1, 2] = 2; // Ice Bullet
         shopItems[1, 3] = 3; // Tornado
         shopItems[1, 4] = 4; // Lightning
 
-        // Prices of items
-        shopItems[2, 1] = 3;  // Health Flask cost
-        shopItems[2, 2] = 10; // Ice Bullet cost
-        shopItems[2, 3] = 20; // Tornado cost
-        shopItems[2, 4] = 30; // Lightning cost
+        shopItems[2, 1] = 3;
+        shopItems[2, 2] = 10;
+        shopItems[2, 3] = 20;
+        shopItems[2, 4] = 30;
 
-        // Quantity of items
         shopItems[3, 1] = 0;
         shopItems[3, 2] = 0;
         shopItems[3, 3] = 0;
@@ -55,28 +53,35 @@ public class ShopManagerScript : MonoBehaviour
         int itemID = ButtonRef.GetComponent<Buttoninfo>().ItemID;
         int itemCost = shopItems[2, itemID];
 
-        // Check if the player has enough coins to buy the item
         if (WizardCoinManager.Instance.SpendCoins(itemCost))
         {
             shopItems[3, itemID]++;
             CoinsTXT.text = "Coins:" + WizardCoinManager.Instance.GetCoins();
             ButtonRef.GetComponent<Buttoninfo>().QuantityTxt.text = shopItems[3, itemID].ToString();
 
-            // Unlock the corresponding spell based on the itemID
             switch (itemID)
             {
-                case 2: // Ice Bullet
+                case 1:
+                    healthFlaskCount++;
+                    break;
+                case 2:
+                    IceBulletCount++;
                     spellsUnlocked[2] = true;
                     break;
-                case 3: // Tornado
+                case 3:
+                    TornadoCount++;
                     spellsUnlocked[3] = true;
                     break;
-                case 4: // Lightning
+                case 4:
+                    LightningCount++;
                     spellsUnlocked[4] = true;
                     break;
-                    // Add cases for other spells or items as needed
             }
         }
     }
 
+    private void Update()
+    {
+        CoinsTXT.text = "Coins:" + WizardCoinManager.Instance.GetCoins();
+    }
 }
