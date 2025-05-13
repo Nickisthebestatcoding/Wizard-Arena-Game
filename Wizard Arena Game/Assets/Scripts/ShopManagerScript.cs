@@ -48,6 +48,11 @@ public class ShopManagerScript : MonoBehaviour
         shopItems[3, 2] = 0;
         shopItems[3, 3] = 0;
         shopItems[3, 4] = 0;
+
+        // Load previously saved spell unlocks
+        iceBulletUnlocked = PlayerPrefs.GetInt("IceBulletUnlocked", 0) == 1;
+        tornadoUnlocked = PlayerPrefs.GetInt("TornadoUnlocked", 0) == 1;
+        lightningUnlocked = PlayerPrefs.GetInt("LightningUnlocked", 0) == 1;
     }
 
     public void Buy()
@@ -70,16 +75,21 @@ public class ShopManagerScript : MonoBehaviour
                 case 2:
                     IceBulletCount++;
                     iceBulletUnlocked = true;
+                    PlayerPrefs.SetInt("IceBulletUnlocked", 1);
                     break;
                 case 3:
                     TornadoCount++;
                     tornadoUnlocked = true;
+                    PlayerPrefs.SetInt("TornadoUnlocked", 1);
                     break;
                 case 4:
                     LightningCount++;
                     lightningUnlocked = true;
+                    PlayerPrefs.SetInt("LightningUnlocked", 1);
                     break;
             }
+
+            PlayerPrefs.Save();
         }
     }
 
@@ -88,5 +98,3 @@ public class ShopManagerScript : MonoBehaviour
         CoinsTXT.text = "Coins:" + WizardCoinManager.Instance.GetCoins();
     }
 }
-
-

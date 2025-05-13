@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1523362279754121723}
   - component: {fileID: 866267798624590799}
   - component: {fileID: 1476623767661607059}
+  - component: {fileID: 1808819676308215206}
   m_Layer: 0
   m_Name: necromancer
   m_TagString: Boss
@@ -168,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 1
   healthBarUI: {fileID: 0}
   WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
 --- !u!60 &866267798624590799
@@ -261,6 +262,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b89d703f1f0498fa590473239d1f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1808819676308215206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3900849881746063541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36641b5f0f2af49c2befb3263aee4870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portalSource1: {fileID: 0}
+  portalSpawnPoint: {fileID: 0}
 --- !u!1 &6169151016626877946
 GameObject:
   m_ObjectHideFlags: 0
