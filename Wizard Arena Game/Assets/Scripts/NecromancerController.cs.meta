@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: 6dda0fc8529bf486685228d58aa26e27
+guid: ced44db2cab9b487d98d243e7b0f213d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - objectToDeactivate: {fileID: 2588179668703838062, guid: 0df8aa7df4c1e4057a42ad4d5d0db304, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
