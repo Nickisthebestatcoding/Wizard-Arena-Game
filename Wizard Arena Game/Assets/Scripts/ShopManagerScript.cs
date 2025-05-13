@@ -17,10 +17,9 @@ public class ShopManagerScript : MonoBehaviour
     public int TornadoCount = 0;
     public int LightningCount = 0;
 
-    // Individual unlocks
-    public bool iceBulletUnlocked = false;
-    public bool tornadoUnlocked = false;
-    public bool lightningUnlocked = false;
+    public bool iceBulletUnlocked;
+    public bool tornadoUnlocked;
+    public bool lightningUnlocked;
 
     void Awake()
     {
@@ -28,6 +27,11 @@ public class ShopManagerScript : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+
+        // Load unlocks
+        iceBulletUnlocked = PlayerPrefs.GetInt("IceBulletUnlocked", 0) == 1;
+        tornadoUnlocked = PlayerPrefs.GetInt("TornadoUnlocked", 0) == 1;
+        lightningUnlocked = PlayerPrefs.GetInt("LightningUnlocked", 0) == 1;
     }
 
     void Start()
@@ -69,17 +73,31 @@ public class ShopManagerScript : MonoBehaviour
                     break;
                 case 2:
                     IceBulletCount++;
-                    iceBulletUnlocked = true;
+                    if (!iceBulletUnlocked)
+                    {
+                        iceBulletUnlocked = true;
+                        PlayerPrefs.SetInt("IceBulletUnlocked", 1);
+                    }
                     break;
                 case 3:
                     TornadoCount++;
-                    tornadoUnlocked = true;
+                    if (!tornadoUnlocked)
+                    {
+                        tornadoUnlocked = true;
+                        PlayerPrefs.SetInt("TornadoUnlocked", 1);
+                    }
                     break;
                 case 4:
                     LightningCount++;
-                    lightningUnlocked = true;
+                    if (!lightningUnlocked)
+                    {
+                        lightningUnlocked = true;
+                        PlayerPrefs.SetInt("LightningUnlocked", 1);
+                    }
                     break;
             }
+
+            PlayerPrefs.Save();
         }
     }
 
@@ -88,5 +106,3 @@ public class ShopManagerScript : MonoBehaviour
         CoinsTXT.text = "Coins:" + WizardCoinManager.Instance.GetCoins();
     }
 }
-
-
