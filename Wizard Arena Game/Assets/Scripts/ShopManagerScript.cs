@@ -7,7 +7,7 @@ using TMPro;
 
 public class ShopManagerScript : MonoBehaviour
 {
-    public static ShopManagerScript Instance; // Singleton instance
+    public static ShopManagerScript Instance;
 
     public int[,] shopItems = new int[5, 5];
     public TextMeshProUGUI CoinsTXT;
@@ -17,14 +17,17 @@ public class ShopManagerScript : MonoBehaviour
     public int TornadoCount = 0;
     public int LightningCount = 0;
 
-    public bool[] spellsUnlocked = new bool[5];
+    // Individual unlocks
+    public bool iceBulletUnlocked = false;
+    public bool tornadoUnlocked = false;
+    public bool lightningUnlocked = false;
 
     void Awake()
     {
         if (Instance == null)
             Instance = this;
         else
-            Destroy(gameObject); // Prevent duplicates
+            Destroy(gameObject);
     }
 
     void Start()
@@ -66,15 +69,15 @@ public class ShopManagerScript : MonoBehaviour
                     break;
                 case 2:
                     IceBulletCount++;
-                    spellsUnlocked[2] = true;
+                    iceBulletUnlocked = true;
                     break;
                 case 3:
                     TornadoCount++;
-                    spellsUnlocked[3] = true;
+                    tornadoUnlocked = true;
                     break;
                 case 4:
                     LightningCount++;
-                    spellsUnlocked[4] = true;
+                    lightningUnlocked = true;
                     break;
             }
         }
