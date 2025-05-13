@@ -46,15 +46,12 @@ public class SpellCaster : MonoBehaviour
         if (Time.time >= nextSpellSwitchTime)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
-                SwitchSpell(SpellType.Fireball); // Always available
-
-            if (Input.GetKeyDown(KeyCode.Alpha2) && ShopManagerScript.Instance.spellsUnlocked[2])
+                SwitchSpell(SpellType.Fireball);
+            if (Input.GetKeyDown(KeyCode.Alpha2) && ShopManagerScript.Instance.iceBulletUnlocked)
                 SwitchSpell(SpellType.IceBullet);
-
-            if (Input.GetKeyDown(KeyCode.Alpha3) && ShopManagerScript.Instance.spellsUnlocked[3])
+            if (Input.GetKeyDown(KeyCode.Alpha3) && ShopManagerScript.Instance.tornadoUnlocked)
                 SwitchSpell(SpellType.Tornado);
-
-            if (Input.GetKeyDown(KeyCode.Alpha4) && ShopManagerScript.Instance.spellsUnlocked[4])
+            if (Input.GetKeyDown(KeyCode.Alpha4) && ShopManagerScript.Instance.lightningUnlocked)
                 SwitchSpell(SpellType.Lightning);
         }
 
@@ -70,21 +67,21 @@ public class SpellCaster : MonoBehaviour
                     }
                     break;
                 case SpellType.IceBullet:
-                    if (Time.time >= nextIceBulletTime)
+                    if (Time.time >= nextIceBulletTime && ShopManagerScript.Instance.iceBulletUnlocked)
                     {
                         CastIceBullet();
                         nextIceBulletTime = Time.time + iceBulletCooldown;
                     }
                     break;
                 case SpellType.Tornado:
-                    if (Time.time >= nextTornadoTime)
+                    if (Time.time >= nextTornadoTime && ShopManagerScript.Instance.tornadoUnlocked)
                     {
                         CastTornado();
                         nextTornadoTime = Time.time + tornadoCooldown;
                     }
                     break;
                 case SpellType.Lightning:
-                    if (Time.time >= nextLightningTime)
+                    if (Time.time >= nextLightningTime && ShopManagerScript.Instance.lightningUnlocked)
                     {
                         CastLightning();
                         nextLightningTime = Time.time + lightningCooldown;
@@ -95,7 +92,7 @@ public class SpellCaster : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q) && flaskCount > 0 && wizardHealth != null)
         {
-            wizardHealth.TakeDamage(-healAmount);
+            wizardHealth.TakeDamage(-healAmount); // heal
             flaskCount--;
             Debug.Log("Used healing flask. Remaining: " + flaskCount);
         }
@@ -109,10 +106,18 @@ public class SpellCaster : MonoBehaviour
         Color flashColor = Color.white;
         switch (newSpell)
         {
-            case SpellType.Fireball: flashColor = Color.red; break;
-            case SpellType.IceBullet: flashColor = Color.blue; break;
-            case SpellType.Tornado: flashColor = Color.grey; break;
-            case SpellType.Lightning: flashColor = new Color(0.5f, 0f, 0.5f); break;
+            case SpellType.Fireball:
+                flashColor = Color.red;
+                break;
+            case SpellType.IceBullet:
+                flashColor = Color.blue;
+                break;
+            case SpellType.Tornado:
+                flashColor = Color.gray;
+                break;
+            case SpellType.Lightning:
+                flashColor = new Color(0.5f, 0f, 0.5f);
+                break;
         }
 
         if (flashCoroutine != null)
@@ -137,11 +142,6 @@ public class SpellCaster : MonoBehaviour
             rb.velocity = firePoint.up * fireForce;
     }
 
-    void CastLightning()
-    {
-        Instantiate(lightningPrefab, lightningSpawnPoint.position, lightningSpawnPoint.rotation, lightningSpawnPoint);
-    }
-
     void CastIceBullet()
     {
         GameObject iceBullet = Instantiate(iceBulletPrefab, firePoint.position, firePoint.rotation);
@@ -156,5 +156,10 @@ public class SpellCaster : MonoBehaviour
         Rigidbody2D rb = tornado.GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.velocity = firePoint.up * fireForce;
+    }
+
+    void CastLightning()
+    {
+        Instantiate(lightningPrefab, lightningSpawnPoint.position, lightningSpawnPoint.rotation, lightningSpawnPoint);
     }
 }
