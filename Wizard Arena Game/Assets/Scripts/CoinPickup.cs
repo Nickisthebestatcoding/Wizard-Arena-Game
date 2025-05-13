@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public int coinValue = 1; // How much value the coin gives when picked up
+    public int coinValue = 1;
+    // How much value the coin gives when picked up
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,6 +17,6 @@ public class Coin : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    
+   
+  
 }
