@@ -18,6 +18,7 @@ TagManager:
   - Fence
   - Shop
   - Timer
+  - Necromancer
   layers:
   - Default
   - TransparentFX
