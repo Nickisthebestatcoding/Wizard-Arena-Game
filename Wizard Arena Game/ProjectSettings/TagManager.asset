@@ -88,3 +88,6 @@ TagManager:
   - name: shop items
     uniqueID: 880619865
     locked: 0
+  - name: nuts
+    uniqueID: 675179049
+    locked: 0
