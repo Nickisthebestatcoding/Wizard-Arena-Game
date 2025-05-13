@@ -46,7 +46,7 @@ public class SpellCaster : MonoBehaviour
         if (Time.time >= nextSpellSwitchTime)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
-                SwitchSpell(SpellType.Fireball);
+                SwitchSpell(SpellType.Fireball); // Always available
 
             if (Input.GetKeyDown(KeyCode.Alpha2) && ShopManagerScript.Instance.spellsUnlocked[2])
                 SwitchSpell(SpellType.IceBullet);
@@ -69,13 +69,6 @@ public class SpellCaster : MonoBehaviour
                         nextFireballTime = Time.time + fireballCooldown;
                     }
                     break;
-                case SpellType.Lightning:
-                    if (Time.time >= nextLightningTime)
-                    {
-                        CastLightning();
-                        nextLightningTime = Time.time + lightningCooldown;
-                    }
-                    break;
                 case SpellType.IceBullet:
                     if (Time.time >= nextIceBulletTime)
                     {
@@ -88,6 +81,13 @@ public class SpellCaster : MonoBehaviour
                     {
                         CastTornado();
                         nextTornadoTime = Time.time + tornadoCooldown;
+                    }
+                    break;
+                case SpellType.Lightning:
+                    if (Time.time >= nextLightningTime)
+                    {
+                        CastLightning();
+                        nextLightningTime = Time.time + lightningCooldown;
                     }
                     break;
             }
@@ -109,18 +109,10 @@ public class SpellCaster : MonoBehaviour
         Color flashColor = Color.white;
         switch (newSpell)
         {
-            case SpellType.Fireball:
-                flashColor = Color.red;
-                break;
-            case SpellType.IceBullet:
-                flashColor = Color.blue;
-                break;
-            case SpellType.Tornado:
-                flashColor = Color.grey;
-                break;
-            case SpellType.Lightning:
-                flashColor = new Color(0.5f, 0f, 0.5f);
-                break;
+            case SpellType.Fireball: flashColor = Color.red; break;
+            case SpellType.IceBullet: flashColor = Color.blue; break;
+            case SpellType.Tornado: flashColor = Color.grey; break;
+            case SpellType.Lightning: flashColor = new Color(0.5f, 0f, 0.5f); break;
         }
 
         if (flashCoroutine != null)
