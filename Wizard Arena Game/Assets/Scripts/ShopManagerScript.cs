@@ -17,16 +17,22 @@ public class ShopManagerScript : MonoBehaviour
     public int TornadoCount = 0;
     public int LightningCount = 0;
 
-    public bool iceBulletUnlocked;
-    public bool tornadoUnlocked;
-    public bool lightningUnlocked;
+    // Individual unlocks
+    public bool iceBulletUnlocked = false;
+    public bool tornadoUnlocked = false;
+    public bool lightningUnlocked = false;
 
     void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject); // Keep this across scenes
+        }
         else
+        {
             Destroy(gameObject);
+        }
 
         // Load unlocks
         iceBulletUnlocked = PlayerPrefs.GetInt("IceBulletUnlocked", 0) == 1;
@@ -73,27 +79,18 @@ public class ShopManagerScript : MonoBehaviour
                     break;
                 case 2:
                     IceBulletCount++;
-                    if (!iceBulletUnlocked)
-                    {
-                        iceBulletUnlocked = true;
-                        PlayerPrefs.SetInt("IceBulletUnlocked", 1);
-                    }
+                    iceBulletUnlocked = true;
+                    PlayerPrefs.SetInt("IceBulletUnlocked", 1);
                     break;
                 case 3:
                     TornadoCount++;
-                    if (!tornadoUnlocked)
-                    {
-                        tornadoUnlocked = true;
-                        PlayerPrefs.SetInt("TornadoUnlocked", 1);
-                    }
+                    tornadoUnlocked = true;
+                    PlayerPrefs.SetInt("TornadoUnlocked", 1);
                     break;
                 case 4:
                     LightningCount++;
-                    if (!lightningUnlocked)
-                    {
-                        lightningUnlocked = true;
-                        PlayerPrefs.SetInt("LightningUnlocked", 1);
-                    }
+                    lightningUnlocked = true;
+                    PlayerPrefs.SetInt("LightningUnlocked", 1);
                     break;
             }
 

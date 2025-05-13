@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BossSpawner : MonoBehaviour
 {
-    public GameObject bossPrefab;
+    public GameObject bossPrefab; // Necromancer prefab
     public Transform bossSpawnPoint;
 
     public GameObject[] borders;
@@ -46,19 +46,13 @@ public class BossSpawner : MonoBehaviour
         }
     }
 
-    public void OpenBorders()
-    {
-        Debug.Log("Opening borders.");
-        SetBordersActive(false);
-    }
-
     IEnumerator SummoningSequence()
     {
         // Zoom out very far for summoning sequence
         yield return StartCoroutine(ZoomCamera(zoomDuringSummon));
         yield return new WaitForSeconds(1f);
 
-        // Spawn boss
+        // Spawn Necromancer (or any boss)
         if (bossPrefab != null && bossSpawnPoint != null)
         {
             GameObject boss = Instantiate(bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);
@@ -94,13 +88,24 @@ public class BossSpawner : MonoBehaviour
         // Reset zoom to default
         StartCoroutine(ZoomCamera(zoomDefault));
 
+        // If boss is already spawned, destroy it
         if (bossHealth != null && bossHealth.gameObject != null)
         {
-            Destroy(bossHealth.gameObject);
+            Destroy(bossHealth.gameObject); // Destroy the Necromancer or Boss when resetting
             bossHealth = null;
         }
 
+        // Hide borders
         SetBordersActive(false);
-        gameObject.SetActive(true); // Reactivate trigger
+
+        // Reactivate the trigger for re-summoning
+        gameObject.SetActive(true);
+    }
+
+    // This function is called by the Health script when the Wizard dies.
+    public void OnWizardDeath()
+    {
+        // When the Wizard dies, reset the boss state.
+        ResetBossState();
     }
 }
