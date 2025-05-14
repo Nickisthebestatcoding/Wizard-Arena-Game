@@ -1024,8 +1024,8 @@ Transform:
   m_GameObject: {fileID: 588493151}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.86, y: 3.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.78, y: 5.15, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2982,7 +2982,9 @@ MonoBehaviour:
   IceBulletCount: 0
   TornadoCount: 0
   LightningCount: 0
-  spellsUnlocked: 0000000000
+  iceBulletUnlocked: 0
+  tornadoUnlocked: 0
+  lightningUnlocked: 0
 --- !u!4 &1905783565
 Transform:
   m_ObjectHideFlags: 0
