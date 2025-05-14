@@ -9860,7 +9860,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: 0
   healthBarUI: {fileID: 1090028049}
   WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
 --- !u!114 &1090028049
@@ -12762,7 +12761,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: 0
   healthBarUI: {fileID: 0}
   WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
 --- !u!1001 &1391629271
@@ -14098,7 +14096,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: 0
   healthBarUI: {fileID: 1544979004}
   WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
 --- !u!114 &1544979003
@@ -16302,7 +16299,7 @@ Transform:
   m_GameObject: {fileID: 1750512110}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.7, y: -0, z: 0}
+  m_LocalPosition: {x: 101.44, y: -5.2, z: 0}
   m_LocalScale: {x: 6.5100656, y: 7.9525533, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
