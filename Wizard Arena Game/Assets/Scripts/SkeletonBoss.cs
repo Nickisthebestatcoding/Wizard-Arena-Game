@@ -14,6 +14,7 @@ public class SkeletonBoss : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private bool isAttacking = false;
+    private bool isEnraged = false;
 
     [Header("Spike Attack Settings")]
     public GameObject spikePrefab;
@@ -28,28 +29,16 @@ public class SkeletonBoss : MonoBehaviour
     public GameObject spikeWarningPrefab;
     public float warningDelay = 1f;
 
-    [Header("Enrage Settings")]
-    public float enragedMoveSpeed = 3.5f;
-    public float enragedDamage = 2f;
-    public Color enragedColor = Color.red;
-    private bool isEnraged = false;
-    private Health health;
-    private SpriteRenderer spriteRenderer;
-
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Wizard").transform;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        health = GetComponent<Health>(); // <-- Get Health component
-        spriteRenderer = GetComponent<SpriteRenderer>(); // <-- Get SpriteRenderer
     }
 
     void Update()
     {
-        if (player == null || health == null) return;
-
-        CheckEnrage(); // <-- Check for enrage
+        if (player == null) return;
 
         float distance = Vector2.Distance(transform.position, player.position);
 
@@ -78,21 +67,6 @@ public class SkeletonBoss : MonoBehaviour
         rb.velocity = direction * moveSpeed;
     }
 
-    void CheckEnrage()
-    {
-        if (!isEnraged && health != null && health.GetHealthPercent() <= 0.5f)
-        {
-            isEnraged = true;
-            moveSpeed = enragedMoveSpeed;
-            damage = enragedDamage;
-
-            if (spriteRenderer != null)
-                spriteRenderer.color = enragedColor;
-
-            Debug.Log("Skeleton Boss is enraged!");
-        }
-    }
-
     IEnumerator AttackRoutine()
     {
         isAttacking = true;
@@ -117,7 +91,6 @@ public class SkeletonBoss : MonoBehaviour
             animator.SetTrigger("SummonSpikes");
 
         lastSpikeAttackTime = Time.time;
-
         yield return new WaitForSeconds(1.2f);
 
         StartCoroutine(PerformSpikeAttack());
@@ -185,14 +158,32 @@ public class SkeletonBoss : MonoBehaviour
 
     IEnumerator ApplyKnockback(Rigidbody2D targetRb, Vector2 direction)
     {
-        float timer = 0f;
-        while (timer < knockbackDuration)
+        if (targetRb != null)
         {
-            targetRb.velocity = direction * knockbackForce;
-            timer += Time.deltaTime;
-            yield return null;
+            float timer = 0f;
+            while (timer < knockbackDuration)
+            {
+                targetRb.velocity = direction * knockbackForce;
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            targetRb.velocity = Vector2.zero;
         }
-        targetRb.velocity = Vector2.zero;
+    }
+
+    public void EnterRageMode()
+    {
+        if (isEnraged) return;
+
+        moveSpeed *= 1.5f;
+        damage *= 2f;
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr.color = Color.red;
+
+        isEnraged = true;
+        Debug.Log("Skeleton Boss has entered rage mode!");
     }
 
     void OnDrawGizmosSelected()
