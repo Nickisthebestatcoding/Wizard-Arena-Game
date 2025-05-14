@@ -263,7 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 12
   freezeDuration: 1
-  damage: 1
+  damage: 2
 --- !u!82 &-657661544895362689
 AudioSource:
   m_ObjectHideFlags: 0
