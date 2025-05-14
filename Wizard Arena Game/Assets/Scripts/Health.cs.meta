@@ -4,9 +4,9 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - fenceToRemove: {fileID: 6795325913423186440, guid: d92d29edc0a83488b8ab79303b5fcca5, type: 3}
   - healthBarUI: {instanceID: 0}
   - WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
-  - WizardDeath: {fileID: 8300000, guid: 1d9966398240140c4a5944a3633c95cc, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

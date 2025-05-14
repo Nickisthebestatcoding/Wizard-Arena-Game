@@ -5,9 +5,12 @@ using TMPro;
 
 public class Health : MonoBehaviour
 {
+    [Header("Game Objects")]
+    public GameObject fenceToRemove;
+
     [Header("Health Settings")]
     public float maxHealth = 10f;
-    private float currentHealth;
+    public float currentHealth;
 
     [Header("UI & Audio")]
     public WizardHealthBar healthBarUI;
@@ -74,6 +77,12 @@ public class Health : MonoBehaviour
         {
             if (bossSpawner != null)
                 bossSpawner.ResetBossState();
+
+            if (fenceToRemove != null)
+            {
+                Destroy(fenceToRemove);
+                Debug.Log("Fence removed because the boss died.");
+            }
 
             gameObject.SetActive(false);
         }
