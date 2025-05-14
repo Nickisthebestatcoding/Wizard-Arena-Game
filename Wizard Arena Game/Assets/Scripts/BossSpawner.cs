@@ -3,38 +3,117 @@ using UnityEngine;
 
 public class BossSpawner : MonoBehaviour
 {
-    public GameObject bossPrefab; // Necromancer prefab
-    public Transform bossSpawnPoint;
+    public GameObject skeletonBossPrefab;
+    public Transform spawnPoint;
 
+    public GameObject summoningCircle;
+    public GameObject necromancer;
     public GameObject[] borders;
-    private Health bossHealth;
 
+    public float summonDelay = 2f;
+    public float screenShakeDuration = 0.5f;
+    public float screenShakeIntensity = 0.2f;
+
+    [Header("Camera Zoom")]
     public Camera mainCamera;
-    public float zoomDuringSummon = 10f; // Set a very far zoom level
+    public float zoomDuringSummon = 4f;
     public float zoomDuringFight = 6f;
     public float zoomDefault = 8f;
     public float zoomSpeed = 2f;
 
+    private Health bossHealth;
     private bool hasSpawned = false;
 
-    private void Start()
+    void Start()
     {
-        if (mainCamera == null)
-            mainCamera = Camera.main;
-
+        if (mainCamera == null) mainCamera = Camera.main;
+        if (summoningCircle != null) summoningCircle.SetActive(false);
+        if (necromancer != null) necromancer.SetActive(false);
         SetBordersActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void TriggerSummon()
     {
-        if (hasSpawned) return;
-
-        if (other.CompareTag("Wizard"))
+        if (!hasSpawned)
         {
             hasSpawned = true;
             SetBordersActive(true);
             StartCoroutine(SummoningSequence());
         }
+    }
+
+    IEnumerator SummoningSequence()
+    {
+        if (summoningCircle != null)
+        {
+            summoningCircle.SetActive(true);
+            StartCoroutine(FadeIn(summoningCircle, 1f));
+        }
+
+        if (necromancer != null)
+        {
+            necromancer.SetActive(true);
+            StartCoroutine(FadeIn(necromancer, 1f));
+        }
+
+        yield return StartCoroutine(ZoomCamera(zoomDuringSummon));
+        yield return new WaitForSeconds(1.5f);
+
+        if (necromancer != null)
+        {
+            Animator anim = necromancer.GetComponent<Animator>();
+            if (anim != null)
+                anim.SetTrigger("Summon");
+        }
+
+        yield return new WaitForSeconds(summonDelay);
+
+        if (skeletonBossPrefab != null && spawnPoint != null)
+        {
+            GameObject boss = Instantiate(skeletonBossPrefab, spawnPoint.position, spawnPoint.rotation);
+            bossHealth = boss.GetComponent<Health>();
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (necromancer != null)
+            StartCoroutine(FadeOut(necromancer, 1f));
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (summoningCircle != null)
+            summoningCircle.SetActive(false);
+
+        yield return StartCoroutine(ZoomCamera(zoomDuringFight));
+    }
+
+    public void OnWizardDeath()
+    {
+        Debug.Log("Wizard died. Resetting boss and necromancer.");
+        ResetBossState();
+    }
+
+    public void ResetBossState()
+    {
+        hasSpawned = false;
+
+        if (bossHealth != null && bossHealth.gameObject != null)
+        {
+            Destroy(bossHealth.gameObject);
+            bossHealth = null;
+        }
+
+        if (necromancer != null)
+        {
+            StopAllCoroutines();
+            necromancer.SetActive(false);
+        }
+
+        if (summoningCircle != null)
+            summoningCircle.SetActive(false);
+
+        SetBordersActive(false);
+        StartCoroutine(ZoomCamera(zoomDefault));
     }
 
     private void SetBordersActive(bool isActive)
@@ -44,24 +123,6 @@ public class BossSpawner : MonoBehaviour
             if (border != null)
                 border.SetActive(isActive);
         }
-    }
-
-    IEnumerator SummoningSequence()
-    {
-        // Zoom out very far for summoning sequence
-        yield return StartCoroutine(ZoomCamera(zoomDuringSummon));
-        yield return new WaitForSeconds(1f);
-
-        // Spawn Necromancer (or any boss)
-        if (bossPrefab != null && bossSpawnPoint != null)
-        {
-            GameObject boss = Instantiate(bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);
-            bossHealth = boss.GetComponent<Health>();
-        }
-
-        // Zoom in slightly for boss fight
-        yield return new WaitForSeconds(1f);
-        yield return StartCoroutine(ZoomCamera(zoomDuringFight));
     }
 
     IEnumerator ZoomCamera(float targetSize)
@@ -81,31 +142,41 @@ public class BossSpawner : MonoBehaviour
         mainCamera.orthographicSize = targetSize;
     }
 
-    public void ResetBossState()
+    IEnumerator FadeIn(GameObject obj, float duration)
     {
-        hasSpawned = false;
+        SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+        if (sr == null) yield break;
 
-        // Reset zoom to default
-        StartCoroutine(ZoomCamera(zoomDefault));
+        Color endColor = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
+        float t = 0f;
 
-        // If boss is already spawned, destroy it
-        if (bossHealth != null && bossHealth.gameObject != null)
+        while (t < duration)
         {
-            Destroy(bossHealth.gameObject); // Destroy the Necromancer or Boss when resetting
-            bossHealth = null;
+            t += Time.deltaTime;
+            sr.color = Color.Lerp(new Color(sr.color.r, sr.color.g, sr.color.b, 0f), endColor, t / duration);
+            yield return null;
         }
 
-        // Hide borders
-        SetBordersActive(false);
-
-        // Reactivate the trigger for re-summoning
-        gameObject.SetActive(true);
+        sr.color = endColor;
     }
 
-    // This function is called by the Health script when the Wizard dies.
-    public void OnWizardDeath()
+    IEnumerator FadeOut(GameObject obj, float duration)
     {
-        // When the Wizard dies, reset the boss state.
-        ResetBossState();
+        SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+        if (sr == null) yield break;
+
+        Color startColor = sr.color;
+        Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
+        float t = 0f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            sr.color = Color.Lerp(startColor, endColor, t / duration);
+            yield return null;
+        }
+
+        sr.color = endColor;
+        obj.SetActive(false);
     }
 }
