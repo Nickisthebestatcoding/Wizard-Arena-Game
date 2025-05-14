@@ -114,12 +114,12 @@ MonoBehaviour:
   giantFireballPrefab: {fileID: 1971517997543299322, guid: 64f7b5a9f74d5415d8b6d8974992ab71, type: 3}
   giantFireballShootPoint: {fileID: 2421901289349135396}
   giantFireballCooldown: 10
-  giantFireballChance: 0.1
+  giantFireballChance: 0.5
   circleDuration: 4
   circleRadius: 15
   circleFireRateMultiplier: 0.3
   circleAttackCooldown: 20
-  circleChance: 0.1
+  circleChance: 0.05
   moveSpeed_Phase2: 3
   shootDelay_Phase2: 0.5
   giantFireballCooldown_Phase2: 20
@@ -168,9 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fenceToRemove: {fileID: 0}
   maxHealth: 10
-  currentHealth: 10
   healthBarUI: {fileID: 0}
   WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
 --- !u!60 &866267798624590799
