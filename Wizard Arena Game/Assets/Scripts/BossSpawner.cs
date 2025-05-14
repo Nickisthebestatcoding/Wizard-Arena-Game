@@ -15,7 +15,19 @@ public class BossSpawner : MonoBehaviour
 
     void Start()
     {
-        SpawnNecromancer();
+        if (mainCamera == null)
+            mainCamera = Camera.main;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (necromancerSpawned) return;
+
+        if (other.CompareTag("Wizard"))
+        {
+            Debug.Log("Wizard entered boss spawner trigger.");
+            SpawnNecromancer();
+        }
     }
 
     void SpawnNecromancer()
@@ -38,17 +50,26 @@ public class BossSpawner : MonoBehaviour
 
     public void OnWizardDeath()
     {
-        DeactivateBoss(); // Disable current boss if needed
-        necromancerSpawned = false;
-        SpawnNecromancer();
-        Debug.Log("Necromancer respawned after wizard death!");
-        ZoomCamera(zoomedOutSize);
+        if (necromancer != null)
+        {
+            Destroy(necromancer);
+            necromancerSpawned = false;
+            SpawnNecromancer();
+
+            Debug.Log("Necromancer has been reset!");
+
+            ZoomCamera(zoomedOutSize);
+        }
     }
 
     public void ResetBossState()
     {
-        DeactivateBoss();
-        necromancerSpawned = false;
+        if (necromancer != null)
+        {
+            Destroy(necromancer);
+            necromancerSpawned = false;
+        }
+
         SpawnNecromancer();
         ZoomCamera(zoomedOutSize);
     }
@@ -58,7 +79,13 @@ public class BossSpawner : MonoBehaviour
         if (necromancer != null)
         {
             necromancer.SetActive(false);
+            necromancerSpawned = false;
         }
+    }
+
+    public void EndBossBattle()
+    {
+        ZoomCamera(zoomedInSize);
     }
 
     void ZoomCamera(float targetSize)
@@ -67,10 +94,5 @@ public class BossSpawner : MonoBehaviour
         {
             mainCamera.orthographicSize = targetSize;
         }
-    }
-
-    public void EndBossBattle()
-    {
-        ZoomCamera(zoomedInSize);
     }
 }

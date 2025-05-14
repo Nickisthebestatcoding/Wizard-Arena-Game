@@ -8300,11 +8300,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb52ca3b9e5ee47b493cd718031c5df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  necromancerPrefab: {fileID: 0}
-  spawnLocation: {fileID: 0}
+  necromancerPrefab: {fileID: 3900849881746063541, guid: b0d7930fd5dd94e689320e6ca2c65f67, type: 3}
+  spawnLocation: {fileID: 563904180}
   mainCamera: {fileID: 99460960}
   zoomedInSize: 8
-  zoomedOutSize: 12
+  zoomedOutSize: 25
 --- !u!61 &2088930101
 BoxCollider2D:
   m_ObjectHideFlags: 0
