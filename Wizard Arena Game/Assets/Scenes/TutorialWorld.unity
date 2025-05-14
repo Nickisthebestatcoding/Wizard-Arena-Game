@@ -9686,7 +9686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143a34b4b9b7242998c1487778a76522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5.7
+  speed: 6
   canMove: 1
   CompletedText: {fileID: 1245693432}
 --- !u!114 &1090028038
@@ -9859,7 +9859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 15
   healthBarUI: {fileID: 1090028049}
   WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
 --- !u!114 &1090028049
