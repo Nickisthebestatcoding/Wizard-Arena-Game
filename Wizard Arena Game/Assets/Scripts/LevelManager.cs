@@ -76,10 +76,7 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        if (bossSpawner != null)
-        {
-            bossSpawner.ResetBossState();
-        }
+        
 
         ResetCamera();
     }

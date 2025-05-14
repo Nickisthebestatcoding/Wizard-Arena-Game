@@ -50,10 +50,11 @@ public class Health : MonoBehaviour
 
         Debug.Log(gameObject.name + " died!");
 
-        BossSummonTrigger summonTrigger = FindObjectOfType<BossSummonTrigger>();
+        BossSummonTrigger summonTrigger = FindObjectOfType<BossSummonTrigger>(); // Keeps BossSummonTrigger intact
 
         if (CompareTag("Wizard"))
         {
+            // Keep BossSummonTrigger behavior intact for Wizard death
             if (summonTrigger != null)
             {
                 summonTrigger.OpenBorders();
@@ -61,8 +62,19 @@ public class Health : MonoBehaviour
                 summonTrigger.ResetZoom(); // Reset camera zoom
             }
 
+            // Deactivate the boss if it's active (add BossSpawner functionality here)
+            BossSpawner bossSpawner = FindObjectOfType<BossSpawner>();
+            if (bossSpawner != null)
+            {
+                bossSpawner.DeactivateBoss(); // Deactivate the boss when the wizard dies
+            }
+
             gameObject.SetActive(false);
-            FindObjectOfType<LevelManager>().ResetLevel();
+            LevelManager levelManager = FindObjectOfType<LevelManager>();
+            if (levelManager != null)
+            {
+                levelManager.ResetLevel();
+            }
         }
         else if (CompareTag("Boss"))
         {
