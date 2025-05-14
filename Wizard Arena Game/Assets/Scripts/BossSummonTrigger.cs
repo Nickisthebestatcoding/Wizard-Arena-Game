@@ -18,17 +18,16 @@ public class BossSummonTrigger : MonoBehaviour
     public float screenShakeDuration = 0.5f;
     public float screenShakeIntensity = 0.2f;
 
-    [Header("Camera Zoom")]
-    public Camera mainCamera;
-    public float zoomDuringSummon = 4f;
-    public float zoomDuringFight = 6f;
-    public float zoomDefault = 8f;
-    public float zoomSpeed = 2f;
+    private Camera mainCamera;
+    public float originalZoom = 5f;
+    public float spawnZoom = 9f;
+    public float combatZoom = 7f;
 
     private void Start()
     {
-        if (mainCamera == null)
-            mainCamera = Camera.main;
+        mainCamera = Camera.main;
+        if (mainCamera != null)
+            originalZoom = mainCamera.orthographicSize;
 
         if (summoningCircle != null)
             summoningCircle.SetActive(false);
@@ -62,12 +61,31 @@ public class BossSummonTrigger : MonoBehaviour
 
     public void OpenBorders()
     {
-        Debug.Log("Opening borders.");
         SetBordersActive(false);
+    }
+
+    public void ResetBossState()
+    {
+        hasSpawned = false;
+
+        if (bossHealth != null && bossHealth.gameObject != null)
+        {
+            Destroy(bossHealth.gameObject);
+            bossHealth = null;
+        }
+    }
+
+    public void ResetZoom()
+    {
+        if (mainCamera != null)
+            StartCoroutine(LerpZoom(mainCamera.orthographicSize, originalZoom, 1f));
     }
 
     IEnumerator SummoningSequence()
     {
+        if (mainCamera != null)
+            StartCoroutine(LerpZoom(mainCamera.orthographicSize, spawnZoom, 1f));
+
         if (summoningCircle != null)
         {
             summoningCircle.SetActive(true);
@@ -79,9 +97,6 @@ public class BossSummonTrigger : MonoBehaviour
             necromancer.SetActive(true);
             StartCoroutine(FadeIn(necromancer, 1f));
         }
-
-        // Zoom out more during summoning
-        yield return StartCoroutine(ZoomCamera(zoomDuringSummon));
 
         yield return new WaitForSeconds(1.5f);
 
@@ -102,6 +117,9 @@ public class BossSummonTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
+        if (mainCamera != null)
+            StartCoroutine(LerpZoom(mainCamera.orthographicSize, combatZoom, 1f));
+
         if (necromancer != null)
             StartCoroutine(FadeOut(necromancer, 1f));
 
@@ -109,26 +127,21 @@ public class BossSummonTrigger : MonoBehaviour
 
         if (summoningCircle != null)
             summoningCircle.SetActive(false);
-
-        // Zoom in slightly for boss fight
-        yield return StartCoroutine(ZoomCamera(zoomDuringFight));
     }
 
-    IEnumerator ZoomCamera(float targetSize)
+    IEnumerator LerpZoom(float fromSize, float toSize, float duration)
     {
-        if (mainCamera == null) yield break;
-
-        float startSize = mainCamera.orthographicSize;
         float t = 0f;
-
-        while (Mathf.Abs(mainCamera.orthographicSize - targetSize) > 0.05f)
+        while (t < duration)
         {
-            t += Time.deltaTime * zoomSpeed;
-            mainCamera.orthographicSize = Mathf.Lerp(startSize, targetSize, t);
+            t += Time.deltaTime;
+            if (mainCamera != null)
+                mainCamera.orthographicSize = Mathf.Lerp(fromSize, toSize, t / duration);
             yield return null;
         }
 
-        mainCamera.orthographicSize = targetSize;
+        if (mainCamera != null)
+            mainCamera.orthographicSize = toSize;
     }
 
     IEnumerator FadeIn(GameObject obj, float duration)
@@ -168,19 +181,5 @@ public class BossSummonTrigger : MonoBehaviour
 
         sr.color = endColor;
         obj.SetActive(false);
-    }
-
-    public void ResetBossState()
-    {
-        hasSpawned = false;
-
-        // Reset camera zoom
-        StartCoroutine(ZoomCamera(zoomDefault));
-
-        if (bossHealth != null && bossHealth.gameObject != null)
-        {
-            Destroy(bossHealth.gameObject);
-            bossHealth = null;
-        }
     }
 }

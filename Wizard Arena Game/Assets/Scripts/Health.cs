@@ -1,79 +1,76 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class Health : MonoBehaviour
 {
-    [Header("Health Settings")]
     public float maxHealth = 10f;
     private float currentHealth;
-
-    [Header("UI & Audio")]
     public WizardHealthBar healthBarUI;
     public AudioClip WizardPain;
 
-    private BossSpawner bossSpawner;
-    private AudioSource audioSource;
-
-    // Optional: Invincibility frames after damage (uncomment to use)
-    // public float invincibilityDuration = 0.5f;
-    // private bool isInvincible = false;
+    private bool isDead = false;
 
     void Start()
     {
         currentHealth = maxHealth;
-        audioSource = GetComponent<AudioSource>();
-        bossSpawner = FindObjectOfType<BossSpawner>();
-
         if (healthBarUI != null)
             healthBarUI.UpdateHealthBar(currentHealth / maxHealth);
     }
 
     public void TakeDamage(float amount)
     {
-        // Uncomment if using invincibility frames
-        // if (isInvincible) return;
+        if (isDead) return;
 
         currentHealth -= amount;
-        Debug.Log($"{gameObject.name} took {amount} damage. Remaining health: {currentHealth}");
+        Debug.Log(gameObject.name + " took " + amount + " damage. Remaining health: " + currentHealth);
 
         if (healthBarUI != null)
             healthBarUI.UpdateHealthBar(currentHealth / maxHealth);
 
-        if (WizardPain != null && audioSource != null)
-            audioSource.PlayOneShot(WizardPain);
+        if (WizardPain != null)
+            GetComponent<AudioSource>().PlayOneShot(WizardPain);
 
-        if (currentHealth <= 0)
+        if (currentHealth <= maxHealth / 2)
         {
-            Die();
+            SkeletonBoss boss = GetComponent<SkeletonBoss>();
+            if (boss != null)
+            {
+                boss.EnterRageMode();
+            }
         }
 
-        // Uncomment if using invincibility frames
-        // StartCoroutine(InvincibilityCoroutine());
+        if (currentHealth <= 0)
+            Die();
     }
 
     void Die()
     {
-        Debug.Log($"{gameObject.name} died!");
+        if (isDead) return;
+        isDead = true;
+
+        Debug.Log(gameObject.name + " died!");
+
+        BossSummonTrigger summonTrigger = FindObjectOfType<BossSummonTrigger>();
 
         if (CompareTag("Wizard"))
         {
-            if (bossSpawner != null)
-                bossSpawner.OnWizardDeath();
+            if (summonTrigger != null)
+            {
+                summonTrigger.OpenBorders();
+                summonTrigger.ResetBossState();
+                summonTrigger.ResetZoom(); // Reset camera zoom
+            }
 
             gameObject.SetActive(false);
-
-            LevelManager levelManager = FindObjectOfType<LevelManager>();
-            if (levelManager != null)
-                levelManager.ResetLevel();
-            else
-                Debug.LogWarning("LevelManager not found.");
+            FindObjectOfType<LevelManager>().ResetLevel();
         }
-        else if (CompareTag("Boss") || CompareTag("Necromancer"))
+        else if (CompareTag("Boss"))
         {
-            if (bossSpawner != null)
-                bossSpawner.ResetBossState();
+            if (summonTrigger != null)
+            {
+                summonTrigger.OpenBorders();
+                summonTrigger.ResetZoom(); // Reset camera zoom
+            }
 
             gameObject.SetActive(false);
         }
@@ -86,24 +83,17 @@ public class Health : MonoBehaviour
     public void ResetHealth()
     {
         currentHealth = maxHealth;
+        isDead = false;
+
         if (healthBarUI != null)
             healthBarUI.UpdateHealthBar(1f);
 
-        Debug.Log($"{gameObject.name} health reset.");
+        Debug.Log(gameObject.name + " health reset.");
     }
 
+    // Method to get the health percentage (0 to 1)
     public float GetHealthPercent()
     {
         return currentHealth / maxHealth;
     }
-
-    // Optional: Invincibility frames coroutine
-    /*
-    IEnumerator InvincibilityCoroutine()
-    {
-        isInvincible = true;
-        yield return new WaitForSeconds(invincibilityDuration);
-        isInvincible = false;
-    }
-    */
 }

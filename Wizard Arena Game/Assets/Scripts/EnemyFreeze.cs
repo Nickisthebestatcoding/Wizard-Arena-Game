@@ -31,12 +31,12 @@ public class EnemyFreeze : MonoBehaviour
             skeletonBoss.enabled = false;
 
         // Track if the current color is already the enraged color
-        if (skeletonBoss != null && sr.color == skeletonBoss.enragedColor)
+        if (skeletonBoss != null && sr.color == Color.red)  // Assuming red is the enraged color
         {
             wasEnragedColor = true;
         }
 
-        sr.color = Color.cyan;
+        sr.color = Color.cyan; // Freeze color
         isFrozen = true;
 
         CancelInvoke(nameof(Unfreeze));
@@ -55,7 +55,7 @@ public class EnemyFreeze : MonoBehaviour
         // Restore the correct color based on enraged state
         if (wasEnragedColor && skeletonBoss != null)
         {
-            sr.color = skeletonBoss.enragedColor;
+            sr.color = Color.red;  // Restore the enraged color (assuming red)
         }
         else
         {
