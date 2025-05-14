@@ -29,10 +29,7 @@ public class ShopManagerScript : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject); // Keep this across scenes
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        
 
         // Load unlocks
         iceBulletUnlocked = PlayerPrefs.GetInt("IceBulletUnlocked", 0) == 1;

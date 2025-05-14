@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1476623767661607059}
   m_Layer: 0
   m_Name: necromancer
-  m_TagString: Boss
+  m_TagString: Necromancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,7 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  fenceToRemove: {fileID: 0}
+  maxHealth: 10
+  currentHealth: 10
   healthBarUI: {fileID: 0}
   WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
 --- !u!60 &866267798624590799
