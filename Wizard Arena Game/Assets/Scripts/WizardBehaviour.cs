@@ -56,6 +56,10 @@ public class WizardScript : MonoBehaviour
 
         spriteClamp.limitMovement(transform.position, transform);
         cameraClamp.limitMovement(transform.position, Camera.main.transform);
+        if (Input.GetKeyDown(KeyCode.Q ))
+        {
+            GetComponent<Health>().Heal(5f); // Heal for 5 health
+        }
     }
 
     public void ResetSliding()

@@ -10,9 +10,15 @@ public class Health : MonoBehaviour
 
     private bool isDead = false;
 
+    [Header("Healing")]
+    public int startingHeals = 5;
+    private int currentHeals;
+
     void Start()
     {
         currentHealth = maxHealth;
+        currentHeals = startingHeals;
+
         if (healthBarUI != null)
             healthBarUI.UpdateHealthBar(currentHealth / maxHealth);
     }
@@ -43,6 +49,24 @@ public class Health : MonoBehaviour
             Die();
     }
 
+    public void Heal(float amount)
+    {
+        if (isDead) return;
+        if (currentHeals <= 0)
+        {
+            Debug.Log("No heals left!");
+            return;
+        }
+
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        currentHeals--;
+
+        if (healthBarUI != null)
+            healthBarUI.UpdateHealthBar(currentHealth / maxHealth);
+
+        Debug.Log(gameObject.name + " healed. Remaining health: " + currentHealth + " | Heals left: " + currentHeals);
+    }
+
     void Die()
     {
         if (isDead) return;
@@ -54,19 +78,17 @@ public class Health : MonoBehaviour
 
         if (CompareTag("Wizard"))
         {
-            // Keep BossSummonTrigger behavior intact for Wizard death
             if (summonTrigger != null)
             {
                 summonTrigger.OpenBorders();
                 summonTrigger.ResetBossState();
-                summonTrigger.ResetZoom(); // Reset camera zoom
+                summonTrigger.ResetZoom();
             }
 
-            // Deactivate the boss if it's active (add BossSpawner functionality here)
             BossSpawner bossSpawner = FindObjectOfType<BossSpawner>();
             if (bossSpawner != null)
             {
-                bossSpawner.DeactivateBoss(); // Deactivate the boss when the wizard dies
+                bossSpawner.DeactivateBoss();
             }
 
             gameObject.SetActive(false);
@@ -81,7 +103,7 @@ public class Health : MonoBehaviour
             if (summonTrigger != null)
             {
                 summonTrigger.OpenBorders();
-                summonTrigger.ResetZoom(); // Reset camera zoom
+                summonTrigger.ResetZoom();
             }
 
             gameObject.SetActive(false);
@@ -96,6 +118,7 @@ public class Health : MonoBehaviour
     {
         currentHealth = maxHealth;
         isDead = false;
+        currentHeals = startingHeals;
 
         if (healthBarUI != null)
             healthBarUI.UpdateHealthBar(1f);
@@ -103,9 +126,13 @@ public class Health : MonoBehaviour
         Debug.Log(gameObject.name + " health reset.");
     }
 
-    // Method to get the health percentage (0 to 1)
     public float GetHealthPercent()
     {
         return currentHealth / maxHealth;
+    }
+
+    public int GetHealCount()
+    {
+        return currentHeals;
     }
 }
