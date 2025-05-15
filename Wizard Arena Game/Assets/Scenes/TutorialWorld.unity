@@ -12657,7 +12657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   healthBarUI: {fileID: 0}
-  WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
+  WizardPain: {fileID: 0}
 --- !u!1001 &1391629271
 PrefabInstance:
   m_ObjectHideFlags: 0
