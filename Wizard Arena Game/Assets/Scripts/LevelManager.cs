@@ -14,8 +14,8 @@ public class LevelManager : MonoBehaviour
     private Dictionary<GameObject, Quaternion> enemyStartRot = new Dictionary<GameObject, Quaternion>();
 
     [Header("Boss Spawner")]
-    public BossSpawner bossSpawner;
-    public Camera mainCamera;
+    public BossSpawner bossSpawner; // Drag BossSpawner GameObject here in the Inspector
+    public Camera mainCamera; // Reference to the main camera
 
     void Start()
     {
@@ -40,6 +40,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("🔁 Resetting Level 🔁");
 
+        // 🧙‍♂️ Wizard Reset
         if (wizard != null)
         {
             wizard.transform.position = wizardStartPos;
@@ -49,19 +50,23 @@ public class LevelManager : MonoBehaviour
             if (wizardHealth != null)
                 wizardHealth.ResetHealth();
 
+            // Reset dash
             Dash2D dashScript = wizard.GetComponent<Dash2D>();
             if (dashScript != null)
                 dashScript.ResetDash();
 
+            // Reset poison effect
             PoisonEffect poison = wizard.GetComponent<PoisonEffect>();
             if (poison != null)
                 poison.ResetEffect();
 
+            // Reset freeze effect
             PlayerFreeze freeze = wizard.GetComponent<PlayerFreeze>();
             if (freeze != null)
                 freeze.ResetEffect();
         }
 
+        // 💀 Enemies Reset
         foreach (GameObject enemy in enemies)
         {
             if (enemy != null)
@@ -76,22 +81,29 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        
-
-        ResetCamera();
-    }
-
-    private void ResetCamera()
-    {
-        if (mainCamera != null)
+        // 🧟 Boss Reset
+        if (bossSpawner != null)
         {
-            mainCamera.transform.position = new Vector3(0, 0, mainCamera.transform.position.z);
-            mainCamera.orthographicSize = 8f;
+            bossSpawner.ResetBossState();
         }
+
+        // Reset camera
+        ResetCamera();
     }
 
     public void ShowGameOver()
     {
         Debug.Log("💀 Game Over! 💀");
+        // Optional: Show game over UI or pause the game
+    }
+
+    // New method to reset camera
+    private void ResetCamera()
+    {
+        if (mainCamera != null)
+        {
+            mainCamera.transform.position = new Vector3(0, 0, mainCamera.transform.position.z); // Reset position to (0, 0, z)
+            mainCamera.orthographicSize = 8f; // Default zoom level
+        }
     }
 }

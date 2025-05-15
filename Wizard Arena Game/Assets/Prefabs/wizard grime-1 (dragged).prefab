@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8538134907141155607}
   - component: {fileID: 4575259357143934289}
   - component: {fileID: 2007628105477852447}
-  - component: {fileID: 5700849073014946456}
   - component: {fileID: -112003522187633445}
+  - component: {fileID: 910320510293526798}
   m_Layer: 0
   m_Name: wizard grime-1 (dragged)
   m_TagString: Enemy
@@ -284,21 +284,6 @@ PolygonCollider2D:
       - {x: 1.2112501, y: -5.80125}
       - {x: 1.87, y: -5.80125}
   m_UseDelaunayMesh: 0
---- !u!114 &5700849073014946456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2196112554208404777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 25
-  healthBarUI: {fileID: 0}
-  WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
 --- !u!114 &-112003522187633445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,6 +296,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b89d703f1f0498fa590473239d1f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &910320510293526798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2196112554208404777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  healthBarUI: {fileID: 0}
+  WizardPain: {fileID: 0}
 --- !u!1 &3494089625187836106
 GameObject:
   m_ObjectHideFlags: 0

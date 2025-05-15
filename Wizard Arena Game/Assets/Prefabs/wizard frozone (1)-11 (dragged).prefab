@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 5887032997972456685}
   - component: {fileID: 7834099568444510378}
   - component: {fileID: 2159648492308864672}
-  - component: {fileID: 3802688201436243549}
+  - component: {fileID: -5795730871266690804}
   m_Layer: 0
   m_Name: wizard frozone (1)-11 (dragged)
   m_TagString: Enemy
@@ -423,7 +423,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9092304493035245599}
   m_BodyType: 0
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -470,7 +470,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -595,7 +595,7 @@ PolygonCollider2D:
       - {x: -5.6418753, y: -7.2781253}
       - {x: -5.748125, y: -7.2781253}
   m_UseDelaunayMesh: 0
---- !u!114 &3802688201436243549
+--- !u!114 &-5795730871266690804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -607,6 +607,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 10
   healthBarUI: {fileID: 0}
-  WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
+  WizardPain: {fileID: 0}

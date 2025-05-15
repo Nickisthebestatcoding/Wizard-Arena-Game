@@ -52,14 +52,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: sentry
       objectReference: {fileID: 0}
+    - target: {fileID: 6323544285326732477, guid: 2a51cafc8dfd747e49e160b69dbedaa4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4212319087169374052, guid: 2a51cafc8dfd747e49e160b69dbedaa4, type: 3}
+    - {fileID: 4808163084511832285, guid: 2a51cafc8dfd747e49e160b69dbedaa4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1651505613857665254, guid: 2a51cafc8dfd747e49e160b69dbedaa4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4688574515779365513}
+    - targetCorrespondingSourceObject: {fileID: 1651505613857665254, guid: 2a51cafc8dfd747e49e160b69dbedaa4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3085548813736933270}
   m_SourcePrefab: {fileID: 100100000, guid: 2a51cafc8dfd747e49e160b69dbedaa4, type: 3}
 --- !u!4 &1718188895190679248 stripped
 Transform:
@@ -88,3 +96,18 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2083348019653960525, guid: 4b49ab18bdf96428bb61bbd6a738844b, type: 3}
   shootPoint: {fileID: 1718188895190679248}
   shootDelay: 3
+--- !u!114 &-3085548813736933270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065765085216655237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  healthBarUI: {fileID: 0}
+  WizardPain: {fileID: 0}

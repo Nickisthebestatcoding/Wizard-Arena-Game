@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4212319087169374052}
   - component: {fileID: 3024570673850258806}
   - component: {fileID: 6323544285326732477}
-  - component: {fileID: 4808163084511832285}
   - component: {fileID: 1198400311261238804}
+  - component: {fileID: 9807797874799693}
   m_Layer: 0
   m_Name: wizard  wind-1 (dragged)
   m_TagString: Enemy
@@ -297,7 +297,19 @@ PolygonCollider2D:
       - {x: -2.34, y: -0.95}
       - {x: -2.35, y: -0.95}
   m_UseDelaunayMesh: 0
---- !u!114 &4808163084511832285
+--- !u!114 &1198400311261238804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651505613857665254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b89d703f1f0498fa590473239d1f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9807797874799693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,19 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   healthBarUI: {fileID: 0}
-  WizardPain: {fileID: 8300000, guid: 2600bc556ef8649cc9116ba09c0c1341, type: 3}
---- !u!114 &1198400311261238804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651505613857665254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4b89d703f1f0498fa590473239d1f33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  WizardPain: {fileID: 0}
 --- !u!1 &1770705318234420401
 GameObject:
   m_ObjectHideFlags: 0
