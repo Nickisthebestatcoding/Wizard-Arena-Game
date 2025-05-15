@@ -258,9 +258,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936b87338f8bc42ae9476fb06c1cef07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 70
   healthBarUI: {fileID: 0}
   WizardPain: {fileID: 0}
+  startingHeals: 5
 --- !u!1 &6169151016626877946
 GameObject:
   m_ObjectHideFlags: 0
