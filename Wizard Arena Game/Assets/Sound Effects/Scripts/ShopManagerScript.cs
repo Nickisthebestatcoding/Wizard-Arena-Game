@@ -100,3 +100,4 @@ public class ShopManagerScript : MonoBehaviour
         CoinsTXT.text = "Coins:" + WizardCoinManager.Instance.GetCoins();
     }
 }
+
