@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf483efc19774fb49dbdc8b5036efbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 4
   damage: 1
   attackRange: 6
   knockbackForce: 10
@@ -256,9 +256,6 @@ MonoBehaviour:
   spikeAttackCooldown: 30
   spikeWarningPrefab: {fileID: 557851855872042132, guid: e23bc9a32e3a84b8bbe2760dae771911, type: 3}
   warningDelay: 0.5
-  enragedMoveSpeed: 6
-  enragedDamage: 2
-  enragedColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &3421997529652693302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +271,7 @@ MonoBehaviour:
   maxHealth: 50
   healthBarUI: {fileID: 0}
   WizardPain: {fileID: 0}
+  startingHeals: 5
 --- !u!50 &5701523207446857713
 Rigidbody2D:
   serializedVersion: 4
